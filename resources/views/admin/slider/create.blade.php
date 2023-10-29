@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Tambah Kategori')
+@section('title', 'Edit Kategori')
 @section('content')
     @if(session()->has('message'))
         <div class="alert alert-success d-flex justify-content-between">
@@ -10,26 +10,19 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-middle">
             <h3>
-                Tambah Kategori
+                Tambah Slider
             </h3>
-            <a href="{{ route('kategori.index') }}" class="btn btn-primary">Back</a>
+            <a href="{{ route('slider.index') }}" class="btn btn-primary">Back</a>
         </div>
         <div class="card-body">
-            <form action="{{ route('kategori.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="name" class="form-label">Nama Kategori</label>
-                        <input type="text" class="form-control card-text" value="{{ old('name') }}" name="name">
-                        @error('name')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="slug" class="form-label">Slug</label>
-                        <input type="text" class="form-control card-text" value="{{ old('slug') }}" name="slug">
-                        @error('slug')
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control card-text" value="{{ old('title') }}" name="title">
+                        @error('title')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

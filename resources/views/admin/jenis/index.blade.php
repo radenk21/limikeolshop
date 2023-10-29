@@ -22,7 +22,7 @@
                 <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">ID</h6>
+                            <h6 class="fw-semibold mb-0">No</h6>
                         </th>
                         <th class="border-bottom">
                             <h6 class="fw-semibold mb-0">Nama Color</h6>

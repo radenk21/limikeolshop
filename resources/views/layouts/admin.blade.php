@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') | Limike Olshop</title>
 
     <link rel="stylesheet" href="{{ asset('admin/css/styles.min.css') }}" />
 

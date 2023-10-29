@@ -1,4 +1,6 @@
 @extends('layouts.admin')
+@section('title', 'Daftar Supplier')
+
 @section('content')
 <div>
     @if(session('message'))
@@ -28,7 +30,7 @@
                 <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">ID</h6>
+                            <h6 class="fw-semibold mb-0">No</h6>
                         </th>
                         <th class="border-bottom">
                             <h6 class="fw-semibold mb-0">Nama</h6>
@@ -71,7 +73,7 @@
                             <tr>
                                 <td class="border-bottom-0">
                                     <span class="fw-semibold">
-                                    {{ $supplier->id }}
+                                        {{ $loop->index + 1 }}
                                     </span>
                                 </td>
                                 <td class="border-bottom-0">
