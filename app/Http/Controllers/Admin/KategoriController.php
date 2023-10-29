@@ -49,9 +49,6 @@ class KategoriController extends Controller
             $kategori->image = $filename;
         }
 
-        // $kategori->meta_title = $validatedData['meta_title'];
-        // $kategori->meta_keyword = $validatedData['meta_keyword'];
-        // $kategori->meta_description = $validatedData['meta_description'];
         $kategori->status = $request->status == true ? '1' : '0';
         $kategori->save();
         session()->flash('message', 'Kategori telah ditambahkan');
