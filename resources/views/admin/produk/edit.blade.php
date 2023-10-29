@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Edit Produk')
 @section('content')
     @if(session()->has('message'))
         <div class="alert alert-success d-flex justify-content-between">

@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Edit Sub Kategori')
 @section('content')
     @if(session('message'))
         <div class="alert alert-success d-flex justify-content-between">

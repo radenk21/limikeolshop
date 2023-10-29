@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Daftar Produk')
 @section('content')
 <div>
     @if(session('message'))

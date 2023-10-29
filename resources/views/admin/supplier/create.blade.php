@@ -1,4 +1,6 @@
 @extends('layouts.admin')
+@section('title', 'Tambah Supplier')
+
 @section('content')
     @if(session()->has('message'))
         <div class="alert alert-success d-flex justify-content-between">

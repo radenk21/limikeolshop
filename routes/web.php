@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\JenisController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubKategoriController;
 use App\Http\Controllers\Admin\SupplierController;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,6 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('produk/{produk}/get-subcategories/{kategori}', [ProdukController::class, 'getSubcategories']);
     Route::get('gambar-produk/{id}/delete', [ProdukController::class, 'destroyGambar']);
 
-    // Jenis Routes
-    Route::resource('jenis', JenisController::class);
+    // Slider Routes
+    Route::resource('slider', SliderController::class);
 });

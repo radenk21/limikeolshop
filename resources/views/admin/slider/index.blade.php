@@ -1,6 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Daftar Supplier')
-
+@section('title', 'Daftar Slider')
 @section('content')
 <div>
     @if(session('message'))
@@ -21,9 +20,9 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-middle">
             <h3>
-                Supplier
+                Sub Kategori
             </h3>
-            <a href="{{ route('supplier.create') }}" class="btn btn-primary">Tambah Supplier</a>
+            <a href="{{ route('sub-kategori.create') }}" class="btn btn-primary">Tambah Sub Kategori</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -36,31 +35,28 @@
                             <h6 class="fw-semibold mb-0">Nama</h6>
                         </th>
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Alamat</h6>
+                            <h6 class="fw-semibold mb-0">Nama Kategori</h6>
                         </th>
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Email</h6>
-                        </th>
-                        <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Nomor Telepon</h6>
+                            <h6 class="fw-semibold mb-0">Status</h6>
                         </th>
                         <th class="border-bottom">
                             <h6 class="fw-semibold mb-0">Action</h6>
                         </th>
                     </thead>
                     <tbody>
-                        @forelse ($suppliers as $supplier )
+                        @forelse ($subKategoris as $subKategori )
                         <div class="modal fade" id="deleteModal{{ $loop->index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ route('supplier.destroy', $supplier->id) }}" method="POST">
+                                <form action="{{ route('sub-kategori.destroy', $subKategori->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <div class="modal-body">
-                                        Apakah anda yakin ingin menghapus supplier ini?
+                                        Apakah anda yakin ingin menghapus sub kategori ini?
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
@@ -73,35 +69,30 @@
                             <tr>
                                 <td class="border-bottom-0">
                                     <span class="fw-semibold">
-                                    {{ $supplier->id }}
+                                    {{ $subKategori->id }}
                                     </span>
                                 </td>
                                 <td class="border-bottom-0">
                                     <span class="fw-semibold">
-                                        {{ $supplier->name }}
+                                        {{ $subKategori->name }}
                                     </span>
                                 </td>
                                 <td class="border-bottom-0">
                                     <span class="fw-semibold">
-                                        {{ $supplier->alamat }}
+                                        {{ $subKategori->kategori->name }}
                                     </span>
                                 </td>
                                 <td class="border-bottom-0">
                                     <span class="fw-semibold">
-                                        {{ $supplier->email }}
-                                    </span>
-                                </td>
-                                <td class="border-bottom-0">
-                                    <span class="fw-semibold">
-                                        {{ $supplier->no_telp }}
+                                        {{ $subKategori->status == '1' ? 'Hidden':'Visible' }}
                                     </span>
                                 </td>
                                 <td class="border-bottom-0"><span class="fw-semibold"></span>
-                                    <a href="{{ route('supplier.edit', $supplier->id) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('sub-kategori.edit', $subKategori->id) }}" class="btn btn-primary">Edit</a>
                                     <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->index }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-                        @empty
+                            @empty
                             <tr>
                                 <td colspan="6" class="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-circle" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -111,7 +102,7 @@
                                         <path d="M12 16h.01"></path>
                                     </svg>
                                     <br>
-                                    Belum ada supplier
+                                    Belum ada sub kategori
                                 </td>
                             </tr>
                         @endforelse
@@ -119,7 +110,7 @@
                 </table>
             </div>
             <div>
-                {{ $suppliers->links() }}
+                {{ $subKategoris->links() }}
             </div>
         </div>
     </div>
