@@ -81,7 +81,7 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            <img src="{{ asset($slider->image) }}" alt="" height="120" width="120">
+                                            <img src="{{ asset($slider->image) }}" alt="" width="120">
                                         </span>
                                     </td>
                                     <td class="border-bottom-0">

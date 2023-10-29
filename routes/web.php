@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubKategoriController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,11 +22,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
+
+Route::get('/', [FrontendController::class, 'index'])->name('home.index');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
