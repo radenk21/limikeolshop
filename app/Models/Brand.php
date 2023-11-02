@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jenis extends Model
+class Brand extends Model
 {
     use HasFactory;
-    protected $table = 'jeniss';
+    protected $table = 'brands';
     protected $fillable = [
         'name',
-        'code',
+        'slug',
         'status',
     ];
-    public function produks()
+    public function produk()
     {
-        return $this->belongsToMany(Produk::class, 'produk_jenis', 'id_jenis', 'id_produk');
+        return $this->belongsTo(Produk::class, 'id', 'id_produk');
     }
 }

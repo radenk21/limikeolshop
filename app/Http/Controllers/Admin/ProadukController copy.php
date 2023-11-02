@@ -13,9 +13,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProdukFormRequest;
-use App\Http\Requests\IsiProdukFormRequest;
-
-// use App\Http\Requests\ProdukFormRequest;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class ProdukController extends Controller
 {
@@ -45,61 +44,57 @@ class ProdukController extends Controller
         $subcategories = SubKategori::where('id_kategori', $kategori)->get();
         return response()->json($subcategories);
     }
+    
     /**
      * Store a newly created resource in storage.
      */
-    public function store(IsiProdukFormRequest $request)
+    public function store(Request $request)
     {
-        // dd($request->all());
-        $validatedData = $request->validated();
-        $request->validate(Produk::rules());
-        $subKategori = SubKategori::findOrFail($validatedData['id_sub_kategori']);
-        $produk = $subKategori->produk()->create([
-            'name' =>$validatedData['name'],
-            'slug' =>$validatedData['slug'],
-            'id_sub_kategori' =>$validatedData['id_sub_kategori'],
-            'id_brand' =>$validatedData['id_brand'],
-            'harga_beli' =>$validatedData['harga_beli'],
-            'harga_jual' =>$validatedData['harga_jual'],
-            'trending' =>$request->trending == true ? '1':'0',
-            'status' =>$request->status == true ? '1':'0',
-            'jumlah' =>$validatedData['jumlah'],
-        ]);
-        if ($request->hasFile('image')) {
-            $uploadPath = 'uploads/produk/';
-            foreach ($request->file('image') as $imageFile) {
-
-                $extension = $imageFile->getClientOriginalExtension();
-                $filename = time().'-'.uniqid().'.'. $extension;
-                $imageFile->move($uploadPath, $filename);
-                $finalImagePathName = $uploadPath.$filename;
-                
-                GambarProduk::create([
-                    'id_produk' => $produk->id,
-                    'image' => $finalImagePathName
-                ]);
-            }
-        }
-
-        if ($request->jeniss) {
-            // dd('ada kok');
-            foreach ($request->jeniss as $key => $jenis) {
-                $produk->produkJenis()->create([
-                    'id_produk' => $produk->id,
-                    'id_jenis' => $jenis,
-                    'jumlah' => $request->jumlah_jenis[$key] ?? 0,
-                ]);
-            }
-        }
+        // dd($request);
         
-        $id_supplier = $request->input('id_supplier');
-        $produk->suppliers()->sync($id_supplier);
-        // $produk->produkSuppliers()->create([
-        //     'id_supplier' => $request->id_supplier,
-        //     'id_produk' => $produk->id,
+        // $request->validate([
+        //     'name' => ['required', 'string'],
+        //     'slug' => ['required', 'string'], // Validasi untuk memastikan slug adalah unik di dalam tabel produk.
+        //     'id_sub_kategori' => ['required', 'integer'], // Validasi untuk memeriksa apakah id_sub_kategori ada di dalam tabel sub_kategoris.
+        //     'id_brand' => ['required', 'integer'], // Validasi untuk memeriksa apakah id_brand ada di dalam tabel brands.
+        //     'image' => ['nullable', 'array'], // Validasi untuk memastikan bahwa image adalah sebuah array (jika ada multiple uploads).
+        //     'harga_beli' => ['required', 'integer'],
+        //     'harga_jual' => ['required', 'integer'],
+        //     'jumlah' => ['required', 'integer'],
         // ]);
-        
-        return redirect('admin/produk')->with('message', 'Produk berhasil ditambahkan');
+        // dd($request->name);
+        // $request->validate(Produk::rules());
+        // $subKategori = SubKategori::findOrFail($validatedData['id_sub_kategori']);
+        // $produk = $subKategori->produk()->create([
+        //     'name' =>$validatedData['name'],
+        //     'slug' =>$validatedData['slug'],
+        //     'id_sub_kategori' =>$validatedData['id_sub_kategori'],
+        //     'id_brand' =>$validatedData['id_brand'],
+        //     'harga_beli' =>$validatedData['harga_beli'],
+        //     'harga_jual' =>$validatedData['harga_jual'],
+        //     'trending' =>$request->trending == true ? '1':'0',
+        //     'status' =>$request->status == true ? '1':'0',
+        //     'jumlah' =>$validatedData['jumlah'],
+        // ]);
+        // if ($request->hasFile('image')) {
+        //     $uploadPath = 'uploads/produk/';
+        //     foreach ($request->file('image') as $imageFile) {
+
+        //         $extension = $imageFile->getClientOriginalExtension();
+        //         $filename = time().'-'.uniqid().'.'. $extension;
+        //         $imageFile->move($uploadPath, $filename);
+        //         $finalImagePathName = $uploadPath.$filename;
+                
+        //         GambarProduk::create([
+        //             'id_produk' => $produk->id,
+        //             'image' => $finalImagePathName
+        //         ]);
+        //     }
+        // }
+        // $id_supplier = $request->input('id_supplier');
+        // $produk->suppliers()->sync($id_supplier);
+
+        // return redirect('admin/produk')->with('message', 'Produk berhasil ditambahkan');
     }
 
     /**
@@ -116,23 +111,20 @@ class ProdukController extends Controller
     public function edit(Produk $produk)
     {
         $brands = Brand::all();
+        $jeniss = Jenis::all();
         $kategoris = Kategori::all();
         $subKategoris = SubKategori::all();
         $suppliers = Supplier::all();
         $selectedSupplier = $produk->suppliers->pluck('id')->toArray();
-        $jenisProduk = $produk->produkJenis->pluck('id_jenis')->toArray();
-        $jeniss = Jenis::whereNotIn('id', $jenisProduk)->get();
         // dd($selectedSupplier);
-        return view('admin.produk.edit', compact('produk', 'kategoris', 'suppliers', 'brands','selectedSupplier', 'jeniss', 'jenisProduk'));
+        return view('admin.produk.edit', compact('produk', 'kategoris', 'suppliers', 'brands','selectedSupplier', 'jeniss'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(IsiProdukFormRequest $request, $id)
+    public function update(ProdukFormRequest $request, $id)
     {
-        // dd('ini update produkcontroller');
-
         $validatedData = $request->validated();
         $produk = SubKategori::findOrFail($validatedData['id_sub_kategori'])->produk()->where('id', $id)->first();
         if ($produk) {
@@ -140,7 +132,7 @@ class ProdukController extends Controller
                 'name' =>$validatedData['name'],
                 'slug' =>$validatedData['slug'],
                 'id_sub_kategori' =>$validatedData['id_sub_kategori'],
-                'id_brand' =>$validatedData['id_brand'],
+                'id_brand' =>$validatedData['id_sub_kategori'],
                 'harga_beli' =>$validatedData['harga_beli'],
                 'harga_jual' =>$validatedData['harga_jual'],
                 'trending' =>$request->trending == true ? '1':'0',
@@ -162,37 +154,20 @@ class ProdukController extends Controller
                     ]);
                 }
             }
-
-            if ($request->jeniss) {
-                // dd('ada kok');
-                foreach ($request->jeniss as $key => $jenis) {
-                    $produk->produkJenis()->create([
-                        'id_produk' => $produk->id,
-                        'id_jenis' => $jenis,
-                        'jumlah' => $request->jumlah_jenis[$key] ?? 0,
-                    ]);
-                }
-            }
-            
             $produk->suppliers()->sync($request->input('id_supplier'));
             
             return redirect('admin/produk')->with('message', 'Produk berhasil diupdate');
         } else {
             return redirect()->with('message', 'Kategori tidak tersedia');
         }
+        
     }
 
-    public function produkJenisUpdate(Request $request, $produk_jenis_id)
-    {
-        dd($produk_jenis_id);
-    }
-    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        // dd('ini produkcontroller');
         $produk = Produk::findOrFail($id);
         if ($produk->gambarProduk()) {
             foreach ($produk->gambarProduk as $gambarProduk) {

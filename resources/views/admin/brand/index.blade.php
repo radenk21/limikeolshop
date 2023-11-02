@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Daftar Jenis')
+@section('title', 'Daftar Brand')
 @section('content')
 <div>
     @if(session('message'))
@@ -10,13 +10,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    
     <div class="card">
         <div class="card-header d-flex justify-content-between align-middle">
             <h3>
-                Jenis
+                Brand
             </h3>
-            <a href="{{ route('jenis.create') }}" class="btn btn-primary">Tambah Jenis</a>
+            <a href="{{ route('brand.create') }}" class="btn btn-primary">Tambah Brand</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -26,31 +25,28 @@
                             <h6 class="fw-semibold mb-0">No</h6>
                         </th>
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Nama Jenis</h6>
+                            <h6 class="fw-semibold mb-0">Nama</h6>
                         </th>
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Code Jenis</h6>
-                        </th>
-                        <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Status</h6>
+                            <h6 class="fw-semibold mb-0">Slug</h6>
                         </th>
                         <th class="border-bottom">
                             <h6 class="fw-semibold mb-0">Action</h6>
                         </th>
                     </thead>
                     <tbody>
-                        @forelse ($jeniss as $jenis )
+                        @forelse ($brands as $brand )
                             <div class="modal fade" id="deleteModal{{ $loop->index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="{{ route('jenis.destroy', $jenis->id) }}" method="POST">
+                                    <form action="{{ route('brand.destroy', $brand->id) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <div class="modal-body">
-                                            Apakah anda yakin ingin menghapus Jenis ini?
+                                            Apakah anda yakin ingin menghapus Brand ini?
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
@@ -68,21 +64,21 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $jenis->name }}
+                                            {{ $brand->name }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $jenis->code }}
+                                            {{ $brand->slug }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $jenis->status == '1' ? 'Hidden':'Visible' }}
+                                            {{ $brand->status == '1' ? 'Hidden':'Visible' }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0"><span class="fw-semibold"></span>
-                                        <a href="{{ route('jenis.edit', $jenis->id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ route('brand.edit', $brand->id) }}" class="btn btn-primary">Edit</a>
                                         <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->index }}" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
@@ -96,7 +92,7 @@
                                             <path d="M12 16h.01"></path>
                                         </svg>
                                         <br>
-                                        Belum ada Jenis
+                                        Belum ada Brand
                                     </td>
                                 </tr>
                         @endforelse
@@ -104,7 +100,7 @@
                 </table>
             </div>
             <div>
-                {{ $jeniss->links() }}
+                {{ $brands->links() }}
             </div>
         </div>
     </div>

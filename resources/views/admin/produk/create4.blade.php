@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Tambah Jenis')
+@section('title', 'Tambah Produk')
 @section('content')
     @if(session()->has('message'))
         <div class="alert alert-success d-flex justify-content-between">
@@ -10,27 +10,27 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-middle">
             <h3>
-                Tambah Jenis
+                Tambah Produk
             </h3>
-            <a href="{{ route('jenis.index') }}" class="btn btn-primary">Back</a>
+            <a href="{{ route('produk.index') }}" class="btn btn-primary">Back</a>
         </div>
         <div class="card-body">
-            <form action="{{ route('jenis.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
                     
                     <div class="col-md-6 mb-3">
-                        <label for="name" class="form-label">Nama Jenis</label>
+                        <label for="name" class="form-label">Nama Produk</label>
                         <input type="text" class="form-control card-text" value="{{ old('name') }}" name="name">
                         @error('name')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="code" class="form-label">Code Jenis</label>
-                        <input type="text" class="form-control card-text" value="{{ old('code') }}" name="code">
-                        @error('code')
+                        <label for="slug" class="form-label">Slug</label>
+                        <input type="text" class="form-control card-text" value="{{ old('slug') }}" name="slug">
+                        @error('slug')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

@@ -19,12 +19,12 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
-            @include('layouts.inc.sidebar')
+            @include('layouts.inc.Admin.sidebar')
         <!--  Sidebar End -->
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
-                @include('layouts.inc.header')
+                @include('layouts.inc.Admin.header')
             <!--  Header End -->
             <div class="container-fluid">
                 <!--  Row 1 -->

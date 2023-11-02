@@ -14,26 +14,30 @@ class JenisController extends Controller
      */
     public function index()
     {
-        $jeniss = Jenis::all();
+        $jeniss = Jenis::orderBy('id')->simplePaginate(10);
         return view('admin.jenis.index', compact('jeniss'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(JenisFormRequest $request)
+    public function create()
     {
-        $validatedData = $request->validated();
-        Jenis::create($validatedData);
-        return back()->with('mssage', 'Color berhasil ditambahkan');
+        return view('admin.jenis.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(JenisFormRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        Jenis::create([
+            'name' => $validatedData['name'],
+            'code' => $validatedData['code'],
+            'status' => $request->status == true ? '1' : '0',
+        ]);
+        return redirect()->route('jenis.index')->with('mssage', 'Jenis berhasil ditambahkan');
     }
 
     /**
@@ -47,17 +51,24 @@ class JenisController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Jenis $jenis)
     {
-        //
+        return view('admin.jenis.edit', compact('jenis'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(JenisFormRequest $request, string $id)
     {
-        //
+        $validatedData = $request->validated();
+        $jenis = Jenis::findOrFail($id);
+        $jenis->name = $validatedData['name'];
+        $jenis->code = $validatedData['code'];
+        $jenis->status = $request->status == true ? '1' : '0';
+        $jenis->update();
+        
+        return redirect()->route('jenis.index')->with('message', 'Jenis telah diedit');
     }
 
     /**
@@ -65,6 +76,9 @@ class JenisController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $jenis = Jenis::findOrFail($id);
+        $jenis->delete();
+
+        return back()->with('message', 'Jenis telah dihapus');
     }
 }

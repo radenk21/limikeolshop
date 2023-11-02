@@ -36,9 +36,9 @@ class ProdukFormRequest extends FormRequest
             'id_brand' => [
                 'required',
             ],
-            // 'image' =>[
-            //     'nullable',
-            // ],
+            'image' =>[
+                'nullable',
+            ],
             'harga_beli' => [
                 'required',
                 'integer'
@@ -50,7 +50,7 @@ class ProdukFormRequest extends FormRequest
             'jumlah' => [
                 'required',
                 'integer'
-            ],
+            ]
         ];
     }
 }

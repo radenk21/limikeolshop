@@ -13,6 +13,7 @@ class Produk extends Model
     protected $table = 'produks';
     protected $fillable = [
         'id_sub_kategori',
+        'id_brand',
         'name',
         'slug',
         'harga_beli',
@@ -36,10 +37,30 @@ class Produk extends Model
     {
         return $this->belongsToMany(Supplier::class, 'produk_suppliers' ,'id_produk', 'id_supplier');
     }
+    
+    public function produkSuppliers()
+    {
+        return $this->belongsToMany(Supplier::class, 'id_produk', 'id');
+    }
+    // public function jeniss()
+    // {
+    //     // return $this->belongsToMany(Supplier::class, 'produk_jenis' ,'id_produk', 'id_jenis');
+    //     return $this->hasMany(ProdukJenis::class, 'id_produk', 'id');
+    // }
 
+    public function produkJenis()
+    {
+        return $this->hasMany(ProdukJenis::class, 'id_produk', 'id');
+    }
+    
     public function subKategori()
     {
         return $this->belongsTo(SubKategori::class, 'id_sub_kategori', 'id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(SubKategori::class, 'id_brand', 'id');
     }
     
     public static function rules($id = null)

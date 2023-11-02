@@ -45,8 +45,9 @@ class KategoriController extends Controller
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
 
-            $file->move('uploads/category', $filename);
-            $kategori->image = $filename;
+            $path = 'uploads/category/';
+            $file->move($path, $filename);
+            $kategori->image = $path.$filename;
         }
 
         $kategori->status = $request->status == true ? '1' : '0';
@@ -91,8 +92,9 @@ class KategoriController extends Controller
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
 
-            $file->move('uploads/category', $filename);
-            $kategori->image = $filename;
+            $destination = 'uploads/category/';
+            $file->move($destination, $filename);
+            $kategori->image = $destination.$filename;
         }
 
         // $kategori->meta_title = $validatedData['meta_title'];
