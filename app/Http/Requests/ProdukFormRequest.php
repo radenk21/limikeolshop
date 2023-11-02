@@ -32,12 +32,13 @@ class ProdukFormRequest extends FormRequest
             ],
             'id_sub_kategori' => [
                 'required',
-                'integer'
             ],
-            'image' =>[
-                'nullable',
-                // 'images|mimes:jpg,jpeg,png'
+            'id_brand' => [
+                'required',
             ],
+            // 'image' =>[
+            //     'nullable',
+            // ],
             'harga_beli' => [
                 'required',
                 'integer'
@@ -49,7 +50,7 @@ class ProdukFormRequest extends FormRequest
             'jumlah' => [
                 'required',
                 'integer'
-            ]
+            ],
         ];
     }
 }

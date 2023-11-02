@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Tambah Jenis')
 @section('content')
     @if(session()->has('message'))
         <div class="alert alert-success d-flex justify-content-between">
@@ -9,24 +10,25 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-middle">
             <h3>
-                Tambah Kategori
+                Tambah Jenis
             </h3>
-            <a href="{{ route('color.index') }}" class="btn btn-primary">Back</a>
+            <a href="{{ route('jenis.index') }}" class="btn btn-primary">Back</a>
         </div>
         <div class="card-body">
-            <form action="{{ route('color.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('jenis.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
+                    
                     <div class="col-md-6 mb-3">
-                        <label for="name" class="form-label">Nama color</label>
+                        <label for="name" class="form-label">Nama Jenis</label>
                         <input type="text" class="form-control card-text" value="{{ old('name') }}" name="name">
                         @error('name')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="code" class="form-label">Code color</label>
+                        <label for="code" class="form-label">Code Jenis</label>
                         <input type="text" class="form-control card-text" value="{{ old('code') }}" name="code">
                         @error('code')
                             <small class="text-danger">{{ $message }}</small>
@@ -40,6 +42,7 @@
                         <button class="btn btn-primary mt-2" type="submit">Tambah</button>
                     </div>
                 </div>
+                
             </form>
         </div>
     </div>

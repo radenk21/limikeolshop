@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ProdukFormRequest;
-use App\Models\GambarProduk;
-use App\Models\Kategori;
+use App\Models\Brand;
+use App\Models\Jenis;
 use App\Models\Produk;
-use App\Models\SubKategori;
+use App\Models\Kategori;
 use App\Models\Supplier;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\Relation;
+use App\Models\SubKategori;
+use App\Models\GambarProduk;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\ProdukFormRequest;
+use App\Http\Requests\IsiProdukFormRequest;
+
+// use App\Http\Requests\ProdukFormRequest;
 
 class ProdukController extends Controller
 {
@@ -32,7 +35,9 @@ class ProdukController extends Controller
     {
         $kategoris = Kategori::all();
         $suppliers = Supplier::all();
-        return view('admin.produk.create', compact('kategoris', 'suppliers'));
+        $brands = Brand::all();
+        $jeniss = Jenis::all();
+        return view('admin.produk.create', compact('kategoris', 'brands','suppliers', 'jeniss'));
     }
 
     public function getSubcategories($kategori)
@@ -40,20 +45,20 @@ class ProdukController extends Controller
         $subcategories = SubKategori::where('id_kategori', $kategori)->get();
         return response()->json($subcategories);
     }
-    
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProdukFormRequest $request)
+    public function store(IsiProdukFormRequest $request)
     {
+        // dd($request->all());
         $validatedData = $request->validated();
         $request->validate(Produk::rules());
-        // dd($validatedData);
         $subKategori = SubKategori::findOrFail($validatedData['id_sub_kategori']);
         $produk = $subKategori->produk()->create([
             'name' =>$validatedData['name'],
             'slug' =>$validatedData['slug'],
             'id_sub_kategori' =>$validatedData['id_sub_kategori'],
+            'id_brand' =>$validatedData['id_brand'],
             'harga_beli' =>$validatedData['harga_beli'],
             'harga_jual' =>$validatedData['harga_jual'],
             'trending' =>$request->trending == true ? '1':'0',
@@ -75,9 +80,25 @@ class ProdukController extends Controller
                 ]);
             }
         }
+
+        if ($request->jeniss) {
+            // dd('ada kok');
+            foreach ($request->jeniss as $key => $jenis) {
+                $produk->produkJenis()->create([
+                    'id_produk' => $produk->id,
+                    'id_jenis' => $jenis,
+                    'jumlah' => $request->jumlah_jenis[$key] ?? 0,
+                ]);
+            }
+        }
+        
         $id_supplier = $request->input('id_supplier');
         $produk->suppliers()->sync($id_supplier);
-
+        // $produk->produkSuppliers()->create([
+        //     'id_supplier' => $request->id_supplier,
+        //     'id_produk' => $produk->id,
+        // ]);
+        
         return redirect('admin/produk')->with('message', 'Produk berhasil ditambahkan');
     }
 
@@ -94,19 +115,24 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
+        $brands = Brand::all();
         $kategoris = Kategori::all();
         $subKategoris = SubKategori::all();
         $suppliers = Supplier::all();
         $selectedSupplier = $produk->suppliers->pluck('id')->toArray();
+        $jenisProduk = $produk->produkJenis->pluck('id_jenis')->toArray();
+        $jeniss = Jenis::whereNotIn('id', $jenisProduk)->get();
         // dd($selectedSupplier);
-        return view('admin.produk.edit', compact('produk', 'kategoris','suppliers', 'selectedSupplier'));
+        return view('admin.produk.edit', compact('produk', 'kategoris', 'suppliers', 'brands','selectedSupplier', 'jeniss', 'jenisProduk'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProdukFormRequest $request, $id)
+    public function update(IsiProdukFormRequest $request, $id)
     {
+        // dd('ini update produkcontroller');
+
         $validatedData = $request->validated();
         $produk = SubKategori::findOrFail($validatedData['id_sub_kategori'])->produk()->where('id', $id)->first();
         if ($produk) {
@@ -114,6 +140,7 @@ class ProdukController extends Controller
                 'name' =>$validatedData['name'],
                 'slug' =>$validatedData['slug'],
                 'id_sub_kategori' =>$validatedData['id_sub_kategori'],
+                'id_brand' =>$validatedData['id_brand'],
                 'harga_beli' =>$validatedData['harga_beli'],
                 'harga_jual' =>$validatedData['harga_jual'],
                 'trending' =>$request->trending == true ? '1':'0',
@@ -135,20 +162,37 @@ class ProdukController extends Controller
                     ]);
                 }
             }
+
+            if ($request->jeniss) {
+                // dd('ada kok');
+                foreach ($request->jeniss as $key => $jenis) {
+                    $produk->produkJenis()->create([
+                        'id_produk' => $produk->id,
+                        'id_jenis' => $jenis,
+                        'jumlah' => $request->jumlah_jenis[$key] ?? 0,
+                    ]);
+                }
+            }
+            
             $produk->suppliers()->sync($request->input('id_supplier'));
             
             return redirect('admin/produk')->with('message', 'Produk berhasil diupdate');
         } else {
             return redirect()->with('message', 'Kategori tidak tersedia');
         }
-        
     }
 
+    public function produkJenisUpdate(Request $request, $produk_jenis_id)
+    {
+        dd($produk_jenis_id);
+    }
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
+        // dd('ini produkcontroller');
         $produk = Produk::findOrFail($id);
         if ($produk->gambarProduk()) {
             foreach ($produk->gambarProduk as $gambarProduk) {
