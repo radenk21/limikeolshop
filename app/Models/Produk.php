@@ -60,7 +60,7 @@ class Produk extends Model
 
     public function brand()
     {
-        return $this->belongsTo(SubKategori::class, 'id_brand', 'id');
+        return $this->belongsTo(Brand::class, 'id_brand', 'id');
     }
     
     public static function rules($id = null)
