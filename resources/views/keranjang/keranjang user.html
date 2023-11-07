@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keranjang Belanja</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            margin: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+        }
+
+        .cart-item-price {
+            color: #f00;
+            margin-right: 10px;
+        }
+
+        .cart-item-remove {
+            color: #f00;
+            cursor: pointer;
+        }
+
+        #cart-total {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .quantity-box-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-box-container button {
+    background-color: #ffffff;
+    color: #020202;
+    border:  1px solid #000000;
+    font-size: 15px;
+    padding: 2px 6px; /* Sesuaikan ukuran padding sesuai kebutuhan Anda */
+    cursor: pointer;
+}
+
+
+        .quantity-box-container button:hover {
+            background-color: #bdb5b5;
+        }
+
+        .quantity-box {
+            width: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Keranjang Belanja</h1>
+    </header>
+    <div class="container">
+        <div class="cart-item">
+            <img src="product1.jpg" alt="Product 1">
+            <div class="cart-item-details">
+                <div>
+                    <p class="cart-item-title">Product 1</p>
+                    <p class="cart-item-price">$10.00</p>
+                    <div class="quantity-box-container">
+                        <button onclick="kurangQuantity(1)">-</button>
+                        <input type="text" id="quantity1" class="quantity-box" value="1">
+                        <button onclick="tambahQuantity(1)">+</button>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="cart-item-remove" onclick="hapusItem(1)">Hapus</div>
+        </div>
+
+        <div class="cart-item">
+            <img src="product2.jpg" alt="Product 2">
+            <div class="cart-item-details">
+                <div>
+                    <p class="cart-item-title">Product 2</p>
+                    <p class="cart-item-price">$15.00</p>
+                    <div class="quantity-box-container">
+                        <button onclick="kurangQuantity(2)">-</button>
+                        <input type="text" id="quantity2" class="quantity-box" value="1">
+                        <button onclick="tambahQuantity(2)">+</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="cart-item-remove" onclick="hapusItem(2)">Hapus</div>
+        </div>
+        
+        <div class="cart-item">
+            <img src="product3.jpg" alt="Product 3">
+            <div class="cart-item-details">
+                <div>
+                    <p class="cart-item-title">Product 3</p>
+                    <p class="cart-item-price">$20.00</p>
+                    <div class="quantity-box-container">
+                        <button onclick="kurangQuantity(3)">-</button>
+                        <input type="text" id="quantity3" class="quantity-box" value="1">
+                        <button onclick="tambahQuantity(3)">+</button>
+                    </div>
+                </div>
+              
+            </div>
+            <div class="cart-item-remove" onclick="hapusItem(3)">Hapus</div>
+        </div>
+        
+        <div id="cart-total">
+            Total: $<span id="total-amount">45.00</span>
+        </div>
+
+        <button>Checkout</button>
+    </div>
+
+    <script>
+        const quantityInputs = {
+            1: document.getElementById('quantity1'),
+            2: document.getElementById('quantity2'),
+            3: document.getElementById('quantity3'),
+        };
+
+        function updateTotal() {
+            const totalAmount = Object.values(quantityInputs).reduce((total, input, index) => {
+                const price = [10, 15, 20][index]; // Harga produk sesuai dengan indeks
+                const quantity = parseInt(input.value);
+                return total + (price * quantity);
+            }, 0);
+
+            document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+        }
+
+        function tambahQuantity(id) {
+            const input = quantityInputs[id];
+            const currentValue = parseInt(input.value) + 1;
+            input.value = currentValue;
+            updateTotal();
+        }
+
+        function kurangQuantity(id) {
+            const input = quantityInputs[id];
+            const currentValue = parseInt(input.value);
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+                updateTotal();
+            }
+        }
+
+        function hapusItem(id) {
+            const cartItem = document.querySelector(`.cart-item:nth-child(${id})`);
+            cartItem.remove();
+            updateTotal();
+        }
+
+        updateTotal(); // Memastikan tampilan awal sesuai dengan total harga
+    </script>
+</body>
+</html>
