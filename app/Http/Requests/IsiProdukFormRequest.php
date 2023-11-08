@@ -24,11 +24,20 @@ class IsiProdukFormRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'string'
+                'string',
+                // 'unique:produks,name'
             ],
             'slug' => [
                 'required',
-                'max:255'
+                'max:255',
+                // 'unique:produks,slug'
+            ],
+            'deskripsi' => [
+                'required',
+                'max:255',
+            ],
+            'id_kategori' => [
+                'required',
             ],
             'id_sub_kategori' => [
                 'required',

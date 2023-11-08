@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SubKategoriController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\WishlistController;
 use App\Models\ProdukJenis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +34,16 @@ Auth::routes();
 
 Route::get('/', [FrontendController::class, 'index'])->name('home.index');
 Route::get('/collections', [FrontendController::class, 'kategoris'])->name('home.kategoris');
-Route::get('/collections/kategori/{kategori_slug}', [FrontendController::class, 'produks']);
-Route::get('/collections/kategori/{kategori_slug}/{subKategori_slug}', [FrontendController::class, 'subKategoriProduks']);
+Route::get('/collections/kategori/{kategori_slug}', [FrontendController::class, 'kategori'])->name('kategori');
+Route::get('/collections/kategori/{kategori_slug}/{subkategori_slug}', [FrontendController::class, 'subkategori'])->name('subkategori');
+Route::get('/collections/{produk_slug}/view', [FrontendController::class, 'produkView']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+});
+
+// Route::get('/collections/kategori/{kategori_slug}', [FrontendController::class, 'produks'])->name('selectKategori');
+// Route::get('/collections/kategori/{kategori_slug}/{subKategori_slug}', [FrontendController::class, 'subKategoriProduks']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

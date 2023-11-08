@@ -12,6 +12,7 @@ class Produk extends Model
     use HasFactory;
     protected $table = 'produks';
     protected $fillable = [
+        'id_kategori',
         'id_sub_kategori',
         'id_brand',
         'name',
@@ -20,7 +21,8 @@ class Produk extends Model
         'harga_jual',
         'jumlah',
         'trending',
-        'status'
+        'status',
+        'deskripsi',
     ];
 
     public function gambarProduk()
@@ -28,10 +30,10 @@ class Produk extends Model
         return $this->hasMany(GambarProduk::class, 'id_produk', 'id');
     }
 
-    // public function kategori()
-    // {
-    //     return $this->belongsTo(Kategori::class, 'id_kategori', 'id');
-    // }
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori', 'id');
+    }
 
     public function suppliers()
     {
@@ -61,6 +63,11 @@ class Produk extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'id_brand', 'id');
+    }
+    
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlists::class, 'id_produk', 'id');
     }
     
     public static function rules($id = null)
