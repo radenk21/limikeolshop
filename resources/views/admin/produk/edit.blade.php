@@ -40,6 +40,13 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
+                            <label for="deskripsi" class="form-label">Deskripsi</label>
+                            <textarea name="deskripsi" class="form-control" rows="3">{{ $produk->deskripsi }}</textarea>
+                            @error('deskripsi')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror                    
+                        </div>
+                        <div class="col-md-6 mb-3">
                             <label for="supplier" class="form-label">Supplier</label>
                             <select name="id_supplier" class="form-control" id="id_supplier">
                                 <option value="">Pilih Supplier</option>

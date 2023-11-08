@@ -57,6 +57,8 @@ class ProdukController extends Controller
         $produk = $subKategori->produk()->create([
             'name' =>$validatedData['name'],
             'slug' =>$validatedData['slug'],
+            'deskripsi' =>$validatedData['deskripsi'],
+            'id_kategori' =>$validatedData['id_kategori'],
             'id_sub_kategori' =>$validatedData['id_sub_kategori'],
             'id_brand' =>$validatedData['id_brand'],
             'harga_beli' =>$validatedData['harga_beli'],
@@ -139,6 +141,8 @@ class ProdukController extends Controller
             $produk->update([
                 'name' =>$validatedData['name'],
                 'slug' =>$validatedData['slug'],
+                'deskripsi' =>$validatedData['deskripsi'],
+                'id_kategori' =>$validatedData['id_kategori'],
                 'id_sub_kategori' =>$validatedData['id_sub_kategori'],
                 'id_brand' =>$validatedData['id_brand'],
                 'harga_beli' =>$validatedData['harga_beli'],

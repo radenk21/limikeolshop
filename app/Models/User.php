@@ -42,4 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlists::class, 'id_user', 'id');
+    }
+
 }
