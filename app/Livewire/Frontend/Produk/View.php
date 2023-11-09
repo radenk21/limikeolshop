@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend\Produk;
 
+use App\Models\Keranjang;
 use Livewire\Component;
 use App\Models\Wishlist;
 
@@ -53,17 +54,28 @@ class View extends Component
     {
         if (Auth::check()) {
             if ($this->produk->where('id', $produk_id)->where('status', '0')->exists()) {
-                if ($this->produk->jumlah > 0) {
-                    if ($this->produk->jumlah > $this->jumlahCount) {
-                        
+                if (Keranjang::where('id_user', Auth::user()->id)->where('id_produk', $produk_id)->exists()) {
+                    session()->flash('danger-alert', 'Produk sudah ditambahkan ke keranjang');
+                } else {
+                    if ($this->produk->jumlah > 0) {
+                        if ($this->produk->jumlah >= $this->jumlahCount) {
+                            Keranjang::create([
+                                'id_user' => Auth::user()->id,
+                                'id_produk' => $produk_id,
+                                'jumlah' => $this->jumlahCount,
+                            ]);
+                            $this->dispatch('got-keranjangCount');
+                            session()->flash('message', 'Produk berhasil ditambahkan ke keranjang');
+                        } else {
+                            session()->flash('danger-alert', 'Hanya tersedia '.$this->produk->jumlah. ' stok');
+                            return false;            
+                        }
                     } else {
-                        session()->flash('danger-alert', 'Hanya tersedia '.$this->produk->jumlah. ' stok');
+                        session()->flash('danger-alert', 'Stok barang tidak tersedia');
                         return false;            
                     }
-                } else {
-                    session()->flash('danger-alert', 'Stok barang tidak tersedia');
-                    return false;            
                 }
+                
             } else {
                 session()->flash('danger-alert', 'Stok barang tidak tersedia');
                 return false;            

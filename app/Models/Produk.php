@@ -69,6 +69,16 @@ class Produk extends Model
     {
         return $this->hasMany(Wishlists::class, 'id_produk', 'id');
     }
+
+    public function keranjang()
+    {
+        return $this->hasMany(Keranjang::class, 'id_produk', 'id');
+    }
+
+    public function orderItem()
+    {
+        return $this->hasMany(OrderItem::class, 'id_produk', 'id');
+    }
     
     public static function rules($id = null)
     {

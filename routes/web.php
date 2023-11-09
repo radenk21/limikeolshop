@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Admin\JenisController;
-use App\Http\Controllers\Admin\KategoriController;
-use App\Http\Controllers\Admin\ProdukController;
-use App\Http\Controllers\Admin\ProdukJenisController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\SubKategoriController;
-use App\Http\Controllers\Admin\SupplierController;
-use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\Frontend\WishlistController;
 use App\Models\ProdukJenis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\JenisController;
+use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\ProdukJenisController;
+use App\Http\Controllers\Admin\SubKategoriController;
+use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\KeranjangController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,8 @@ Route::get('/collections/{produk_slug}/view', [FrontendController::class, 'produ
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang.index');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 });
 
 // Route::get('/collections/kategori/{kategori_slug}', [FrontendController::class, 'produks'])->name('selectKategori');

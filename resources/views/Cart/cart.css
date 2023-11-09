@@ -217,7 +217,7 @@ span i:hover{
     margin-top: 50px;
 }
 
-.checkout-cart button{
+.checkout-cart a{
     width: 60%;
     height: 40px;
     border-radius: 15px;
@@ -229,7 +229,7 @@ span i:hover{
     transition: .3s ease;
 }
 
-.checkout-cart button:hover{
+.checkout-cart a:hover{
     background-color: #5d87ff;
 }
 
