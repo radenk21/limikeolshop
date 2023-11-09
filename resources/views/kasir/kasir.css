@@ -18,7 +18,7 @@ header {
 }
 
 .container {
-    max-width: 1280px; /* Lebar maksimum container */
+    max-width: 1980px; /* Lebar maksimum container */
     margin: 0 auto; /* Tengahkan container di tengah halaman */
     overflow: hidden; /* Mengatasi masalah float */
 }
@@ -416,7 +416,7 @@ input[type="number"]::-webkit-outer-spin-button {
     box-shadow: 1px 3px 5px black;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .search-kasir input{
         width: 10rem;
         height: 35px;
@@ -525,7 +525,7 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px){
+@media screen and (min-width: 901px) and (max-width: 1024px){
     .search-kasir input{
         width: 15rem;
         height: 35px;
