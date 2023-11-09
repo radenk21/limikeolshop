@@ -1,6 +1,15 @@
 <div class="py-3 py-md-5 bg-light">
     <div class="container">
-
+        @if (session('danger-alert'))
+        <div class="alert alert-danger">
+            {{ session('danger-alert') }}
+        </div>
+        @endif
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
                 <div class="shopping-cart">
@@ -44,9 +53,9 @@
                                     <div class="remove">
                                         <button type="button" wire:click="removeWishlistitem({{ $wishlist->id }})" href="" class="btn btn-danger btn-sm">
                                             <span wire:loading.remove>
-                                                <i class="fa fa-trash"></i> Remove
+                                                <i class="fa fa-trash"></i> Hapus
                                             </span>
-                                            <span wire:loading wire:target="removeWishlistitem({{ $wishlist->id }})" >Removing</span>
+                                            <span wire:loading wire:target="removeWishlistitem({{ $wishlist->id }})" >Menghapus</span>
                                         </button>
                                     </div>
                                 </div>

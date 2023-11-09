@@ -20,8 +20,8 @@
                         @guest
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fa fa-shopping-cart"></i> Cart (0)
+                                <a class="nav-link" href="{{ route('keranjang.index') }}">
+                                    <i class="fa fa-shopping-cart"></i> Cart (@livewire('frontend.keranjang.keranjang-count'))
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -48,6 +48,9 @@
                                     <i class="fa fa-user"></i> {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @if (Auth::check() && Auth::user()->role_as == '1')
+                                    <li><a class="dropdown-item" href="{{ url('admin/dashboard') }}"><i class="fa fa-user"></i> Admin Page</a></li>
+                                @endif
                                 <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fa fa-list"></i> My Orders</a></li>
                                 <li><a class="dropdown-item" href="{{ route('wishlist.index') }}"><i class="fa fa-heart"></i> My Wishlist</a></li>
