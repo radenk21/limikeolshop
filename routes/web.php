@@ -16,6 +16,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\KeranjangController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Frontend\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang.index');
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
 });
+
+Route::get('thank-you', [FrontendController::class, 'thankyou'])->name('thankyou.checkout');
 
 // Route::get('/collections/kategori/{kategori_slug}', [FrontendController::class, 'produks'])->name('selectKategori');
 // Route::get('/collections/kategori/{kategori_slug}/{subKategori_slug}', [FrontendController::class, 'subKategoriProduks']);

@@ -57,4 +57,9 @@ class FrontendController extends Controller
         // dd($produk);
         return view('frontend.collections.produks.view', compact('produk'));
     }
+
+    public function thankyou()
+    {
+        return view('frontend.thank-you');
+    }
 }

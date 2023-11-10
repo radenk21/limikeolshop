@@ -35,13 +35,13 @@
                     <div>
                         <span class="selling-price">Rp {{ number_format($produk->harga_jual, 0, '.', '.') }}</span>
                     </div>
-                    @if ($produk->produkJenis->count() > 0)
+                    {{-- @if ($produk->produkJenis->count() > 0)
                         @if ($produk->produkJenis)
                             @foreach ($produk->produkJenis as $produkJenis)
                                 <input type="radio" name="pilihJenisProduk" id="" value="{{ $produkJenis->id }}">{{ $produkJenis->jenis->name }}
                             @endforeach
                         @endif
-                    @endif
+                    @endif --}}
                     <div class="mt-2">
                         
                     </div>

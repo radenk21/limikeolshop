@@ -36,21 +36,21 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label>Full Name</label>
-                            <input type="text" wire:model="fullname" class="form-control" placeholder="Enter Full Name" />
+                            <input type="text" wire:model.defer="fullname" class="form-control" placeholder="Enter Full Name" />
                             @error('fullname')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Phone Number</label>
-                            <input type="number" wire:model="phone" class="form-control" placeholder="Enter Phone Number" />
+                            <input type="number" wire:model.defer="phone" class="form-control" placeholder="Enter Phone Number" />
                             @error('phone')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Email Address</label>
-                            <input type="email" wire:model="email" class="form-control" placeholder="Enter Email Address" />
+                            <input type="email" wire:model.defer="email" class="form-control" placeholder="Enter Email Address" />
                             @error('email')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -58,14 +58,14 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Pin-code (Zip-code)</label>
-                            <input type="number" wire:model="pincode" class="form-control" placeholder="Enter Pin-code" />
+                            <input type="number" wire:model.defer="pincode" class="form-control" placeholder="Enter Pin-code" />
                             @error('pincode')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="col-md-12 mb-3">
                             <label>Full Address</label>
-                            <textarea wire:model="address" class="form-control" rows="2"></textarea>
+                            <textarea wire:model.defer="address" class="form-control" rows="2"></textarea>
                             @error('address')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -81,13 +81,53 @@
                                     <div class="tab-pane fade" id="cashOnDeliveryTab" role="tabpanel" aria-labelledby="cashOnDeliveryTab-tab" tabindex="0">
                                         <h6>Cash on Delivery Mode</h6>
                                         <hr/>
-                                        <button type="button" wire:click="codOrder" class="btn btn-primary">Place Order (Cash on Delivery)</button>
+                                        <button type="button" wire:click="codOrder" class="btn btn-primary">
+                                            <span wire:loading.remove>
+                                                Pesan Sekarang (Cash on Delivery)
+                                            </span>
+                                            <span wire:loading wire:target="codOrder">
+                                                Menempatkan Pesan
+                                            </span>
+                                        </button>
 
                                     </div>
                                     <div class="tab-pane fade" id="onlinePayment" role="tabpanel" aria-labelledby="onlinePayment-tab" tabindex="0">
                                         <h6>Online Payment Mode</h6>
                                         <hr/>
-                                        <button type="button" class="btn btn-warning">Pay Now (Online Payment)</button>
+                                        <h6>Silahkan Bayar melalui :</h6>
+                                        <div>
+                                            <p>Dana : 0895464657864</p>
+                                            <p>BCA : 2323814</p>
+                                            <p>BNI : 2323814</p>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" wire:model.defer="selectedPaymentMethod" name="selectedPaymentMethod" value="Bayar Melalui Dana" id="dana-radio">
+                                            <label class="form-check-label" for="dana-radio">
+                                                Bayar melalui Dana
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" wire:model.defer="selectedPaymentMethod" name="selectedPaymentMethod" value="Bayar Melalui BCA" id="bca-radio">
+                                            <label class="form-check-label" for="bca-radio">
+                                                Bayar melalui BCA
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" wire:model.defer="selectedPaymentMethod" name="selectedPaymentMethod" value="Bayar Melalui BNI" id="bni-radio">
+                                            <label class="form-check-label" for="bni-radio">
+                                                Bayar melalui BNI
+                                            </label>
+                                        </div>
+                                        <label>Masukkan nomor rekening pembayaran</label>
+                                        <div>
+                                            <input type="text" wire:model.defer="no_rekening" class="form-control" placeholder="Masukkan nomor rekening" />
+                                            @error('no_rekening')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <button type="button" wire:click="onlineOrder" class="btn btn-warning mt-3">
+                                            Pesan Sekarang (Online Payment)
+                                        </button>
                                     </div>
                                 </div>
                             </div>

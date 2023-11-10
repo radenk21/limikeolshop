@@ -8,6 +8,7 @@ use App\Models\Order;
 use Livewire\Component;
 use App\Models\Keranjang;
 use App\Models\OrderItem;
+use App\Models\Payment;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,7 @@ class CheckoutShow extends Component
 {
     public $keranjangs, $totalHarga;
     public $id_user, $no_tracking, $fullname, $email, $phone, $pincode, $address, $status_message, $payment_mode = null, $payment_id = null;
+    public $selectedPaymentMethod, $no_rekening;
 
     public function rules()
     {
@@ -41,7 +43,7 @@ class CheckoutShow extends Component
             'address'=> $this->address,
             'status_message' => 'in progress',
             'payment_mode' => $this->payment_mode,
-            'payment_id' => $this->payment_id,
+            'id_payment' => $this->payment_id,
         ]);
         
         foreach ($this->keranjangs as $keranjang) {
@@ -64,6 +66,38 @@ class CheckoutShow extends Component
             Keranjang::where('id_user', auth()->user()->id)->delete();
             $this->dispatch('got-keranjangCount');
             session()->flash('message','Keranjang berhasil dicheckout');
+            redirect()->to('thank-you');
+        } else {
+            session()->flash('danger-alert','Terjadi kesalahan saat men checkout!');
+        }
+    }
+
+    public function onlineOrder()
+    {
+        $validatedData = $this->validate([
+            'no_rekening' => ['required', 'string', 'max:255', 'regex:/^\d+$/'], // Contoh: Hanya angka diperbolehkan
+        ]);
+        
+        $this->payment_mode = $this->selectedPaymentMethod;
+        $onlineOrder = $this->placeOrder();
+        
+        if ($onlineOrder) {
+            $orderID = $onlineOrder->id;
+            $payment = Payment::create([
+                'id_user' => auth()->user()->id,
+                'id_order' => $orderID,
+                'no_rekening' => $this->no_rekening,
+                'jenis_rekening' => $this->payment_mode,
+                'total_bayar' => $this->totalHarga,
+                'payment_status' => 'Belum di verifikasi',        
+            ]);
+            
+            $onlineOrder->update(['id_payment' => $payment->id]);
+
+            Keranjang::where('id_user', auth()->user()->id)->delete();
+            $this->dispatch('got-keranjangCount');
+            session()->flash('message','Keranjang berhasil dicheckout, silahkan tunggu admin untuk memverifikasi pembayaran');
+            redirect()->to('thank-you');
         } else {
             session()->flash('danger-alert','Terjadi kesalahan saat men checkout!');
         }

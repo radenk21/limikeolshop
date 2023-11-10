@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('produks', function (Blueprint $table) {
-            $table->text('deskripsi');
+        Schema::table('payments', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_order')->after('id_user');
+            $table->foreign('id_order')->references('id')->on('orders')->noActionOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -21,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('produks', function (Blueprint $table) {
-            $table->dropColumn('deskripsi');
+        Schema::table('payments', function (Blueprint $table) {
+            $table->dropColumn('id_order');
         });
     }
 };

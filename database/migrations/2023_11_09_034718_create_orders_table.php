@@ -22,9 +22,10 @@ return new class extends Migration
             $table->mediumText('address');
             $table->string('status_message');
             $table->string('payment_mode');
-            $table->string('payment_id')->nullable();
+            $table->unsignedBigInteger('id_payment')->nullable();
 
             $table->foreign('id_user')->references('id')->on('users')->noActionOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_payment')->references('id')->on('payments')->noActionOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
