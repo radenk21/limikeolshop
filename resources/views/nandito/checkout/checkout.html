@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Halaman Checkout </title>
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="checkout">
+            <h1> Checkout </h1>
+            <div class="checkout-content">
+                <div class="information-checkout">
+                    <div class="informasi-penerima">
+                        <h2>Informasi Penerima</h2>
+                            <div class="input-informasi">
+                                <label for="namalengkap-penerima">Nama Lengkap</label>
+                                <input type="text" id="namalengkap-penerima" name="namalengkap-penerima" placeholder="Masukkan nama lengkap anda" required autocomplete="off">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Masukkan email anda" required autocomplete="off">
+                                <label for="noTelp">No Telepon</label>
+                                <input type="number" id="noTelp" name="noTelp" placeholder="Masukkan nomor telepon anda" required autocomplete="off">
+                                <label for="alamat">Alamat</label>
+                                <input type="text" id="alamat" name="alamat" placeholder="Masukkan alamat anda" required autocomplete="off">
+                            </div>
+
+                    </div>
+                    <div class="pengirim">
+                        <h2>Pengirim</h2>
+                        <div class="shipping-method">
+                            <table>
+                                <tr>
+                                    <td class="nama-pembayaran">
+                                        <input type="radio" name="nama-pengirim" id="nama-pengirim">
+                                        <label for="nama-pembayaran"> JNE </label>
+                                    </td>
+                                    <td>
+                                        <div class="kartu-pembayaran">
+                                            <span>Free </span>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="cara-pembayaran">
+                        <h2> Cara Pembayaran</h2>
+                       <div class="pembayaran">
+                        <table>
+                            <tr>
+                                <td class="nama-pembayaran">
+                                    <input type="radio" name="nama-pembayaran" id="nama-pembayaran">
+                                    <label for="nama-pembayaran"> Dana </label>
+                                </td>
+                                <td>
+                                    <div class="kartu-pembayaran">
+                                        <span>082274593774</span>
+                                        <p align="justify">nandito ginting</p>
+                                </div>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td class="nama-pembayaran">
+                                    <input type="radio" name="nama-pembayaran" id="nama-pembayaran">
+                                    <label for="nama-pembayaran"> Bayar Di tempat </label>
+                                </td>
+                                <td>
+                                    <div class="kartu-pembayaran">
+                                        <span> Free</span>
+                                </div>
+                            </td>
+                            </tr>
+                        </table>
+                       </div>
+                    </div>
+                </div>
+                <div class="your-cart">
+                    <h2> Keranjang anda</h2>
+                    <div class="cart-keranjang">
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                        <div class="keranjang-content">
+                            <img src="rak sepatu.jpg" alt="">
+                            <div class="produk-keranjang">
+                                <p> Rak Sepatu super duper keren loew</p>
+                                <span>Nike</span>
+                            </div>
+                            <div class="qty-keranjang">
+                                <button>-</button>
+                                <input type="number" placeholder="1">
+                                <button>+</button>
+                            </div>
+                            <span> Rp. 125 000</span>
+                            <i>X</i>
+                        </div>
+                    </div>
+                    <div class="order-detail">
+                        <div class="subtotal-detail">
+                            <p> Subtotal </p>
+                            <p> Pengiriman </p>
+                            <span>Total</span>
+                        </div>
+                        <div class="qty-detail">
+                            <p> Rp 1.000.000 </p>
+                            <p> Rp 25.000 </p>
+                            <span> Rp 1.025.000</span>
+                        </div>
+                    </div>
+                    <div class="your-cart-btn">
+                        <button class="processCheckout" onclick="togglePopup()"> Lanjutkan </button> <!-- button pop -->
+                        <button class="kembaliBelanja"> Kembali Belanja</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                <!-- <popup> -->
+    <div class="popup-container" id="popupContainer">
+        <div class="popup">
+            <div class="img-popup"> <img src="terimaksih.jpg" alt="thanks.jpg"></div>
+            <div class="massage-thanks">
+                <h1> Terima kasih !!</h1>
+                <p>Pesanan Anda telah diterima. Terima kasih atas kepercayaan Anda. Produk akan segera dikirim!</p>
+                <button onclick="togglePopup()"> Home </button>
+            </div>
+        </div>
+    </div>
+                <!-- </popup> -->
+    <script>
+        function togglePopup() {
+            const popupContainer = document.getElementById('popupContainer');
+            if (popupContainer.style.display === 'none' || popupContainer.style.display === '') {
+                popupContainer.style.display = 'flex';
+            } else {
+                popupContainer.style.animation = 'fadeOut 0.3s ease-in-out';
+                setTimeout(() => {
+                    popupContainer.style.display = 'none';
+                    popupContainer.style.animation = 'fadeInOut 0.3s ease-in-out';
+                }, 200);
+            }
+        }
+    </script>
+</body>
+</html>

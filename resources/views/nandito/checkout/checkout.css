@@ -1,0 +1,792 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;1,300&family=Pacifico&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    background-color: #ecf2ff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 1980px; /* Lebar maksimum container */
+    margin: 0 auto; /* Tengahkan container di tengah halaman */
+    overflow: hidden; /* Mengatasi masalah float */
+}
+
+input::placeholder {
+    font-style: italic;
+}
+
+input:-ms-input-placeholder {
+    font-style: italic;
+}
+
+input::-ms-input-placeholder {
+    font-style: italic;
+}
+
+input:focus::placeholder {
+    font-style: normal;
+
+}
+
+.checkout{
+    height: max-content;
+    margin: 20px;
+    width: 100%;
+}
+
+.checkout h1{
+    border-bottom: solid 1px;
+    padding: 15px;
+    width: 80%;
+}
+
+.informasi-penerima{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.205);
+    padding-bottom: 40px;
+}
+
+.input-informasi{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.informasi-penerima h2{
+    width: 100%;
+    padding: 5px 0px;
+    letter-spacing: 2px;
+    color: #2e4567;
+    font-weight: bold;
+}
+
+.input-informasi label{
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.input-informasi input{
+    width: 90%;
+    height: 35px;
+    padding: 5px;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.154);
+    margin-top: 5px;
+}
+
+
+.input-informasi input::placeholder{
+    font-style: italic;
+}
+
+.input-informasi input:focus{
+    border: black solid 1px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.checkout-content{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.information-checkout{
+    height: max-content;
+    width: 55%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.pengirim{
+    margin-top: 20px;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.pengirim h2{
+    width: 100%;
+    padding: 5px 0px;
+    letter-spacing: 2px;
+    color: #2e4567;
+    font-weight: bold;
+}
+
+.shipping-method{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.radio-pengiriman{
+    width: 50%;
+   display: flex;
+   align-items: start;
+   text-align: center;
+   flex-direction: column;
+   margin-left: 20px;
+   text-transform: uppercase;
+   color: #2e4567;
+   font-weight: light;
+   font-size: 20px;
+}
+
+.radio-pengiriman span{
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radio-pengiriman input{
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.radio-pengiriman input[type="radio"]{
+    width: 20px;
+    height: 20px;
+    outline: none;
+    border: none;
+    color: #2e4567;
+    background-color: #2e4567;
+}
+
+.harga-pengiriman{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: max-content;
+    width: 20%;
+    font-weight: bolder;
+}
+
+.harga-pengiriman span{
+    margin: 2px;
+    font-size: 20px;
+    color: #2e4567;
+}
+
+.cara-pembayaran{
+    margin-top: 20px;
+    width: 100%;
+}
+
+.cara-pembayaran h2{
+    width: 100%;
+    padding: 5px 0px;
+    letter-spacing: 2px;
+    color: #2e4567;
+    font-weight: bold;
+}
+
+.pembayaran{
+    width: 100%;
+    border: solid 1px;
+    display: flex;
+    justify-content: space-between;
+    height: max-content;
+    border: none;
+}
+
+.radio-pembayaran{
+    width: 50%;
+    background-color: black;
+}
+
+.nama-bayar{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: max-content;
+    width: 20%;
+    font-weight: bolder;
+    background-color: red;
+}
+
+.nama-bayar span{
+    margin: 2px;
+    display: flex;
+    align-items: start;
+    margin-left: 50px;
+    font-size: 20px;
+    color: #2e4567;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: none;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+td.nama-pembayaran{
+    width: 60%;
+}
+
+.nama-pembayaran {
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+}
+
+td .kartu-pembayaran{
+    margin-left: 70px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2e4567;
+    text-align: left;
+}
+
+.nama-pembayaran input[type="radio"]{
+    margin-left: 12px;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    border: none;
+    color: #2e4567;
+    background-color: #2e4567;
+}
+
+.nama-pembayaran label{
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+
+.your-cart{
+    background-color: rgb(255, 255, 255);
+    position: sticky;
+    top: 0;
+    width: 45%;
+    height: 100vh;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+    ::-webkit-scrollbar {
+        width: 12px; /* Lebar scroll bar */
+        height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent; /* Warna latar belakang track */
+    }
+
+    /* Warna scroll thumb */
+    ::-webkit-scrollbar-thumb {
+        background: #2a3547; /* Warna scroll thumb */
+        border-radius: 15px;
+    }
+}
+
+.cart-keranjang{
+    height: 40%;
+    overflow: auto;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom: 100px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.288);
+}
+
+.your-cart h2{
+    width: 100%;
+    padding: 5px 0px;
+    letter-spacing: 2px;
+    color: #2e4567;
+    font-weight: bold;
+    border-bottom: rgba(46, 69, 103, 0.205) solid 1px;
+}
+
+.keranjang-content{
+    width: 100%;
+    height: max-content;
+    box-shadow: 0px 1px 3px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+
+.keranjang-content img{
+    width: 76px;
+    height: 76px;
+    border: solid 1px rgba(0, 0, 0, 0.164);
+    box-shadow: rgba(0, 0, 0, 0.408) 0px 1px 2px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.qty-keranjang{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.qty-keranjang input{
+    width: 20px;
+    margin: 0px 5px;
+    text-align: center;
+}
+
+.qty-keranjang button{
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #2e4567;
+    color: #ffff;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.keranjang-content i{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    padding: 5px;
+    border-top-right-radius: 15px;
+    background-color: #2e4567;
+    box-shadow: 0px 1px 3px;
+    color: #FFFF;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.keranjang-content i:hover{
+    background-color: red;
+}
+
+.produk-keranjang{
+    color: #2e4567;
+    font-weight: bold;
+    max-width: 200px;
+    text-align: left;
+    font-size: 15px;
+    height: max-content;
+}
+
+.produk-keranjang p{
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.produk-keranjang span{
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.455);
+}
+
+.qty-keranjang button:hover{
+    background-color: #5d87ff;
+    border: none;
+}
+
+.keranjang-content span{
+    font-weight: bold;
+    height: max-content;
+}
+
+.order-detail{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 15px;
+    height: 130px;
+}
+
+.subtotal-detail p{
+    margin: 10px;
+}
+
+.subtotal-detail span{
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.qty-detail p{
+    margin: 10px;
+}
+
+.qty-detail span{
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.your-cart-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.your-cart-btn button{
+    margin: 10px;
+    height: 40px;
+    width: 50%;
+    border-radius: 10px;
+    border: solid 1px rgba(0, 0, 0, 0.202);
+    cursor: pointer;
+}
+
+.processCheckout{
+    background-color: #2a3547;
+    color: #ffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: .3s ease;
+}
+
+.processCheckout:hover{
+    background-color: #5d87ff;
+}
+
+.kembaliBelanja{
+    transition: .3s ease;
+}
+
+.kembaliBelanja:hover{
+    background-color: rgba(0, 0, 0, 0.832);
+    color: #fff;
+}
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    animation: fadeInOut 0.5s ease-in-out; /* Animasi fadeIn dan fadeOut */
+}
+
+.popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90vh;
+    height: max-content;
+    position: relative;
+}
+
+.img-popup{
+    width: 55%;
+}
+
+.massage-thanks{
+    width: 45%;
+}
+
+.massage-thanks h1{
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 2px;
+}
+
+.massage-thanks button{
+    width: 60%;
+    height: 50px;
+    margin-top: 30px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    background-color: #2a3547;
+    color: #fff;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: .3s ease;
+    text-transform: uppercase;
+}
+
+.massage-thanks button:hover{
+    background-color: #5d87ff;
+}
+
+.massage-thanks p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.img-popup img{
+    width: 100%;
+    height: 100%;
+}
+
+
+@keyframes fadeInOut {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+@media screen and (min-width: 769px) and (max-width:1024px){
+    .your-cart h2{
+        font-size: 15px;
+    }
+
+    .your-cart{
+        height: 150vh;
+    }
+
+    .produk-keranjang p{
+        font-size: 10px;
+    }
+
+    .produk-keranjang{
+        max-width: 120px;
+    }
+
+    .produk-keranjang span{
+        font-size: 5px;
+    }
+
+    .keranjang-content img{
+        height: 50px;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+    .keranjang-content span{
+        font-size: 5px;
+    }
+
+    .keranjang-content i{
+        font-size: 5px;
+    }
+
+
+    .subtotal-detail span{
+        margin: 10px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .qty-detail span{
+        margin: 10px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    * h2{
+        font-size: 16px;
+    }
+    .kartu-pembayaran span,
+    .kartu-pembayaran p{
+        font-size: 15px;
+    }
+
+    .nama-pembayaran label{
+        font-size: 15px;
+    }
+
+
+}
+
+@media screen and (min-width: 415px) and (max-width: 768px) {
+    .checkout-content{
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+    }
+
+    .checkout{
+        margin: 0;
+        padding: 20px;
+    }
+
+    .your-cart{
+        width: 100%;
+        border-radius: 15px;
+        margin-top: 50px;
+    }
+
+    .information-checkout{
+        width: 100%;
+    }
+    .keranjang-content span{
+        font-size: 5px;
+    }
+
+    .keranjang-content i{
+        font-size: 5px;
+    }
+
+
+    .subtotal-detail span{
+        margin: 10px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .qty-detail span{
+        margin: 10px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    * h2{
+        font-size: 16px;
+    }
+    .kartu-pembayaran span,
+    .kartu-pembayaran p{
+        font-size: 15px;
+    }
+
+    .nama-pembayaran label{
+        font-size: 15px;
+    }
+
+    .produk-keranjang p{
+        font-size: 10px;
+    }
+
+    .produk-keranjang{
+        max-width: 120px;
+    }
+
+    .produk-keranjang span{
+        font-size: 5px;
+    }
+
+    .keranjang-content img{
+        height: 50px;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+    .keranjang-content span{
+        font-size: 5px;
+    }
+
+    .keranjang-content i{
+        font-size: 5px;
+    }
+    .popup h1{
+        font-size: 20px;
+    }
+}
+
+@media  screen and  (max-width: 414px) {
+    .checkout-content{
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+    }
+
+    .checkout{
+        margin: 0;
+        padding: 20px;
+    }
+
+    .your-cart{
+        width: 100%;
+        border-radius: 15px;
+        margin-top: 50px;
+    }
+
+    .information-checkout{
+        width: 100%;
+    }
+    .keranjang-content span{
+        font-size: 5px;
+    }
+
+    .keranjang-content i{
+        font-size: 5px;
+    }
+
+
+    .subtotal-detail span{
+        margin: 10px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .qty-detail span{
+        margin: 10px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    * h2{
+        font-size: 8px;
+    }
+    .kartu-pembayaran span,
+    .kartu-pembayaran p{
+        font-size: 7px;
+    }
+
+    .nama-pembayaran label{
+        font-size: 7px;
+    }
+
+    .produk-keranjang p{
+        font-size: 5px;
+    }
+
+    .produk-keranjang{
+        max-width: 110px;
+    }
+
+    .produk-keranjang span{
+        font-size: 3px;
+    }
+
+    .keranjang-content img{
+        display: none;
+    }
+
+    .keranjang-content span{
+        font-size: 3px;
+    }
+
+    .keranjang-content i{
+        font-size: 3px;
+    }
+
+    .popup h1{
+        font-size: 20px;
+    }
+}

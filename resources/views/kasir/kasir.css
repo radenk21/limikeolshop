@@ -18,7 +18,7 @@ header {
 }
 
 .container {
-    max-width: 1280px; /* Lebar maksimum container */
+    max-width: 1980px; /* Lebar maksimum container */
     margin: 0 auto; /* Tengahkan container di tengah halaman */
     overflow: hidden; /* Mengatasi masalah float */
 }
@@ -199,7 +199,8 @@ header {
     position: absolute;
     background-color: #2a3547;
     color: #ffff;
-    width: 400px;
+    width: 500px;
+    height: max-content;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 10px;
@@ -265,11 +266,12 @@ header {
     text-align: center;
     padding: 10px;
     width: 200px; /* Ubah lebar card */
-    height: 250px; /* Ubah tinggi card */
+    height: max-content; /* Ubah tinggi card */
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: auto;
 }
 
 .card:hover {
@@ -285,7 +287,10 @@ header {
 
 .card h3 {
     font-size: 1.2em;
+    max-width: 100%;
+    max-height: 200px;
     margin: 10px 0;
+    text-align: center;
 }
 
 .card p {
@@ -377,11 +382,21 @@ input[type="number"]::-webkit-outer-spin-button {
     justify-content: space-between;
     align-items: center;
     width: 90%;
+    height: max-content;
     padding: 10px;
     margin-top: 3px;
     box-shadow: 0px 1px 3px black;
     border-radius: 15px;
     position: relative;
+}
+
+.checkout-item .checkout-product-name{
+    max-width: 100px;
+    height: max-content;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 10px;
 }
 
 .total-harga{
@@ -416,7 +431,7 @@ input[type="number"]::-webkit-outer-spin-button {
     box-shadow: 1px 3px 5px black;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .search-kasir input{
         width: 10rem;
         height: 35px;
@@ -525,7 +540,7 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px){
+@media screen and (min-width: 901px) and (max-width: 1024px){
     .search-kasir input{
         width: 15rem;
         height: 35px;
@@ -550,7 +565,7 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 
     .product-item{
-        margin-left: 30px;
+        margin-left: 5px;
         margin-top: 5px;
         justify-content: center;
         align-items: center;
