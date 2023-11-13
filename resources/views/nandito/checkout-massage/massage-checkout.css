@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;1,300&family=Pacifico&display=swap');@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;1,300&family=Pacifico&display=swap');
+
+:root{
+    --font-main:'Montserrat', sans-serif;
+    --font-thanks : 'Pacifico', cursive;
+    --button-color :#2a3547;
+    --button-hover : #5d87ff;
+    --body-color : #ecf2ff;
+}
+
+body {
+    background-color: var(--body-color);
+}
+
+.container {
+    max-width: 1980px; /* Lebar maksimum container */
+    margin: 0 auto; /* Tengahkan container di tengah halaman */
+    overflow: hidden; /* Mengatasi masalah float */
+}
+
+.checkout-sukses{
+    background: #fff;
+    color: var(--button-color);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200vh;
+    height: max-content;
+    position: relative;
+}
+
+.center-checkout-massage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.gambar img{
+    width: 100%;
+    height: 85vh;
+    mix-blend-mode: multiply;
+}
+
+.gambar{
+    width: 55%;
+}
+
+.massage-thanks{
+    width: 45%;
+}
+
+.massage-thanks h1{
+    font-family: var(--font-thanks);
+    font-size: 70px;
+    letter-spacing: 3px;
+}
+
+.massage-thanks p{
+    font-family: var(--font-main);
+    font-size: 32px;
+}
+
+.massage-thanks button{
+    margin-top: 40px;
+    width: 50%;
+    height: 40px;
+    background-color: var(--button-color);
+    color: #fff;
+    font-family: var(--font-thanks);
+    font-size: 20px;
+    letter-spacing: 3px;
+    border-radius: 20px;
+    border: none;
+}

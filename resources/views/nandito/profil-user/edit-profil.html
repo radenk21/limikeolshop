@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> User Profil </title>
+    <link rel="stylesheet" href="profil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="container">
+        <div class="container-content">
+            <div class="user-data">
+                <h1>Update Profile</h1>
+                <div class="hamburger-menu fa-solid fa-bars"></div>
+                <div class="userDataFlex">
+                        <div class="userData">
+                            <div class="user-info">
+                                <div class="info-label">Username</div>
+                                <div class="info-value"><input type="text" placeholder="Username baru"></div>
+                            </div>
+                            <div class="user-info">
+                                <div class="info-label">Nama Panjang</div>
+                                <div class="info-value"><input type="text" placeholder="Nama baru"></div>
+                            </div>
+                            <div class="user-info">
+                                <div class="info-label">Email</div>
+                                <div class="info-value"><input type="text" placeholder="Email baru"></div>
+                            </div>
+                            <div class="user-info">
+                                <div class="info-label">Alamat</div>
+                                <div class="info-value"><input type="text" placeholder="Alamat baru"></div>
+                            </div>
+                            <div class="user-info">
+                                <div class="info-label">No. Telepon</div>
+                                <div class="info-value"><input type="number" placeholder="No telepon baru"></div>
+                            </div>
+                        </div>
+                        <div class="poto-profil">
+
+                            <label for="fileInput" class="custom-file-input"><span>poto profil</span>   </label>
+        <input type="file" id="fileInput" class="hidden-input" accept="image/*">
+
+        <div id="imageContainer"></div>
+                        </div>
+                    </div>
+                    <div class="editProfilBtn">
+                        <a class="editProfil" href="profil.html"> Update </a>
+                        <button class="cancelEdit" href="profil.html"> cancel edit </button>
+                    </div>
+            </div>
+            <div class="profil-nav">
+                <div class="profilBox">
+                    <a href="profil.html">
+                        <img src="terimaksih.jpg" alt="">
+                        <span> Jhon Cena </span>
+                    </a>
+                </div>
+                <div class="profil-link">
+                    <ul>
+                        <li><a href="profil.html"">My profil</a></li>
+                        <li><a class="active" href="#">My Order</a></li>
+                        <li><a href="#">My Cart</a></li>
+
+                    </ul>
+                    <a><div class="logout">log out</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var fileInput = document.getElementById('fileInput');
+    var imageContainer = document.getElementById('imageContainer');
+
+    fileInput.addEventListener('change', function() {
+        var file = this.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Selected Image';
+                imageContainer.innerHTML = '';
+                imageContainer.appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            imageContainer.innerHTML = 'No image selected';
+        }
+    });
+});
+
+let menuOpen = document.querySelector('.hamburger-menu');
+        let provilNav = document.querySelector('.profil-nav');
+
+        menuOpen.addEventListener('click', function(){
+            menuOpen.classList.toggle('fa-x');
+            provilNav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

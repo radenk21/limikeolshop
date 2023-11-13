@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-    max-width: 1280px; /* Lebar maksimum container */
+    max-width: 1980px; /* Lebar maksimum container */
     margin: 0 auto; /* Tengahkan container di tengah halaman */
     overflow: hidden; /* Mengatasi masalah float */
 }
@@ -44,15 +44,6 @@ body {
     padding: 10px;
     box-shadow: 1px 2px 2px;
     border-radius: 10px;
-}
-
-.nama-produk-detail{
-    position: absolute;
-    bottom: 40px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
-    letter-spacing: 2px;
-    text-shadow: 5px 7px 5px rgb(187, 187, 187);
 }
 
 .label-image-detail-produk{
@@ -96,6 +87,9 @@ body {
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 2px;
     color: #2a3547;
+    height: max-content;
+    width: 100%;
+    text-align: start;
 }
 
 .price{
@@ -127,7 +121,7 @@ body {
     margin-right: 70px;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 1px;
-}   
+}
 
 .brand-produk-detail img{
     width: 60px;
@@ -155,7 +149,7 @@ body {
     letter-spacing: 2px;
     color: #2a3547
   }
-  
+
   .color-produk-detail p{
     margin-right: 30px;
     padding: 5px;
@@ -163,12 +157,35 @@ body {
     height: 30px;
     font-family: 'Titillium Web', sans-serif;
     border-bottom: solid #2a3547;
-  } 
-  
+  }
+
   .quantity{
     display: flex;
     margin: 10px 0px 10px 0px;
     align-items: center;
+  }
+
+  .quantity input{
+    margin-left: 10px;
+  }
+
+  .quantity span{
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #2a3547;
+    color: #fff;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 0px 5px;
+    cursor: pointer;
+    transition: .3s ease;
+  }
+
+  .quantity span:hover{
+    background-color: #5d87ff;
   }
 
   .quantity p{
@@ -178,7 +195,7 @@ body {
     color: #2a3547
   }
 
-  
+
 input[type="number"] {
     width: 50px; /* Sesuaikan dengan lebar yang diinginkan */
     padding: 5px;
@@ -187,7 +204,7 @@ input[type="number"] {
     outline: none;
     text-align: center;
   }
-  
+
   input[type="number"]:hover{
     border: #2a3547 solid 1px;
   }
@@ -197,7 +214,7 @@ input[type="number"] {
     -webkit-appearance: none;
     margin: 0;
   }
-  
+
   label {
     margin-left: 10px;
     font-size: 14px;
