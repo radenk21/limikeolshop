@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang.index');
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/orders/{order_id}/view', [OrderController::class, 'view'])->name('order.view');
 });
 
 Route::get('thank-you', [FrontendController::class, 'thankyou'])->name('thankyou.checkout');

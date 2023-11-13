@@ -51,7 +51,7 @@ class CheckoutShow extends Component
                 'id_order' => $order->id,
                 'id_produk' => $keranjang->produk->id,
                 'jumlah'=> $keranjang->jumlah,
-                'harga' => $keranjang->produk->harga_jual,    
+                'harga' => $keranjang->produk->harga_jual * $keranjang->jumlah,    
             ]);
         }
 

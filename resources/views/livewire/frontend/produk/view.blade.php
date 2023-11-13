@@ -10,68 +10,80 @@
                 {{ session('message') }}
             </div>
         @endif
-        <div class="row">
-            <div class="col-md-5 mt-3">
-                <div class="bg-white border">
-                    @if ($produk->gambarProduk->count() > 0)
-                        <img src="{{ asset($produk->gambarProduk[0]->image) }}" class="w-100" alt="{{ $produk->name }}">
+        <div class="detail-produk">
+            <div class="image-detail-produk">
+                @if ($produk->jumlah > 0)
+                    <div class="label-image-detail-produk">
+                        <h2 class="total-item-left">{{ $produk->jumlah }}</h2>
+                        <span> Item Left </span>
+                    </div>
+                    @else
+                    <div class="label-image-detail-produk bg-danger">
+                        <span class="">Out of Stock</span>
+                    </div>
                     @endif
-                </div>
+                    
+                @if ($produk->gambarProduk->count() > 0)
+                    <img src="{{ asset($produk->gambarProduk[0]->image) }}" alt="">
+                @else
+                    <h1>Belum ada gambar</h1>
+                @endif
             </div>
-            <div class="col-md-7 mt-3">
-                <div class="product-view">
-                    <h4 class="product-name">
-                        {{ $produk->name }}
-                        @if ($produk->jumlah > 0)
-                            <label class="label-stock bg-success">In Stock</label>
-                        @else
-                            <label class="label-stock bg-danger">Out of Stock</label>
-                        @endif
-                    </h4>
-                    <hr>
-                    <p class="product-path">
-                        Home / {{ $produk->kategori->name }} / Product / {{ $produk->name }}
-                    </p>
-                    <div>
-                        <span class="selling-price">Rp {{ number_format($produk->harga_jual, 0, '.', '.') }}</span>
-                    </div>
-                    {{-- @if ($produk->produkJenis->count() > 0)
-                        @if ($produk->produkJenis)
-                            @foreach ($produk->produkJenis as $produkJenis)
-                                <input type="radio" name="pilihJenisProduk" id="" value="{{ $produkJenis->id }}">{{ $produkJenis->jenis->name }}
-                            @endforeach
-                        @endif
-                    @endif --}}
-                    <div class="mt-2">
-                        
-                    </div>
-                    <div class="mt-2">
-                        <div class="input-group">
-                            <span class="btn btn1" wire:click="decerementJumlah"><i class="fa fa-minus"></i></span>
-                                <input type="text" wire:model="jumlahCount" value="{{ $this->jumlahCount }}" class="input-quantity" />
-                            <span class="btn btn1" wire:click="incrementJumlah"><i class="fa fa-plus"></i></span>
-                        </div>
-                    </div>
-                    <div class="mt-2">
-                        <button type="button" wire:click="addToCart({{ $produk->id }})" class="btn btn1"> 
-                            <i class="fa fa-shopping-cart"></i> Tambahkan Ke Keranjang
-                        </button>
-                        <button type="button" wire:click="addToWishlist({{ $produk->id }})" class="btn btn1"> 
-                            <span wire:loading.remove>
-                                <i class="fa fa-heart"></i> Tambahkan Ke Wishlist 
-                            </span>
-                            <span wire:loading wire:target="addToWishlist">
-                                menambahkan 
-                            </span>
-                        </button>
-                    </div>
-                    <div class="mt-4">
-                        <h5 class="mb-0">Deskripsi Singkat</h5>
-                        <p>
+
+            <div class="spek-produk">
+                    <a href="javascript:history.back()" style="text-decoration: none">
+                        < Back
+                    </a>
+                    <h1>{{ $produk->name }}</h1>
+                    <span class="price">Rp {{ number_format($produk->harga_jual, 0, '.', '.') }}</span>
+
+                    <div class="description-product">
+                        <span>Description</span>
+                        <p class="desc">
                             {{ $produk->deskripsi }}
                         </p>
                     </div>
-                </div>
+                    <div class="brand-produk-detail">
+                        <span>Brand</span>
+                        <p class="brand-name text-align-center mt-3">{{ $produk->brand->name }}</p>
+                    </div>
+                    {{-- <div class="color-produk-detail">
+                        <span> Color </span>
+                        @if ($produk->produkJenis->count() > 0)
+                            @if ($produk->produkJenis)
+                                @foreach ($produk->produkJenis as $produkJenis)
+                                <p>
+                                    <input type="radio" name="pilihJenisProduk" id="" value="{{ $produkJenis->id }}">
+                                    <label for="{{ $produkJenis->id }}">{{ $produkJenis->jenis->name }}</label>
+                                </p>
+                                @endforeach
+                            @endif
+                        @endif
+                        <p>Red</p>
+                        <p>Blue</p>
+                    </div> --}}
+                    <div class="quantity">
+                        <p class="mt-3"> Quantity </p>
+                        <span wire:click="decerementJumlah">-</span>
+                        <input type="number" wire:model="jumlahCount" value="{{ $this->jumlahCount }}" class="" id="qty"/>
+                        <label for="qty"></label>
+                        <span wire:click="incrementJumlah">+</span>
+                    </div>
+                    <div class="row d-flex align-items-center">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <button type="button" wire:click="addToCart({{ $produk->id }})" class="add-to-cart"> Add To Cart</button>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <button type="button" wire:click="addToWishlist({{ $produk->id }})"  class="add-to-cart">
+                                <span wire:loading.remove>
+                                    Tambahkan Ke Wishlist 
+                                </span>
+                                <span wire:loading wire:target="addToWishlist">
+                                    menambahkan 
+                                </span>
+                            </button>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>

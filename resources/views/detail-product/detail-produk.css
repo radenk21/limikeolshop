@@ -206,7 +206,7 @@ input[type="number"] {
 
   .add-to-cart{
     width: 8rem;
-    height: 2rem;
+    /* height: 2rem; */
     color: #ffff;
     background-color: #2a3547;
     margin-top: 30px;
