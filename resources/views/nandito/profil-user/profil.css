@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;1,300&family=Pacifico&display=swap');@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;1,300&family=Pacifico&display=swap');
+
+:root{
+    --font-main:'Montserrat', sans-serif;
+    --font-thanks : 'Pacifico', cursive;
+    --button-color :#2a3547;
+    --button-hover : #5d87ff;
+    --body-color : #ecf2ff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    background-color: var(--body-color);
+}
+
+.container {
+    max-width: 1980px; /* Lebar maksimum container */
+    margin: 0 auto; /* Tengahkan container di tengah halaman */
+    overflow: hidden; /* Mengatasi masalah float */
+}
+
+.container-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    position: relative;
+}
+
+.user-data .hamburger-menu{
+    display: none;
+}
+
+.user-data {
+    width: 70%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    position: relative;
+    height: max-content;
+}
+
+.user-data h1{
+    margin: 40px 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #2a3547;
+}
+
+.editProfilBtn{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin: 20px;
+}
+
+
+.editProfilBtn a{
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--button-color);
+    color: #fff;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.editProfilBtn a:hover{
+    background-color: rgb(126, 82, 0);
+}
+
+.userData {
+    width: 65%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: solid 1px #ddd;
+}
+
+.poto-profil{
+    width: 35%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.poto-profil img{
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+}
+
+.poto-profil span{
+    color: rgba(0, 0, 0, 0.568);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.profil-nav {
+    width: 30%;
+    border-radius: 8px;
+    padding: 20px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.profil-nav ul {
+    list-style-type: none;
+    padding: 20px;
+    background-color: #2a3547;
+    width: 100%;
+    border-bottom: 1px rgba(255, 255, 255, 0.363) solid;
+}
+
+.userDataFlex{
+    display: flex;
+    justify-content: space-between;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
+}
+
+.profil-nav li {
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.profil-nav a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+.profil-nav a:hover {
+    color: #007BFF;
+}
+
+.user-info {
+    display: flex;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.103);
+    padding-bottom: 5px;
+}
+
+.info-label {
+    min-width: 120px;
+    color: rgba(0, 0, 0, 0.568);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.info-value {
+    margin-left: 200px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #2a3547;
+}
+
+.profilBox{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    background-color: #2a3547;
+    margin-bottom: 10px;
+    padding: 20px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.profilBox a{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.profilBox img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.profilBox span{
+    width: 70%;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.profil-link{
+    background-color: #2a3547;
+    width: 100%;
+}
+
+.logout{
+    margin: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    width: 90%;
+    color: #ffff;
+    transition: .3s ease;
+}
+
+.logout:hover{
+    color: #ffffffb8;
+}
+
+input{
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    height: 40px;
+    width: 250px;
+    text-align: center;
+  }
+
+  input:hover{
+    border: #2a3547 solid 1px;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input::placeholder {
+    font-style: italic;
+}
+
+input:-ms-input-placeholder {
+    font-style: italic;
+}
+
+input::-ms-input-placeholder {
+    font-style: italic;
+}
+
+input:focus::placeholder {
+    font-style: normal;
+}
+
+.cancelEdit{
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(97, 7, 7);
+    color: #fff;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s ease;
+    margin-left: 20px;
+}
+
+.cancelEdit:hover{
+    background-color: red;
+}
+
+@media screen and (max-width: 1090px) {
+
+    .info-value {
+        margin-left: 50px;
+        font-weight: bold;
+        font-size: 20px;
+        color: #2a3547;
+    }
+
+    input{
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        height: 40px;
+        width: 130px;
+        text-align: center;
+      }
+
+}
+
+@media screen and (max-width: 768px) {
+      .userDataFlex{
+        flex-direction: column;
+      }
+
+      .profilBox span{
+        display: none;
+      }
+
+      .profilBox img{
+        margin-left: 10px;
+        width: 80px;
+        height: 80px;
+      }
+
+      .user-data{
+        width: 100%;
+      }
+
+      .userData{
+        width: 100%;
+      }
+
+      .info-value{
+        margin-left: 150px;
+      }
+
+      .poto-profil{
+        width: 100%;
+        margin: 0;
+      }
+
+      .input{
+        width: 30%;
+      }
+
+      .profil-nav{
+        font-size: 15px;
+      }
+}
+
+@media screen and (max-width: 650px){
+    .user-data h1{
+        font-size: 20px;
+    }
+
+    .info-label, .info-value {
+        font-size: 15px;
+    }
+
+    .info-value{
+        margin-left: 10px;
+    }
+
+    .user-data .hamburger-menu{
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 23px;
+        margin: 20px;
+        transition: .3s ease;
+    }
+
+    .profil-nav{
+        position: absolute;
+        top: 16%;
+        width: 80%;
+        left: 10%;
+        clip-path: polygon(0 0, 100% 0, 0 0, 100% 0);
+        transition: .5s ease;
+    }
+
+    .profil-nav.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .fa-x{
+        transition: .3s ease;
+        transform: rotate(180deg);
+    }
+
+    .profilBox img{
+        height: 40px;
+        width: 40px;
+    }
+
+    .profilBox span{
+        display: flex;
+        width: 65%;
+        font-size: 20px;
+      }
+
+      ul li{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+}
