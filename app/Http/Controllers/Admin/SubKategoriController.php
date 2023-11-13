@@ -39,12 +39,13 @@ class SubKategoriController extends Controller
         $validatedData = $request->validated();
         $subKategori = new SubKategori();
         $subKategori->name = $validatedData['name'];
+        $subKategori->id_kategori = $validatedData['id_kategori'];
         $subKategori->slug = Str::slug($validatedData['slug']);
         $subKategori->description = $validatedData['description'];
         $subKategori->status = $request->status == true ? '1' : '0';
         $subKategori->save();
         session()->flash('message', 'Sub Kategori telah ditambahkan');
-        dd('asdfasdf');
+        // dd('asdfasdf');
         return redirect('admin/sub-kategori');
     }
 
@@ -73,6 +74,7 @@ class SubKategoriController extends Controller
         $validatedData = $request->validated();
         $subKategori = SubKategori::findOrFail($id);
         $subKategori->name = $validatedData['name'];
+        $subKategori->id_kategori = $validatedData['id_kategori'];
         $subKategori->slug = Str::slug($validatedData['slug']);
         $subKategori->description = $validatedData['description'];
         $subKategori->status = $request->status == true ? '1' : '0';

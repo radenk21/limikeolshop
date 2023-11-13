@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Kategori::factory(3)->create();
-        SubKategori::factory(10)->create();
+        // Kategori::factory(3)->create();
+        // SubKategori::factory(10)->create();
         Supplier::factory(3)->create();
     }
 }

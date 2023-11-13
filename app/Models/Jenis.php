@@ -14,4 +14,8 @@ class Jenis extends Model
         'code',
         'status',
     ];
+    public function produks()
+    {
+        return $this->belongsToMany(Produk::class, 'produk_jenis', 'id_jenis', 'id_produk');
+    }
 }
