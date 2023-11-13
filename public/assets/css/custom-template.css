@@ -299,12 +299,6 @@
 /* Checkout end */
 
 /* keranjang nandito -start */
-.container {
-    max-width: 1280px; /* Lebar maksimum container */
-    margin: 0 auto; /* Tengahkan container di tengah halaman */
-    overflow: hidden; /* Mengatasi masalah float */
-}
-
 .cart{
     width: 100%;
     height: 100vh;
@@ -388,32 +382,6 @@
 .order-item-heading .product-name{
     margin-left: 40px;
     margin-right: 50px;
-}
-
-.order-item{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-top: 15px;
-    border-bottom: solid 1px rgba(0, 0, 0, 0.072);
-    padding: 10px 0px;
-}
-
-.order-item fa-trash img{
-    width: 80px;
-}
-
-.order-item img{
-    width: 150px;
-    height: 150px;
-    padding: 5px;
-    border: solid 1px rgba(0, 0, 0, 0.072);
-}
-
-.order-item .Product-name{
-    font-weight: bold;
-    color: black;
 }
 
 .Subtotal{
@@ -507,7 +475,7 @@ span i:hover{
     margin-top: 50px;
 }
 
-.checkout-cart button{
+.checkout-cart a{
     width: 60%;
     height: 40px;
     border-radius: 15px;
@@ -519,11 +487,92 @@ span i:hover{
     transition: .3s ease;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+th, td {
+    border-bottom: 1px rgba(0, 0, 0, 0.127) solid;
+    padding: 10px;
+    text-align: left;
+    align-items: center;
+    max-width: 250px;
+}
+
+td{
+    text-align: center;
+}
+
+.quantity{
+    padding: 0;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.cart-product-name{
+    font-weight: bold;
+}
+
+.product-image {
+    max-width: 100px;
+    max-width: 100px;
+}
+
+.quantity button {
+    width: 20px;
+    background-color: #2a3547;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    height: 20px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    transition: .3s ease;
+}
+
+.quantity button:hover{
+    background-color: #5d87ff;
+}
+
+.quantity input {
+    width: 30px;
+    text-align: center;
+}
+
+.total-price {
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 30px; /* Sesuaikan dengan lebar yang diinginkan */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+  }
+  
+  input[type="number"]:hover{
+    border: #2a3547 solid 1px;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
 .checkout-cart button:hover{
     background-color: #5d87ff;
 }
 
-@media screen and  (max-width: 600px) {
+@media screen and  (max-width: 485px) {
     body{
         background-color: #fff;
     }
@@ -532,7 +581,43 @@ span i:hover{
         flex-direction: column;
         align-items: center;
     }
+
+    span i{
+        display: flex;
+        width: 20px;
+        height: 20px;
+        font-size: 15px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        border: none;
+    }
+
+    .quantity {
+        font-size: 5px;
+        width: 10px;
+        padding: 0;
+    }
+
+    .quantity button{
+        font-size: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+        text-align: center;
+    }
     
+    .quantity input{
+        width: 20px;
+        font-size: 5px;
+        margin: 0;
+    }
+
+    td img{
+        width: 70px;
+        height: 70px;
+    }
+
     .shipping{
         font-size: 10px;
     }
@@ -546,33 +631,8 @@ span i:hover{
         display: none;
     }
 
-    .order-item{
-        position: relative;
-        border-radius: 15px;
-        border: solid 1px #2a35475c;
-        padding: 0px 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
     .order-item-info{
         margin-top: 0;
-    }
-
-    .order-item img{
-        width: 50px;
-        height: 50px;
-        margin: 10px 0px;
-    }
-
-    span .fa-trash{
-        font-size: 15px;
-        position: absolute;
-        right: 0;
-        top: 0;
-        color: red;
-        border-top-right-radius: 15px;
     }
 
     .Subtotal{
@@ -580,7 +640,8 @@ span i:hover{
     }
 
     .order-summary{
-        width: 80%;
+        width: 90%;
+        height: 50%;
         margin-top: 20px;
         border-radius: 15px;
         border: #2a35471c solid 1px;
@@ -594,7 +655,7 @@ span i:hover{
     }
 }
 
-@media screen and (min-width:601px)and (max-width: 768px) {
+@media screen and (min-width:486px) and (max-width: 768px) {
     body{
         background-color: #fff;
     }
@@ -604,38 +665,34 @@ span i:hover{
         align-items: center;
     }
     
+
+    td img{
+        height: 80px;
+        width: 80px;
+    }
+    
     .shopping-cart{
         width: 100%;
         background-color: #ffff;
     }
+
+    .quantity {
+        font-size: 5px;
+        width: 150px;
+        padding: 0;
+    }
+
+    td {
+        padding: 0;
+    }
+
+    th td{
+        padding: 0;
+        margin: 0;
+    }
+
     .order-item-heading{
         display: none;
-    }
-
-    .order-item{
-        position: relative;
-        border-radius: 15px;
-        border: solid 1px #2a35475c;
-        padding: 0px 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-
-    .order-item img{
-        width: 100px;
-        height: 100px;
-        margin: 10px 0px;
-    }
-
-    span .fa-trash{
-        font-size: 15px;
-        position: absolute;
-        right: 0;
-        top: 0;
-        color: red;
-        border-top-right-radius: 15px;
     }
 
     .Subtotal{
@@ -650,28 +707,22 @@ span i:hover{
     }
 }
 
-@media screen and (min-width: 769px) and (max-width:896px){
+@media screen and (min-width: 769px) and (max-width:979px){
     .order-item-heading{
-        font-size: 10px;
-    }
-
-    span .fa-trash{
-        width: 30px;
-        height: 30px;
-        font-size: 20px;
-    }
-
-    .order-item img{
-        width: 70px;
-        height: 70px;
-    }
-
-    .order-item p{
         font-size: 10px;
     }
 
     .order-item-heading{
         display: none;
+    }
+    
+    th{
+        padding: 0;
+    }
+
+    td{
+        margin: 0;
+        padding: 0;
     }
 
     .order-summary-subtotals{
@@ -688,3 +739,259 @@ span i:hover{
     }
 }
 /* keranjang nandito - end */
+
+/* detail-produk nandito - start */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&family=Montserrat:wght@500;700&family=Poppins:wght@200&family=Titillium+Web:ital@1&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+:root{
+    --botton-color: #5d87ff;
+}
+
+body {
+    background-color: #ecf2ff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 1980px; /* Lebar maksimum container */
+    margin: 0 auto; /* Tengahkan container di tengah halaman */
+    overflow: hidden; /* Mengatasi masalah float */
+}
+
+.detail-produk{
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-detail-produk{
+    background-color: rgb(248, 248, 248);
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.image-detail-produk img{
+    width: 70%;
+    height: 70%;
+    mix-blend-mode: multiply;
+    padding: 10px;
+    box-shadow: 1px 2px 2px;
+    border-radius: 10px;
+}
+
+.label-image-detail-produk{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--botton-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    padding: 5px;
+    box-shadow: 0px 0px 3px black;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.spek-produk{
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    box-shadow: 0px 0px 3px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 40px 0px 40px;
+    text-align: justify;
+}
+
+.spek-produk a{
+    color: #fff;
+    background-color: #2a3547;
+    box-shadow: 0px 0px 2px;
+    width: 10rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding: 2px 4px 2px 4px;
+    margin: 10px 0px 20px 0px;
+}
+
+.spek-produk h1{
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    color: #2a3547;
+    height: max-content;
+    width: 100%;
+    text-align: start;
+}
+
+.price{
+    color: #5d87ff;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+.description-product{
+    margin: 10px 0px 10px 0px;
+}
+
+.description-product span{
+    width: max-content;
+    border-bottom: solid 1px #2a3547;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    color: #2a3547
+}
+
+.brand-produk-detail{
+    display: flex;
+    align-items: center;
+    margin: 10px 0px 10px 0px;
+}
+
+.brand-produk-detail span{
+    margin-right: 70px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+}
+
+.brand-produk-detail img{
+    width: 60px;
+    height: 60px;
+    padding: 5px;
+    mix-blend-mode: multiply;
+    box-shadow: 1px 2px 3px;
+    border-radius: 15px;
+}
+
+.brand-produk-detail .brand-name{
+    font-family: 'Titillium Web', sans-serif;
+}
+
+  .color-produk-detail{
+    display: flex;
+    align-items: center;
+    margin: 10px 0px 10px 0px;
+  }
+
+  .color-produk-detail span{
+    width: max-content;
+    margin-right: 70px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    color: #2a3547
+  }
+
+  .color-produk-detail p{
+    margin-right: 30px;
+    padding: 5px;
+    width: max-content;
+    height: 30px;
+    font-family: 'Titillium Web', sans-serif;
+    border-bottom: solid #2a3547;
+  }
+
+  .quantity{
+    display: flex;
+    margin: 10px 0px 10px 0px;
+    align-items: center;
+  }
+
+  .quantity input{
+    margin-left: 10px;
+  }
+
+  .quantity span{
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #2a3547;
+    color: #fff;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 0px 5px;
+    cursor: pointer;
+    transition: .3s ease;
+  }
+
+  .quantity span:hover{
+    background-color: #5d87ff;
+  }
+
+  .quantity p{
+    margin-right: 40px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    color: #2a3547
+  }
+
+
+input[type="number"] {
+    width: 50px; /* Sesuaikan dengan lebar yang diinginkan */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+  }
+
+  input[type="number"]:hover{
+    border: #2a3547 solid 1px;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  label {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .add-to-cart{
+    width: 8rem;
+    height: 60px;
+    padding: 2px 5px 2px 5px;
+    color: #ffff;
+    background-color: #2a3547;
+    margin-top: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s ease;
+    border: none;
+  }
+
+  .add-to-cart:hover{
+    background-color: #5d87ff;
+  }
+
+@media (max-width:768px) {
+
+  .image-detail-produk img{
+    height: 50%;
+    position: absolute;
+    top: 100px;
+  }
+
+  .nama-produk-detail{
+    bottom: 15rem;
+}
+}
+
+/* detail-produk nandito - end */
