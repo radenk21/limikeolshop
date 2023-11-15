@@ -159,7 +159,11 @@
                                 <td class="total-price">Rp {{ number_format($keranjang->produk->harga_jual * $keranjang->jumlah, 0, '.', '.') }} </td>
                             </tr>
                         @empty
-                            <h4 class="text-center mt-5">Belum ada produk yang di masukkan ke keranjang</h4>
+                            <tr>
+                                <td colspan="6">
+                                    <h4 class="text-center mt-5">Belum ada produk yang di masukkan ke keranjang</h4>
+                                </td>
+                            </tr>
                         @endforelse
                         
                     </table>

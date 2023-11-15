@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('admin/css/styles.min.css') }}" />
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    @yield('styles')
     @livewireStyles
 </head>
 <body>

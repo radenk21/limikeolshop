@@ -15,6 +15,7 @@ class FrontendController extends Controller
     public function index()
     {
         $sliders = Slider::where('status','0')->get();
+        // $
         return view('frontend.index', compact('sliders'));
     }
 
