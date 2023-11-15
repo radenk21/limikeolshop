@@ -76,7 +76,7 @@ input:focus::placeholder {
     letter-spacing: 2px;
 }
 
-.input-informasi input{
+.input-informasi input, textarea{
     width: 90%;
     height: 35px;
     padding: 5px;

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Pesanan'. auth()->user()->name)
+@section('title', 'Detail Pesanan')
 @section('content')
 
 <div class="py-3 py-md-5">
@@ -55,6 +55,9 @@
                                 <th>Total Harga</th>
                             </thead>
                             <tbody>
+                                @php
+                                    $total_harga_pesanan = 0
+                                @endphp
                                 @foreach ($user_order->orderItem as $orderItem)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
@@ -69,9 +72,20 @@
                                         <td>{{ $orderItem->produk->name }}</td>
                                         <td>Rp {{ number_format($orderItem->produk->harga_jual, 0, '.', '.') }} </td>
                                         <td>{{ $orderItem->jumlah }}</td>
-                                        <td>Rp {{ number_format($orderItem->harga, 0, '.', '.') }}</td>
+                                        <td class="fw-semibold">Rp {{ number_format($orderItem->harga, 0, '.', '.') }}</td>
+                                        @php
+                                            $total_harga_pesanan += $orderItem->harga
+                                        @endphp
                                     </tr>
                                 @endforeach
+                                <tr>
+                                    <td colspan="6">
+                                        Total harga pesanan
+                                    </td>
+                                    <td class="fw-semibold">
+                                        Rp {{ number_format($total_harga_pesanan, 0, '.', '.') }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
 

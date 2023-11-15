@@ -16,6 +16,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\KeranjangController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Frontend\OrderController;
 
 /*
@@ -85,4 +86,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('produkJenis/{id_produk}', [ProdukJenisController::class, 'storeProdukJenis'])->name('produkidJenis.store');
     // Slider Routes
     Route::resource('slider', SliderController::class);
+
+    // Order routes 
+    Route::resource('AdminOrder', AdminOrderController::class);
+    Route::get('AdminOrder/invoice/{id_order}/download', [AdminOrderController::class, 'invoiceDownload'])->name('AdminOrder.invoice-download');
+    Route::get('AdminOrder/invoice/{id_order}/generate', [AdminOrderController::class, 'invoiceGenerate'])->name('AdminOrder.invoice-view');
 });

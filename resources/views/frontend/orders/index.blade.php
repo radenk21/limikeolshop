@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Pesanan'. auth()->user()->name)
+@section('title', 'Pesanan')
 @section('content')
 
 <div class="py-3 py-md-5">
