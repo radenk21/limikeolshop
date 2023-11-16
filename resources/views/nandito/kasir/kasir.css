@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Montserrat&family=Pacifico&display=swap');
+
 *{
     margin: 0;
     padding: 0;
-    transition: ease .3s;  
-    text-decoration: none; 
+    transition: ease .3s;
+    text-decoration: none;
     box-sizing: border-box;
 }
 
 body {
-   background: #ecf2ff;
+    background: linear-gradient(45deg, #ecf2ff, #b9d4e6);
 }
 
 header {
@@ -53,7 +55,7 @@ header {
 
 
 
-.user { 
+.user {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -114,8 +116,8 @@ header {
 
     /* Warna scroll thumb */
     ::-webkit-scrollbar-thumb {
-        background: #2a3547; /* Warna scroll thumb */  
-        border-radius: 15px;  
+        background: #2a3547; /* Warna scroll thumb */
+        border-radius: 15px;
     }
 }
 
@@ -136,9 +138,9 @@ header {
     align-items: center;
     display: flex;
     flex-direction: column;
-    border-radius: 15px;  
-    margin-left: 3px;  
-    box-shadow: 0 0 4px black; 
+    border-radius: 15px;
+    margin-left: 3px;
+    box-shadow: 0 0 4px black;
 }
 
 
@@ -199,7 +201,6 @@ header {
     position: absolute;
     background-color: #2a3547;
     color: #ffff;
-    width: 400px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 10px;
@@ -211,27 +212,13 @@ header {
     }
   }
 
-  .product-dropdown a:hover {
-    background-color: #ffffff; 
-    color: #2a3547;
-  }
-
-  .product-dropdown a {
-    color: #ffff;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    box-shadow: 0 0 1px;
-    border-radius: 10px;
-  }
-
 .search-kasir input{
     width: 25rem;
     height: 35px;
     outline: #fff;
     letter-spacing: 1px;
     border-radius: 10px;
-    padding: 3px;
+    padding: 5px 10px;
     border: none;
     box-shadow: 0 0 3px black;
 }
@@ -241,10 +228,14 @@ header {
     width: 40px;
     border-radius: 10px;
     cursor: pointer;
-    background-color:  #5d87ff;
+    background-color:  #2a3547;
     color: #fff;
     border: none;
     font-size: 20px;
+}
+
+.search-kasir button:hover{
+    background-color: #5d87ff;
 }
 
 
@@ -264,16 +255,13 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 10px;
-    width: 200px; /* Ubah lebar card */
-    height: 250px; /* Ubah tinggi card */
+    max-width: 200px; /* Ubah lebar card */
+    height: max-content; /* Ubah tinggi card */
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: auto;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
 .card:hover {
@@ -290,9 +278,6 @@ header {
 .card h3 {
     font-size: 1.2em;
     margin: 10px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .card p {
@@ -373,8 +358,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .div-qty input:focus{
-    color: white;
-    background-color: #5d87ff;
     outline: none;
     border: none;
 }
@@ -423,6 +406,233 @@ input[type="number"]::-webkit-outer-spin-button {
     box-shadow: 1px 3px 5px black;
 }
 
+/* Home Page */
+.homePage{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+}
+
+.limikeDesk{
+    width: 40%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.limikeDesk h1{
+    font-size: 40px;
+    font-family: 'Comfortaa', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    text-shadow: 5px 6px 5px rgba(0, 0, 0, 0.151);
+    letter-spacing: 2px;
+    word-spacing: 5px;
+}
+
+.limikeDesk p{
+    text-align: justify;
+    font-size: 20px;
+}
+
+.limikeDesk span{
+    color: #5d87ff;
+    letter-spacing: 0;
+}
+
+.limikeDesk button{
+    background-color: #2a3547;
+    width: 100%;
+    color: #fff;
+    height: 40px;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .3s ease;
+    animation: float 1s infinite ease;
+}
+
+.limikeDesk button:hover{
+    background-color: #5d87ff;
+    color: #fff;
+}
+
+.limikeDesk i{
+    margin-left: 20px;
+}
+
+.gambar{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gambar img{
+    width: 100%;
+    height: 100%;
+    animation: float1 1s infinite ease;
+    animation-delay: .3s;
+}
+
+
+
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-20px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+}
+
+@keyframes float1 {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-5px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+.supplier{
+    background-color: #ffff;
+    width: 100%;
+    margin: 5px 20px;
+    height: 100vh;
+    overflow: auto;
+    box-shadow: -1px 0 3px;
+    align-items: center;
+}
+
+.supplier-content{
+    width: 100%;
+    height: 50px;
+    height: 100%;
+    padding: 20px;
+}
+
+.supplier-data{
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th[scope="col"], td.number-supplier{
+    border: none;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th[scope="col"]{
+    background-color: #2a3547;
+    color: #ffff;
+    border: none;
+  }
+
+  td {
+    border: none;
+    padding: 8px;
+    text-align: left;
+  }
+
+  tr:nth-child(even), th {
+    background-color: #2a354746;
+  }
+
+  .collapse-row {
+    display: none;
+  }
+
+  tr:hover .collapse-row {
+    display: table-row;
+  }
+
+/* order page */
+.a-link,
+.order-btn{
+    display: flex;
+    margin-bottom: 20px;
+    width: 30%;
+    justify-content: space-around;
+}
+
+
+.table-order-data{
+    display: none;
+}
+
+#all-order:checked ~ .table-order-data.all-order,
+#dikemas:checked ~ .table-order-data.dikemas,
+#menunggu:checked ~ .table-order-data.menunggu,
+#selesai:checked ~ .table-order-data.selesai{
+    display: block;
+}
+
+.product-dropdown a,
+.product-dropdown button{
+    display: block;
+    margin: 20px;
+    width: max-content;
+    background-color: transparent;
+    border: none;
+    color: #ffff;
+    align-items: start;
+    text-align: start;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.product-dropdown a:hover,
+.product-dropdown button:hover{
+    color: #86a7ff;
+}
+
+.a-link::after,
+.order-button::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #5d87ff;
+    transition: width 0.3s ease;
+}
+
+.a-link:hover::after,
+.order-button:hover::after{
+    width: 100%;
+ }
+
+ .a-link{
+    font-size: 20px;
+ }
+
 @media screen and (max-width: 900px) {
     .search-kasir input{
         width: 10rem;
@@ -434,7 +644,7 @@ input[type="number"]::-webkit-outer-spin-button {
         border: none;
         box-shadow: 0 0 3px black;
     }
-    
+
     .product-item{
         margin-left: 30px;
         margin-top: 5px;
@@ -447,6 +657,7 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 
     .product-dropdown{
+        top: 30px;
         width: 400px;
     }
 
@@ -530,6 +741,11 @@ input[type="number"]::-webkit-outer-spin-button {
         font-size: 20px;
         padding: auto;
     }
+
+    .gambar img{
+        width: 100%;
+        height: 65%;
+    }
 }
 
 @media screen and (min-width: 901px) and (max-width: 1024px){
@@ -543,7 +759,7 @@ input[type="number"]::-webkit-outer-spin-button {
         border: none;
         box-shadow: 0 0 3px black;
     }
-    
+
     .product-header .filter{
         height: 30px;
         font-size: 15px;
@@ -641,4 +857,6 @@ input[type="number"]::-webkit-outer-spin-button {
         font-size: 20px;
         padding: auto;
     }
+
+
 }
