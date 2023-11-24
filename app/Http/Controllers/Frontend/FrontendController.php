@@ -25,33 +25,65 @@ class FrontendController extends Controller
         return view('frontend.collections.kategoris.index', compact('kategoris'));
     }
 
-    public function kategori($kategori_slug)
+    // public function kategori($kategori_slug)
+    // {
+    //     $kategori = Kategori::where('slug', $kategori_slug)->first();
+
+    //     if ($kategori) {
+    //         $subKategoris = SubKategori::where('id_kategori', $kategori->id)->get();
+    //         $produks = Produk::whereIn('id_sub_kategori', $subKategoris->pluck('id'))->get();
+    //         $brands = $produks->groupBy('id_brand')->keys();
+    //         $uniqueBrands = Brand::whereIn('id', $brands)->get();
+    //         return view('frontend.collections.produks.index', compact('produks', 'kategori', 'subKategoris', 'uniqueBrands'));
+    //     } else {
+    //         return redirect()->back();
+    //     }
+    // }
+    public function kategori($kategori_slug, Request $request)
     {
         $kategori = Kategori::where('slug', $kategori_slug)->first();
 
         if ($kategori) {
             $subKategoris = SubKategori::where('id_kategori', $kategori->id)->get();
-            $produks = Produk::whereIn('id_sub_kategori', $subKategoris->pluck('id'))->get();
-            $brands = $produks->groupBy('id_brand')->keys();
-            $uniqueBrands = Brand::whereIn('id', $brands)->get();
-            return view('frontend.collections.produks.index', compact('produks', 'kategori', 'subKategoris', 'uniqueBrands'));
+            // $produks = Produk::whereIn('id_sub_kategori', $subKategoris->pluck('id'))->get();
+            // $brands = $produks->groupBy('id_brand')->keys();
+            // $uniqueBrands = Brand::whereIn('id', $brands)->get();
+            return view('frontend.collections.produks.index', compact('kategori', 'subKategoris'));
         } else {
             return redirect()->back();
         }
     }
 
-    public function subKategori($kategori_slug, $subkategori_slug)
+    // public function subKategori($kategori_slug, $subkategori_slug)
+    // {
+    //     $kategori = Kategori::where('slug', $kategori_slug)->first();
+    //     $subKategori = SubKategori::where('slug', $subkategori_slug)->first();
+
+    //     $produks = Produk::where('id_sub_kategori', $subKategori->id)->get();
+    //     $brands = $produks->groupBy('id_brand')->keys();
+    //     $uniqueBrands = Brand::whereIn('id', $brands)->get();
+
+    //     return view('frontend.collections.subKategoris.index', compact('produks', 'kategori', 'subKategori', 'uniqueBrands'));
+    // }
+    public function subKategori($kategori_slug, $subkategori_slug, Request $request)
     {
         $kategori = Kategori::where('slug', $kategori_slug)->first();
         $subKategori = SubKategori::where('slug', $subkategori_slug)->first();
 
-        $produks = Produk::where('id_sub_kategori', $subKategori->id)->get();
-        $brands = $produks->groupBy('id_brand')->keys();
-        $uniqueBrands = Brand::whereIn('id', $brands)->get();
+        // $produks = Produk::where('id_sub_kategori', $subKategori->id)->get();
+        // $brands = $produks->groupBy('id_brand')->keys();
+        // $uniqueBrands = Brand::whereIn('id', $brands)->get();
 
-        return view('frontend.collections.subKategoris.index', compact('produks', 'kategori', 'subKategori', 'uniqueBrands'));
+        // dd($subKategori);
+        return view('frontend.collections.subKategoris.index', compact('kategori', 'subKategori'));
     }
 
+    public function allProdukShow()
+    {
+        // $kategori = Kategori::where('status', '0')->get();
+        return view('frontend.all-products');
+    }
+    
     public function produkView($produk_slug)
     {
         $produk = Produk::where('slug', $produk_slug)->where('status', '0')->firstOrFail();

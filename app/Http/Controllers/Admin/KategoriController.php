@@ -17,7 +17,9 @@ class KategoriController extends Controller
     public function index()
     {
         $kategoris = Kategori::orderBy('id', 'DESC')->simplePaginate(10);
-        return view('admin.kategori.index', compact('kategoris'));
+        $offset = request()->get('page', 1) * $kategoris->perPage() - $kategoris->perPage();
+
+        return view('admin.kategori.index', compact('kategoris', 'offset'));
     }
 
     /**

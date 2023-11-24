@@ -30,7 +30,7 @@ class Order extends Model
 
     public function payment()
     {
-        return $this->hasMany(Payment::class, 'id_order', 'id');
+        return $this->hasOne(Payment::class, 'id_order', 'id');
     }
 
     public function user()

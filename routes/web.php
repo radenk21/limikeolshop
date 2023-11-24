@@ -3,21 +3,23 @@
 use App\Models\ProdukJenis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\JenisController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Admin\ProdukJenisController;
 use App\Http\Controllers\Admin\SubKategoriController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\KeranjangController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
-use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +36,13 @@ use App\Http\Controllers\Frontend\OrderController;
 //     return view('welcome');
 // });
 
+
+
 Auth::routes();
 
 Route::get('/', [FrontendController::class, 'index'])->name('home.index');
 Route::get('/collections', [FrontendController::class, 'kategoris'])->name('home.kategoris');
+Route::get('/collections/all-products', [FrontendController::class, 'allProdukShow'])->name('home.all-products.show');
 Route::get('/collections/kategori/{kategori_slug}', [FrontendController::class, 'kategori'])->name('kategori');
 Route::get('/collections/kategori/{kategori_slug}/{subkategori_slug}', [FrontendController::class, 'subkategori'])->name('subkategori');
 Route::get('/collections/{produk_slug}/view', [FrontendController::class, 'produkView']);
@@ -91,4 +96,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('AdminOrder', AdminOrderController::class);
     Route::get('AdminOrder/invoice/{id_order}/download', [AdminOrderController::class, 'invoiceDownload'])->name('AdminOrder.invoice-download');
     Route::get('AdminOrder/invoice/{id_order}/generate', [AdminOrderController::class, 'invoiceGenerate'])->name('AdminOrder.invoice-view');
+
+    // User Routes
+    Route::resource('user', UserController::class);
+
+    // Payment Routes
+    Route::resource('AdminPayment', PaymentController::class);
 });

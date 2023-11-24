@@ -36,27 +36,31 @@
                 <!-- Yearly Breakup -->
                 <div class="card overflow-hidden">
                 <div class="card-body p-4">
-                    <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
+                    <h5 class="card-title mb-9 fw-semibold">Pendapatan tahun ini</h5>
                     <div class="row align-items-center">
                     <div class="col-8">
-                        <h4 class="fw-semibold mb-3">$36,358</h4>
+                        <h4 class="fw-semibold mb-3">Rp {{ $total_pendapatan_per_tahun }}</h4>
                         <div class="d-flex align-items-center mb-3">
-                        <span
-                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-up-left text-success"></i>
-                        </span>
-                        <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                        <p class="fs-3 mb-0">last year</p>
-                        </div>
-                        <div class="d-flex align-items-center">
-                        <div class="me-4">
-                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                        </div>
-                        <div>
-                            <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">2023</span>
-                        </div>
+                            {{-- <span
+                                class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-arrow-up-left text-success"></i>
+                            </span>
+                            <p class="text-dark me-1 fs-3 mb-0">
+                                @if ($persentase_perubahan < 0)
+                                    {{ $persentase_perubahan }} 
+                                @elseif ($persentase_perubahan > 0)
+                                    + {{ $persentase_perubahan }} 
+                                @else
+                                    0 
+                                @endif
+                            </p>
+                            <p class="fs-3 mb-0">last year</p>
+                            </div> --}}
+                            <div class="d-flex align-items-center">
+                            <div class="me-4">
+                                <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                                <span class="fs-2">{{ now()->year }}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-4">
@@ -74,15 +78,29 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                     <div class="col-8">
-                        <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
-                        <h4 class="fw-semibold mb-3">$6,820</h4>
+                        <h5 class="card-title mb-9 fw-semibold"> Pendapatan per bulan </h5>
+                        <h4 class="fw-semibold mb-3">Rp {{ $total_pendapatan_per_bulan }}</h4>
                         <div class="d-flex align-items-center pb-1">
                         <span
-                            class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-down-right text-danger"></i>
+                            class="me-2 rounded-circle bg-light round-20 d-flex align-items-center justify-content-center">
+                            @if ($persentase_perubahan < 0)
+                                <i class="ti ti-arrow-down-right text-danger"></i>
+                            @elseif ($persentase_perubahan > 0)
+                                <i class="ti ti-arrow-up-left text-success"></i>
+                            @else
+                                
+                            @endif
                         </span>
-                        <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                        <p class="fs-3 mb-0">last year</p>
+                        <p class="text-dark me-1 fs-3 mb-0">
+                            @if ($persentase_perubahan < 0)
+                                {{ $persentase_perubahan }} %
+                            @elseif ($persentase_perubahan > 0)
+                                + {{ $persentase_perubahan }} %
+                            @else
+                                0 %
+                            @endif
+                        </p>
+                        <p class="fs-3 mb-0"> Bulan lalu <br> (Rp {{ $total_perubahan }})</p>
                         </div>
                     </div>
                     <div class="col-4">

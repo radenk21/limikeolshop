@@ -16,7 +16,9 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::orderBy('id')->simplePaginate(10);
-        return view('admin.brand.index', compact('brands'));
+        $offset = request()->get('page', 1) * $brands->perPage() - $brands->perPage();
+
+        return view('admin.brand.index', compact('brands', 'offset'));
     }
 
     /**

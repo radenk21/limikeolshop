@@ -26,7 +26,7 @@
                 @if ($produk->gambarProduk->count() > 0)
                     <img src="{{ asset($produk->gambarProduk[0]->image) }}" alt="">
                 @else
-                    <h1>Belum ada gambar</h1>
+                    <img src="{{ asset('assets/basic/no-image.jpg') }}" alt="">
                 @endif
             </div>
 
@@ -36,13 +36,6 @@
                     </a>
                     <h1>{{ $produk->name }}</h1>
                     <span class="price">Rp {{ number_format($produk->harga_jual, 0, '.', '.') }}</span>
-
-                    <div class="description-product">
-                        <span>Description</span>
-                        <p class="desc">
-                            {{ $produk->deskripsi }}
-                        </p>
-                    </div>
                     <div class="brand-produk-detail">
                         <span>Brand</span>
                         <p class="brand-name text-align-center mt-3">{{ $produk->brand->name }}</p>
@@ -83,6 +76,12 @@
                                 </span>
                             </button>
                         </div>
+                    </div>
+                    <div class="description-product mt-5">
+                        <span>Description</span>
+                        <p class="desc">
+                            {{ $produk->deskripsi }}
+                        </p>
                     </div>
             </div>
         </div>

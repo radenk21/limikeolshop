@@ -200,7 +200,11 @@
                 <span> Rp {{ number_format($totalHarga, 0, '.', '.') }}</span>
             </div>
             <div class="checkout-cart">
-                <a href="{{ url('/checkout') }}" style="text-decoration: none" class="text-center align-item-center flex-grow width-100 pt-2">Checkout</a>
+                @if($keranjangs->isNotEmpty())
+                    <a href="{{ url('/checkout') }}" style="text-decoration: none" class="text-center align-item-center flex-grow width-100 pt-2">Checkout</a>
+                @else
+                    <span class="text-muted">Keranjang Anda kosong. Tambahkan produk terlebih dahulu.</span>
+                @endif
             </div>
         </div>
     </div>

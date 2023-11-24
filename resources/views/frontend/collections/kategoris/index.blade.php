@@ -10,7 +10,7 @@
             </div>
             @forelse ($kategoris as $kategori)
                 <div class="col-6 col-md-3">
-                    <div class="category-card">
+                    <div class="category-card p-3">
                         <a href="{{ url('/collections/kategori/'.$kategori->slug) }}">
                             <div class="category-card-body">
                                 <h5>{{ $kategori->name }}</h5>
