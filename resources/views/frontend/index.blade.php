@@ -2,6 +2,13 @@
 
 @section('title', 'Home Page')
 @section('content')
+@push('css')
+    
+@endpush
 <x-sliders></x-sliders>
-<!-- contact section ends -->
+<div class="container">
+
+    @livewire('frontend.home-index')          
+    <!-- products section ends -->
+</div>
 @endsection

@@ -69,7 +69,7 @@
                                 <tr>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $loop->index + 1 }}
+                                            {{ $offset + $loop->index + 1 }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0">
@@ -94,7 +94,7 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $produk->harga_jual }}
+                                            {{ number_format($produk->harga_jual, 0, '.', '.') }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0"><span class="fw-semibold"></span>

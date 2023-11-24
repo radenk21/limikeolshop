@@ -186,7 +186,7 @@
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                             <label for="alamat">Alamat</label>
-                            <textarea id="alamat" class="rounded p-2" wire:model.defer="address" rows="2" placeholder="Masukkan alamat anda"></textarea>
+                            <textarea id="alamat" class="rounded border p-2" wire:model.defer="address" rows="2" placeholder="Masukkan alamat anda"></textarea>
                             @error('address')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -260,19 +260,19 @@
                                 <p>BNI : 2323814</p>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" wire:model.defer="selectedPaymentMethod" name="selectedPaymentMethod" value="Bayar Melalui Dana" id="dana-radio">
+                                <input class="form-check-input" type="radio" wire:model.defer="selectedPaymentMethod" name="selectedPaymentMethod" value="Dana" id="dana-radio">
                                 <label class="form-check-label" for="dana-radio">
                                     Bayar melalui Dana
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" wire:model.defer="selectedPaymentMethod" name="selectedPaymentMethod" value="Bayar Melalui BCA" id="bca-radio">
+                                <input class="form-check-input" type="radio" wire:model.defer="selectedPaymentMethod" name="selectedPaymentMethod" value="BCA" id="bca-radio">
                                 <label class="form-check-label" for="bca-radio">
                                     Bayar melalui BCA
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" wire:model.defer="selectedPaymentMethod" name="selectedPaymentMethod" value="Bayar Melalui BNI" id="bni-radio">
+                                <input class="form-check-input" type="radio" wire:model.defer="selectedPaymentMethod" name="selectedPaymentMethod" value="BNI" id="bni-radio">
                                 <label class="form-check-label" for="bni-radio">
                                     Bayar melalui BNI
                                 </label>

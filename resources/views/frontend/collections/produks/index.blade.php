@@ -30,10 +30,8 @@
             @endif
         </div>
         @livewire('frontend.produk.index', [
-            'produks' => $produks,
             'kategori' => $kategori,
-            'subKategoris' => $subKategoris,
-            'uniqueBrands' => $uniqueBrands
+            'subKategori' => null,
         ])        
     </div>
 </div>

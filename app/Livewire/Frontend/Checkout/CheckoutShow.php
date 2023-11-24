@@ -89,7 +89,7 @@ class CheckoutShow extends Component
                 'no_rekening' => $this->no_rekening,
                 'jenis_rekening' => $this->payment_mode,
                 'total_bayar' => $this->totalHarga,
-                'payment_status' => 'Belum di verifikasi',        
+                'payment_status' => 'belum di verifikasi',        
             ]);
             
             $onlineOrder->update(['id_payment' => $payment->id]);

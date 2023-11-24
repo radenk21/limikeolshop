@@ -51,7 +51,7 @@ section{
 .btn:hover{
     background: #5d87ff;
 }
-
+/* 
 header{
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -107,9 +107,9 @@ header .fa-bars{
     cursor: pointer;
     border: .1rem solid rgba(0,0,0,.3);
     display: none;
-}
+} */
 
-.home{
+/* .home{
     display: flex;
     align-items: center;
     min-height: 100vh;
@@ -224,7 +224,7 @@ header .fa-bars{
 .icons-container .icons span{
     color: #555;
     font-size: 1.3rem;
-}
+} */
 
 .products-index-limikeshop .box-container{
     display: flex;
@@ -398,7 +398,7 @@ header .fa-bars{
     }
 }
 
-@media (max-width:768px) {
+/* @media (max-width:768px) {
 
     header .fa-bars {
         display: block;
@@ -439,7 +439,7 @@ header .fa-bars{
     .icons-container .icons span{
         font-size: 1.7rem;
     }
-}
+} */
 
 @media (max-width:450px) {
 

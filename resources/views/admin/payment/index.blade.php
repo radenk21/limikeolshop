@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Daftar Pesanan')
+@section('title', 'Daftar Pembayaran')
 @section('content')
 <div>
     @if(session('message'))
@@ -20,7 +20,7 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-middle">
             <h3>
-                Daftar Pesanan
+                Daftar Pembayaran
             </h3>
         </div>
         <div class="card-body">
@@ -44,11 +44,8 @@
                         <label for="">Pilih Status</label>
                         <select name="status" id="" class="form-select">
                             <option value="">Pilih Status</option>
-                            <option {{ Request::get('status') == 'in progress' ? 'selected': '' }} value="in progress">In Progress</option>
-                            <option {{ Request::get('status') == 'completed' ? 'selected': '' }} value="completed">Completed</option>
-                            <option {{ Request::get('status') == 'pending' ? 'selected': '' }} value="pending">Pending</option>
-                            <option {{ Request::get('status') == 'cancelled' ? 'selected': '' }} value="cancelled">Cancelled</option>
-                            <option {{ Request::get('status') == 'out-for-delivery' ? 'selected': '' }} value="out-for-delivery">Out for Delivery</option>
+                            <option {{ Request::get('status') == 'Belum di Verifikasi' ? 'selected': '' }} value="Belum di Verifikasi">Belum di Verifikasi</option>
+                            <option {{ Request::get('status') == 'Terverifikasi' ? 'selected': '' }} value="Terverifikasi">Terverifikasi</option>
                         </select>
                     </div>
                     <div class="col-md-3 align-self-end">
@@ -63,47 +60,44 @@
                             <h6 class="fw-semibold mb-0">No</h6>
                         </th>
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Id Pesanan</h6>
-                        </th>
-                        <th class="border-bottom">
                             <h6 class="fw-semibold mb-0">Tracking No</h6>
                         </th>
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Username</h6>
+                            <h6 class="fw-semibold mb-0">Total Bayar</h6>
                         </th>
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Metode Pembayaran</h6>
+                            <h6 class="fw-semibold mb-0">Jenis Rekening</h6>
                         </th>
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Tanggal Pesanan</h6>
+                            <h6 class="fw-semibold mb-0">Status Pembayaran</h6>
                         </th>
                         <th class="border-bottom">
-                            <h6 class="fw-semibold mb-0">Status Pesanan</h6>
+                            <h6 class="fw-semibold mb-0">Tanggal Pembayaran</h6>
                         </th>
                         <th class="border-bottom">
                             <h6 class="fw-semibold mb-0 text-center">Action</h6>
                         </th>
                     </thead>
                     <tbody>
-                        @forelse ($orders as $order )
+                        @forelse ($payments as $payment )
                             <div class="modal fade" id="deleteModal{{ $loop->index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('AdminPayment.destroy', $payment->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <div class="modal-body">
+                                                Apakah anda yakin ingin menghapus Pesanan ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                            <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <form action="{{ route('AdminOrder.destroy', $order->id) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <div class="modal-body">
-                                            Apakah anda yakin ingin menghapus Pesanan ini?
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
-                                        </div>
-                                    </form>
-                                </div>
                                 </div>
                             </div>
                                 <tr>
@@ -114,37 +108,32 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $order->id }}
+                                            {{ $payment->order->no_tracking }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $order->no_tracking }}
+                                            Rp {{ number_format($payment->total_bayar, 0, '.', '.') }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $order->user->name }}
+                                            {{ $payment->jenis_rekening }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $order->payment_mode }}
+                                            {{ $payment->payment_status }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $order->created_at }}
-                                        </span>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <span class="fw-semibold">
-                                            {{ $order->status_message }}
+                                            {{ $payment->created_at }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0"><span class="fw-semibold"></span>
-                                        <a href="{{ route('AdminOrder.show', $order->id) }}" class="btn btn-primary ">View</a>
-                                        {{-- <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->index }}" class="btn btn-danger">Delete</a> --}}
+                                        <a href="{{ route('AdminPayment.show', $payment->id) }}" class="btn btn-primary ">View</a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->index }}" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                                 @empty
@@ -157,7 +146,7 @@
                                             <path d="M12 16h.01"></path>
                                         </svg>
                                         <br>
-                                        Belum ada Pesanan
+                                        Belum ada Pembayaran
                                     </td>
                                 </tr>
                         @endforelse
@@ -165,7 +154,7 @@
                 </table>
             </div>
             <div>
-                {{ $orders->links() }}
+                {{ $payments->links() }}
             </div>
         </div>
     </div>

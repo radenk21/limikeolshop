@@ -22,7 +22,7 @@ class navbar extends Component
      */
     public function render(): View|Closure|string
     {
-        $kategoris = Kategori::limit(3)->get();
+        $kategoris = Kategori::limit(5)->get();
         return view('components.navbar', compact('kategoris'));
     }
 }
