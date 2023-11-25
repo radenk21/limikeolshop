@@ -10,12 +10,24 @@
             <div class="frs">
                 <div class="footer-title">Useful Links</div>
                 <ul>
-                    <li>Home</li>
-                    <li>Product</li>
-                    <li>Categoory</li>
-                    <li>My order</li>
-                    <li>My Cart</li>
-                    <li>My Whislist</li>
+                    <a style="text-decoration: none" href="/">
+                        <li>Home</li>
+                    </a>
+                    <a style="text-decoration: none" href="{{ route('home.all-products.show') }}">
+                        <li>Products</li>
+                    </a>
+                    <a style="text-decoration: none" href="{{ route('home.kategoris') }}">
+                        <li>Category</li>
+                    </a>
+                    <a style="text-decoration: none" href="{{ route('order.index') }}">
+                        <li>My Order</li>
+                    </a>
+                    <a style="text-decoration: none" href="{{ route('keranjang.index') }}">
+                        <li>My Cart</li>
+                    </a>
+                    <a style="text-decoration: none" href="{{ route('wishlist.index') }}">
+                        <li>My Wishlist</li>
+                    </a>
                 </ul>
             </div>
                 <div class="sec">
