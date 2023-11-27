@@ -22,7 +22,7 @@
                         <span class="">Out of Stock</span>
                     </div>
                     @endif
-                    
+
                 @if ($produk->gambarProduk->count() > 0)
                     <img src="{{ asset($produk->gambarProduk[0]->image) }}" alt="">
                 @else
@@ -40,7 +40,7 @@
                         <span>Brand</span>
                         <p class="brand-name text-align-center mt-3">{{ $produk->brand->name }}</p>
                     </div>
-                    {{-- <div class="color-produk-detail">
+                    <div class="color-produk-detail">
                         <span> Color </span>
                         @if ($produk->produkJenis->count() > 0)
                             @if ($produk->produkJenis)
@@ -54,7 +54,7 @@
                         @endif
                         <p>Red</p>
                         <p>Blue</p>
-                    </div> --}}
+                    </div>
                     <div class="quantity">
                         <p class="mt-3"> Quantity </p>
                         <span wire:click="decerementJumlah">-</span>
@@ -62,17 +62,17 @@
                         <label for="qty"></label>
                         <span wire:click="incrementJumlah">+</span>
                     </div>
-                    <div class="row d-flex align-items-center">
+                    <div class="row d-flex add-to-cart-div">
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <button type="button" wire:click="addToCart({{ $produk->id }})" class="add-to-cart"> Add To Cart</button>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <button type="button" wire:click="addToWishlist({{ $produk->id }})"  class="add-to-cart">
                                 <span wire:loading.remove>
-                                    Tambahkan Ke Wishlist 
+                                    Add To Wishlist
                                 </span>
                                 <span wire:loading wire:target="addToWishlist">
-                                    menambahkan 
+                                    Adding
                                 </span>
                             </button>
                         </div>
