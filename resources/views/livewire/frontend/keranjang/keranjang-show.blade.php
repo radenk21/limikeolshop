@@ -16,7 +16,7 @@
                 <h2>Your Shopping Cart</h2>
             </div>
             <div class="item-info">
-                <div class="order-item-info"> 
+                <div class="order-item-info">
                     <div class="order-item-heading">
                         <span></span>
                         <span></span>
@@ -44,7 +44,7 @@
                                 <p class="Product-name"> {{ $keranjang->produk->name }} </p>
                             </a>
                             <p class="harga"> Rp {{ number_format($keranjang->produk->harga_jual, 0, '.', '.') }} </p>
-                            
+
                             <span class="qty">
                                 <div class="quantity">
                                     <div class="input-group">
@@ -88,7 +88,7 @@
                 <h3>Total</h3>
                 <span> Rp {{ number_format($totalHarga, 0, '.', '.') }}</span>
             </div>
-            
+
             <div class="checkout-cart">
                 <a href="{{ url('/checkout') }}" class="btn btn-warning w-100">Checkout</a>
             </div>
@@ -115,7 +115,7 @@
                 <h2>Your Shopping Cart</h2>
             </div>
             <div class="item-info">
-                <div class="order-item-info"> 
+                <div class="order-item-info">
                     <table>
                         <tr>
                             <th></th>
@@ -151,10 +151,10 @@
                                 </td>
 
                                 <td>Rp {{ number_format($keranjang->produk->harga_jual, 0, '.', '.') }}</td>
-                                <td class="quantity ps-2 d-flex justtify-content-center">
+                                <td class="quantity">
                                     <button type="button" class="text-center" wire:loading.attr="disabled" wire:click="decrementJumlah({{ $keranjang->id }})">-</button>
                                     <input type="number" value="{{ $keranjang->jumlah }}" />
-                                    <button type="button" class="text-center ms-2" wire:loading.attr="disabled" wire:click="incrementJumlah({{ $keranjang->id }})">+</button>
+                                    <button type="button" class="text-center" wire:loading.attr="disabled" wire:click="incrementJumlah({{ $keranjang->id }})">+</button>
                                 </td>
                                 <td class="total-price">Rp {{ number_format($keranjang->produk->harga_jual * $keranjang->jumlah, 0, '.', '.') }} </td>
                             </tr>
@@ -165,7 +165,7 @@
                                 </td>
                             </tr>
                         @endforelse
-                        
+
                     </table>
                 </div>
             </div>
