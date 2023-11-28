@@ -57,12 +57,53 @@
             </div>
         @empty
             <div class="checkout-item mt-5 text-center">
-                <h2>Belum Produk Yang Masuk</h2>
+                <h2>Belum Ada Produk Di Pesan</h2>
             </div>
         @endforelse
-        <div class="total-checkout">
-            <span> Rp {{ number_format($totalHarga, 0, '.', '.') }} </span>
+        <div class="total-price my-3">
+            <h5>Harga total:</h5>
+            <div class="total-checkout ">
+                <span> Rp {{ number_format($totalHarga, 0, '.', '.') }} </span>
+            </div>
         </div>
-    
+        
+        <!-- Tombol untuk membuka modal -->
+        @if($keranjangs->isNotEmpty())
+            <button type="button" class="total-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+                Checkout Pesanan
+            </button>
+        @endif
+        
+        <!-- Modal -->
+        <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="checkoutModalLabel">Konfirmasi Checkout Pesanan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-checkup-list" width="50" height="50" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 14h.01" /><path d="M9 17h.01" /><path d="M12 16l1 1l3 -3" /></svg>
+                    <p>Checkout Pesanan?</p>
+                <!-- Tambahkan elemen HTML lainnya sesuai kebutuhan -->
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn" style="background-color: #2a3547;color:white;" data-bs-dismiss="modal" wire:click="checkoutKeranjang({{ Auth::user()->id }})">Checkout</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        {{-- <script>
+            // Fungsi untuk menangani checkout (gantilah dengan logika sesuai kebutuhan)
+            function confirmCheckout() {
+            // Lakukan tindakan checkout di sini
+            // ...
+            // Tutup modal setelah berhasil checkout
+            $('#checkoutModal').modal('hide');
+            }
+        </script> --}}
+  
     </div>
 </div>
