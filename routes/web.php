@@ -20,6 +20,10 @@ use App\Http\Controllers\Frontend\KeranjangController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Karyawan\DashboardController as KaryawanDashboardController;
+use App\Http\Controllers\Karyawan\KasirController as KaryawanKasirController;
+use App\Http\Controllers\Karyawan\OrderController as KaryawanOrderController;
+use App\Http\Controllers\Karyawan\SuplierController as KaryawanSuplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,4 +106,12 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
     // Payment Routes
     Route::resource('AdminPayment', PaymentController::class);
+});
+
+Route::prefix('karyawan')->middleware(['auth', 'isKaryawan'])->group(function() {
+    Route::get('home', [KaryawanDashboardController::class, 'index'])->name('home.karyawan');
+
+    Route::resource('KasirKaryawan', KaryawanKasirController::class);
+    Route::resource('suplier', KaryawanSuplierController::class);
+    Route::resource('orders', KaryawanOrderController::class);
 });
