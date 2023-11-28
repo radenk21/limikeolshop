@@ -19,4 +19,4 @@
     'produks' => $produks
 ])
 
-@endsection
+@endsection 

@@ -1374,6 +1374,10 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: black;
 }
 
+.nav-link:focus, .nav-link:hover {
+    color: #ffff;
+}
+
 .nama-bayar {
     display: flex;
     flex-direction: column;
@@ -2578,3 +2582,4 @@ footer .help-sec {
 
 }
 /* index-home nandito - end */
+

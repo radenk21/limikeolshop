@@ -45,7 +45,7 @@
                     </span>
                     <span wire:loading wire:target="removeKeranjangitem({{ $keranjang->id }})" >Menghapus</span>
                 </span>
-                
+
                 <span> {{ $keranjang->produk->name }} </span>
                 <div class="div-qty">
                     <button wire:loading.attr="disabled" wire:click="decrementJumlah({{ $keranjang->id }})" type="button"><i class="fa-solid fa-circle-minus"></i></button>
@@ -66,14 +66,14 @@
                 <span> Rp {{ number_format($totalHarga, 0, '.', '.') }} </span>
             </div>
         </div>
-        
+
         <!-- Tombol untuk membuka modal -->
         @if($keranjangs->isNotEmpty())
             <button type="button" class="total-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
                 Checkout Pesanan
             </button>
         @endif
-        
+
         <!-- Modal -->
         <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -94,7 +94,7 @@
             </div>
             </div>
         </div>
-        
+
         {{-- <script>
             // Fungsi untuk menangani checkout (gantilah dengan logika sesuai kebutuhan)
             function confirmCheckout() {
@@ -104,6 +104,6 @@
             $('#checkoutModal').modal('hide');
             }
         </script> --}}
-  
+
     </div>
 </div>
