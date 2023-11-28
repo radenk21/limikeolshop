@@ -18,21 +18,21 @@ class DashboardController extends Controller
         $orders = Order::limit(5);
         $total_pendapatan = number_format(
             OrderItem::whereHas('order', function ($query) {
-                $query->where('status_message', 'completed');
+                $query->where('status_message', 'selesai');
             })->sum('harga'),
             0,
             '.',
             '.'
         );
         $total_pendapatan_per_bulan = OrderItem::whereHas('order', function ($query) {
-            $query->where('status_message', 'completed')
+            $query->where('status_message', 'selesai')
                 ->whereYear('created_at', now()->year)
                 ->whereMonth('created_at', now()->month);
         })->sum('harga');
 
 
         $pendapatan_bulan_lalu = OrderItem::whereHas('order', function ($query) {
-            $query->where('status_message', 'completed')
+            $query->where('status_message', 'selesai')
                 ->whereYear('created_at', now()->subMonth()->year)
                 ->whereMonth('created_at', now()->subMonth()->month);
         })->sum('harga');
@@ -50,7 +50,7 @@ class DashboardController extends Controller
         
 
         $total_pendapatan_per_tahun = OrderItem::whereHas('order', function ($query) {
-            $query->where('status_message', 'completed')
+            $query->where('status_message', 'selesai')
                 ->whereYear('created_at', now()->year);
         })->sum('harga');
 

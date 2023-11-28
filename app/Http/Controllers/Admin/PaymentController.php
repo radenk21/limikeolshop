@@ -71,18 +71,19 @@ class PaymentController extends Controller
             $payment->update([
                 'payment_status' => $request->payment_status,
             ]);
-            if ($request->status_message == 'ditolak') {
+            if ($request->status_message == 'gagal' || $request->status_message == 'batal') {
                 try {
                     // Menggunakan DB::statement karena stored procedure tidak mengembalikan hasil langsung
                     DB::statement('CALL cancel_order(?)', array($id));
             
-                    return redirect()->back()->with('message', 'Pembayaran telah di tolak.');
+                    return redirect()->back()->with('message', 'Pembayaran telah di batalkan.');
                 } catch (\Exception $e) {
                     // Tampilkan pesan error atau lakukan sesuatu yang sesuai dengan kebutuhan Anda
                     DB::rollBack();
                     return redirect()->back()->with('danger-alert', 'Gagal membatalkan pembayaran: ' . $e->getMessage());
                 }
             }
+            
             return back()->with('message', 'Status Pembayaran Telah di Update');
         } else {
             return back()->with('danger-alert', 'Terjadi Kesalahan Saat Mengupdate Status');
