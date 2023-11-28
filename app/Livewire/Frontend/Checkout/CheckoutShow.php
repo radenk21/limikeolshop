@@ -31,7 +31,6 @@ class CheckoutShow extends Component
 
     public function placeOrder()
     {
-        // dump($this->keranjangs);
         $validatedData = $this->validate();
         $order = Order::create([
             'id_user' => auth()->user()->id,
@@ -41,7 +40,7 @@ class CheckoutShow extends Component
             'phone'=> $this->phone,
             'pincode' => $this->pincode,
             'address'=> $this->address,
-            'total_harga'=> $this->totalHarga,
+            'total_harga'=> $this->totalHargaKeranjang(),
             'status_message' => 'dalam proses',
             'payment_mode' => $this->payment_mode,
             'id_payment' => $this->payment_id,
@@ -106,10 +105,14 @@ class CheckoutShow extends Component
     
     public function totalHargaKeranjang()
     {
-        $this->keranjangs = Keranjang::where('id_user', auth()->user()->id)->get();
-        $this->totalHarga = Keranjang::where('id_user', auth()->user()->id)
-        ->join('produks', 'keranjangs.id_produk', '=', 'produks.id')
-        ->sum(DB::raw('keranjangs.jumlah * produks.harga_jual'));
+        $user_id = auth()->user()->id;
+    
+        $result = DB::select("CALL calculate_total_harga_keranjang($user_id, @total)");
+        $totalHarga = intval($result[0]->total); // Konversi ke integer
+
+        $this->keranjangs = Keranjang::where('id_user', $user_id)->get();
+        $this->totalHarga = $totalHarga;
+
         return $this->totalHarga;
     }
     

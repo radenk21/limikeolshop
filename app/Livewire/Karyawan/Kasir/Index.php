@@ -112,6 +112,7 @@ class Index extends Component
                 'phone'=> '0',
                 'pincode' => '20147',
                 'address'=> 'Limike Olshop, Jl. Panca Karya No.84c, Harjosari II, Kec. Medan Amplas, Kota Medan, Sumatera Utara 20147',
+                'total_harga' => $this->totalHargaKeranjang(),
                 'status_message' => 'selesai',
                 'payment_mode' => 'kasir',
                 'id_payment' => null,
@@ -132,14 +133,21 @@ class Index extends Component
         }
     }
     
+    public function totalHargaKeranjang()
+    {
+        $this->keranjangs = Keranjang::where('id_user', auth()->user()->id)->get();
+        $this->totalHarga = Keranjang::where('id_user', auth()->user()->id)
+        ->join('produks', 'keranjangs.id_produk', '=', 'produks.id')
+        ->sum(DB::raw('keranjangs.jumlah * produks.harga_jual'));
+        return $this->totalHarga;
+    }
+    
     public function render()
     {
         $kategoris = Kategori::where('status', 0)->get();
         $subKategoris = SubKategori::where('status', 0)->get();
         $this->keranjangs = Keranjang::where('id_user', auth()->user()->id)->get();
-        $this->totalHarga = Keranjang::where('id_user', auth()->user()->id)
-        ->join('produks', 'keranjangs.id_produk', '=', 'produks.id')
-        ->sum(DB::raw('keranjangs.jumlah * produks.harga_jual'));
+        $this->totalHarga = $this->totalHargaKeranjang();
 
         return view('livewire.karyawan.kasir.index', [
             'produks' => $this->produks,
