@@ -2,11 +2,14 @@
 
 namespace App\Livewire\Karyawan\Kasir;
 
+use App\Models\Order;
 use App\Models\Produk;
 use Livewire\Component;
 use App\Models\Kategori;
 use App\Models\Keranjang;
+use App\Models\OrderItem;
 use App\Models\SubKategori;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -98,6 +101,37 @@ class Index extends Component
         }   
     }
 
+    public function checkoutKeranjang($user_id)
+    {
+        if(Auth::check()) {
+            $order = Order::create([
+                'id_user' => auth()->user()->id,
+                'no_tracking' => 'limike'.Str::random(10),
+                'fullname' => auth()->user()->name,
+                'email' => auth()->user()->email,
+                'phone'=> '0',
+                'pincode' => '20147',
+                'address'=> 'Limike Olshop, Jl. Panca Karya No.84c, Harjosari II, Kec. Medan Amplas, Kota Medan, Sumatera Utara 20147',
+                'status_message' => 'selesai',
+                'payment_mode' => 'kasir',
+                'id_payment' => null,
+            ]);
+            
+            foreach ($this->keranjangs as $keranjang) {
+                $orderItems = OrderItem::create([
+                    'id_order' => $order->id,
+                    'id_produk' => $keranjang->produk->id,
+                    'jumlah'=> $keranjang->jumlah,
+                    'harga' => $keranjang->produk->harga_jual * $keranjang->jumlah,    
+                ]);
+
+                $keranjang->delete();
+            }
+                        
+            return $order;
+        }
+    }
+    
     public function render()
     {
         $kategoris = Kategori::where('status', 0)->get();

@@ -50,6 +50,10 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if (Auth::check() && Auth::user()->role_as == '1')
                                         <li><a class="dropdown-item" href="{{ url('admin/dashboard') }}"><i class="fa fa-user"></i> Admin Page</a></li>
+                                        <li><a class="dropdown-item" href="{{ url('karyawan/home') }}"><i class="fa fa-user"></i> Karyawan Page</a></li>
+                                    @endif
+                                    @if (Auth::check() && Auth::user()->role_as == '2')
+                                        <li><a class="dropdown-item" href="{{ url('karyawan/home') }}"><i class="fa fa-user"></i> Karyawan Page</a></li>
                                     @endif
                                     <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
                                     <li><a class="dropdown-item" href="{{ route('order.index') }}"><i class="fa fa-list"></i> My Orders</a></li>
