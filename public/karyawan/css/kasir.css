@@ -32,6 +32,7 @@ header {
     align-items: center;
     font-size: 20px;
     position: relative;
+    background-color: #2a3547;
 }
 
 .nav-item{
@@ -49,9 +50,6 @@ header {
     color: #5d87ff;
 }
 
-.dropdown-menu {
-    z-index: 1000; /* Sesuaikan dengan kebutuhan */
-}
 
 .active{
     color: #5d87ff;
@@ -91,15 +89,20 @@ header {
 	}
 }
 
-.user a img{
+.user-image{
     border: solid 1px ;
     border-radius: 50%;
     padding: 5px;
     width: 50px;
     height: 50px;
-    margin-left: 10px;
+    margin-right: 10px;
     color: #fff;
-    border: solid 1px #2a3547;
+    border: solid 1px #5d87ff;
+
+}
+
+.dropdown-item i{
+    margin-right: 20px;
 }
 
 .kasir{
@@ -107,7 +110,7 @@ header {
     justify-content: center;
     width: 100%;
     height: 100vh;
-    margin-top: 10px;
+    margin-top: 75px;
     ::-webkit-scrollbar {
         width: 12px; /* Lebar scroll bar */
         height: 10px;
@@ -153,9 +156,9 @@ header {
     color: #2a3547;
     padding: 15px;
     width: 300px;
-    border-radius: 15px;
+    border-radius: 10px;
     letter-spacing: 3px;
-    margin-bottom: 5px;
+    margin-bottom: 50px;
 }
 
 .heading-checkout{
@@ -340,6 +343,9 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 20px;
     cursor: pointer;
     transition: .1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .div-qty button:hover{
@@ -386,8 +392,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .total-checkout{
-    width: 300px;
-    height: 50px;
+    width: 200px;
+    height: 40px;
     /* margin-top: 50px; */
     align-items: center;
     justify-content: center;
@@ -397,7 +403,7 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius: 15px;
     box-shadow: 0 0 3px black;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 15px;
     padding: auto;
     position: relative;
     overflow: hidden;
@@ -611,6 +617,7 @@ table {
     cursor: pointer;
 }
 
+
 .product-dropdown a:hover,
 .product-dropdown button:hover{
     color: #86a7ff;
@@ -730,7 +737,7 @@ table {
 
     .total-checkout{
         width: 150px;
-        height: 30px;
+        height: 50px;
         /* margin-top: 50px; */
         align-items: center;
         justify-content: center;
@@ -752,7 +759,7 @@ table {
 
 @media screen and (min-width: 901px) and (max-width: 1024px){
     .search-kasir input{
-        width: 15rem;
+        width: 10rem;
         height: 35px;
         outline: #fff;
         letter-spacing: 1px;
@@ -760,18 +767,6 @@ table {
         padding: 3px;
         border: none;
         box-shadow: 0 0 3px black;
-    }
-
-    .product-header .filter{
-        height: 30px;
-        font-size: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .product-header .filter span{
-        padding-left: 10px;
     }
 
     .product-item{
@@ -786,16 +781,30 @@ table {
     }
 
     .product-dropdown{
+        top: 30px;
         width: 400px;
     }
 
+    .product-header .filter{
+        height: 30px;
+        font-size: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .product-header .filter span{
+        padding-left: 10px;
+    }
+
     .checkout h1{
+        font-size: 20px;
         text-align: center;
         margin-top: 10px;
         box-shadow: 0 0 3px;
         color: #2a3547;
         padding: 15px;
-        width: 200px;
+        width: 150px;
         border-radius: 15px;
         letter-spacing: 1px;
         margin-bottom: 5px;
@@ -815,14 +824,11 @@ table {
 
     .checkout-item .fa-trash{
         position: absolute;
-        align-items: center;
-        display: flex;
-        right: 10px;
-        top: 20px;
+        right: 0;
+        top: 0;
+        border-top-right-radius: 50%;
         width: 30px;
-        height: 30px;
-        font-size: 20px;
-        padding: 10px;
+        font-size: 15px;
         justify-content: center;
         text-align: center;
         box-shadow: 0 0 3px black;
@@ -834,7 +840,7 @@ table {
 
     .total-harga{
         position: absolute;
-        right: 60px;
+        right: 5px;
         bottom: 15px;
         font-size: 10px;
         background-color: #2a3547;
@@ -846,7 +852,7 @@ table {
 
     .total-checkout{
         width: 150px;
-        height: 30px;
+        height: 50px;
         /* margin-top: 50px; */
         align-items: center;
         justify-content: center;
@@ -856,9 +862,12 @@ table {
         border-radius: 15px;
         box-shadow: 0 0 3px black;
         cursor: pointer;
-        font-size: 20px;
+        font-size: 15px;
         padding: auto;
     }
 
-
+    .gambar img{
+        width: 100%;
+        height: 65%;
+    }
 }
