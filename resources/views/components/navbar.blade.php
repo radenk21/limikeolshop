@@ -6,9 +6,11 @@
                     <h5 class="brand-name"><a href="/" style="text-decoration: none; color: white">Limike Shop</a></h5>
                 </div>
                 <div class="col-md-5 my-auto">
-                    <form role="search">
+                    <form role="search" action="{{ route('searchProduks') }}" method="GET">
+                        @csrf
+                        @method('POST')
                         <div class="input-group">
-                            <input type="search" placeholder="Search your product" class="form-control" />
+                            <input type="search" placeholder="Search your product" name="search_produk" value="{{ Request::get('search_produk') }}" class="form-control" />
                             <button class="btn bg-white" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -55,7 +57,6 @@
                                     @if (Auth::check() && Auth::user()->role_as == '2')
                                         <li><a class="dropdown-item" href="{{ url('karyawan/home') }}"><i class="fa fa-user"></i> Karyawan Page</a></li>
                                     @endif
-                                    <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
                                     <li><a class="dropdown-item" href="{{ route('order.index') }}"><i class="fa fa-list"></i> My Orders</a></li>
                                     <li><a class="dropdown-item" href="{{ route('wishlist.index') }}"><i class="fa fa-heart"></i> My Wishlist</a></li>
                                     <li><a class="dropdown-item" href="{{ route('keranjang.index') }}"><i class="fa fa-shopping-cart"></i> My Cart</a></li>

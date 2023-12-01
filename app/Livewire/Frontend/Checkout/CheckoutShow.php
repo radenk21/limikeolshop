@@ -41,7 +41,7 @@ class CheckoutShow extends Component
             'pincode' => $this->pincode,
             'address'=> $this->address,
             'total_harga'=> $this->totalHargaKeranjang(),
-            'status_message' => 'dalam proses',
+            'status_message' => 'belum di verifikasi',
             'payment_mode' => $this->payment_mode,
             'id_payment' => $this->payment_id,
         ]);
