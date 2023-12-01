@@ -19,4 +19,9 @@ class Supplier extends Model
     {
         return $this->belongsToMany(Produk::class, 'produk_suppliers', 'id_supplier', 'id_produk');
     }
+
+    public function pemesananProduk()
+    {
+        return $this->belongsToMany(PemesananProduk::class, 'id_supplier', 'id');
+    }
 }

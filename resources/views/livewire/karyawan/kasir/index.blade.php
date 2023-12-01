@@ -1,5 +1,18 @@
 <div class="container kasir">
+    
     <div class="product">
+        <div class="mt-2">
+            @if (session('danger-alert'))
+                <div class="alert alert-danger">
+                    {{ session('danger-alert') }}
+                </div>
+            @endif
+            @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
+        </div>
         <div class="product-header">
             <div class="filter">
                 <i class="fa-solid fa-bars"></i>
@@ -53,7 +66,7 @@
                     <label for="qty-input"></label>
                     <button wire:loading.attr="disabled" wire:click="incrementJumlah({{ $keranjang->id }})" type="button"><i class="fa-solid fa-circle-plus"></i> </button>
                 </div>
-                <span class="total-harga"> Rp {{ number_format($keranjang->produk->harga_jual, 0, '.', '.') }} </span>
+                <span class="total-harga"> Rp {{ number_format($keranjang->produk->harga_jual * $keranjang->jumlah, 0, '.', '.') }} </span>
             </div>
         @empty
             <div class="checkout-item mt-5 text-center">

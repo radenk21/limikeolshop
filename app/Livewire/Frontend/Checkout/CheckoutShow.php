@@ -106,10 +106,7 @@ class CheckoutShow extends Component
     public function totalHargaKeranjang()
     {
         $user_id = auth()->user()->id;
-    
-        $result = DB::select("CALL calculate_total_harga_keranjang($user_id, @total)");
-        $totalHarga = intval($result[0]->total); // Konversi ke integer
-
+        $totalHarga = DB::select("SELECT calculate_total_harga_keranjang($user_id) AS total")[0]->total;
         $this->keranjangs = Keranjang::where('id_user', $user_id)->get();
         $this->totalHarga = $totalHarga;
 
