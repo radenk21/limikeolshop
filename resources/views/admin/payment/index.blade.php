@@ -20,7 +20,7 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-middle">
             <h3>
-                Daftar Pembayaran
+                Daftar Pembayaran Online
             </h3>
         </div>
         <div class="card-body">
@@ -134,7 +134,7 @@
                                     </td>
                                     <td class="border-bottom-0"><span class="fw-semibold"></span>
                                         <a href="{{ route('AdminPayment.show', $payment->id) }}" class="btn btn-primary ">View</a>
-                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->index }}" class="btn btn-danger">Delete</a>
+                                        {{-- <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->index }}" class="btn btn-danger">Delete</a> --}}
                                     </td>
                                 </tr>
                                 @empty

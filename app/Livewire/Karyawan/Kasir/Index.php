@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
-    public $keranjangs, $totalHarga, $produks, $produk;
+    public $keranjangs, $totalHarga, $produks, $produk, $user_id;
 
     public function mount($produks)
     {
@@ -103,42 +103,20 @@ class Index extends Component
 
     public function checkoutKeranjang($user_id)
     {
-        if(Auth::check()) {
-            $order = Order::create([
-                'id_user' => auth()->user()->id,
-                'no_tracking' => 'limike'.Str::random(10),
-                'fullname' => auth()->user()->name,
-                'email' => auth()->user()->email,
-                'phone'=> '0',
-                'pincode' => '20147',
-                'address'=> 'Limike Olshop, Jl. Panca Karya No.84c, Harjosari II, Kec. Medan Amplas, Kota Medan, Sumatera Utara 20147',
-                'total_harga' => $this->totalHargaKeranjang(),
-                'status_message' => 'selesai',
-                'payment_mode' => 'kasir',
-                'id_payment' => null,
-            ]);
-            
-            foreach ($this->keranjangs as $keranjang) {
-                $orderItems = OrderItem::create([
-                    'id_order' => $order->id,
-                    'id_produk' => $keranjang->produk->id,
-                    'jumlah'=> $keranjang->jumlah,
-                    'harga' => $keranjang->produk->harga_jual * $keranjang->jumlah,    
-                ]);
+        
+        DB::select("CALL checkout_keranjang_kasir(?)", [$user_id]);
 
-                $keranjang->delete();
-            }
-                        
-            return $order;
-        }
+        return redirect()->with('message', 'Keranjang Berhasil Di Checkout');
     }
+    // Keranjang::where('id_user', auth()->user()->id)->delete();
     
     public function totalHargaKeranjang()
     {
-        $this->keranjangs = Keranjang::where('id_user', auth()->user()->id)->get();
-        $this->totalHarga = Keranjang::where('id_user', auth()->user()->id)
-        ->join('produks', 'keranjangs.id_produk', '=', 'produks.id')
-        ->sum(DB::raw('keranjangs.jumlah * produks.harga_jual'));
+        $user_id = auth()->user()->id;
+        $totalHarga = DB::select("SELECT calculate_total_harga_keranjang($user_id) AS total")[0]->total;
+        $this->keranjangs = Keranjang::where('id_user', $user_id)->get();
+        $this->totalHarga = $totalHarga;
+
         return $this->totalHarga;
     }
     

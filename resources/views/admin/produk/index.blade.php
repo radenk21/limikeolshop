@@ -48,22 +48,42 @@
                         @forelse ($produks as $produk )
                             <div class="modal fade" id="deleteModal{{ $loop->index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('produk.destroy', $produk->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <div class="modal-body">
+                                                Apakah anda yakin ingin menghapus produk ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                            <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <form action="{{ route('produk.destroy', $produk->id) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <div class="modal-body">
-                                            Apakah anda yakin ingin menghapus produk ini?
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
-                                        </div>
-                                    </form>
                                 </div>
+                            </div>
+                            <div class="modal fade" id="restockModal{{ $loop->index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('PemesananProduk.tambahPesan', $produk->id) }}" method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            <div class="modal-body">
+                                                Apakah anda yakin ingin me-restock produk ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                            <button type="submit" class="btn btn-warning">Ya, Restock</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                                 <tr>
@@ -94,12 +114,22 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ number_format($produk->harga_jual, 0, '.', '.') }}
+                                            Rp {{ number_format($produk->harga_jual, 0, '.', '.') }}
                                         </span>
                                     </td>
-                                    <td class="border-bottom-0"><span class="fw-semibold"></span>
-                                        <a href="{{ route('produk.edit', $produk->id) }}" class="btn btn-primary">Edit</a>
-                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->index }}" class="btn btn-danger">Delete</a>
+                                    <td class="border-bottom-0 d-flex justify-content-center text-center">
+                                        <div class="row">
+                                            <div>
+                                                <a href="{{ route('produk.edit', $produk->id) }}" class="btn btn-primary">Edit</a>
+                                                {{-- <form action="{{ route('PemesananProduk.tambahPesan', $produk->id) }}" method="post">
+                                                    @csrf
+                                                    @method('post')
+                                                    <button type="submit" class="btn btn-primary mt-1">Restock</button>
+                                                </form> --}}
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#restockModal{{ $loop->index }}" class="btn btn-danger mt-1">Restock</a>
+                                                <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loop->index }}" class="btn btn-danger mt-1">Delete</a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 @empty

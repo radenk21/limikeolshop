@@ -76,27 +76,6 @@
             <div class="order-summary-header">
                 <h2> Cart Totals </h2>
             </div>
-            <div class="order-summary-subtotals">
-                <h3> Subtotal </h3>
-                <p> Rp {{ number_format($totalHarga, 0, '.', '.') }}</p>
-            </div>
-            <div class="shipping">
-                <h3> Shipping </h3>
-                <div class="option-shipping">
-                    <span>
-                        <input type="radio" id="freeShipping" name="shipping" class="hidden-radio">
-                        <label for="freeShipping" class="label-radio"> Free Shipping</label>
-                    </span>
-                    <span>
-                        <input type="radio" id="GoPocket" name="shipping" class="hidden-radio">
-                        <label for="GoPocket" class="label-radio"> Go Pocket :</label> <span class="shipping-price"> Rp. 10.000</span>
-                    </span>
-                    <span>
-                        <input type="radio" id="JNE" name="shipping" class="hidden-radio">
-                        <label for="JNE" class="label-radio"> JNE :</label> <span class="shipping-price"> Rp. 25.000</span>
-                    </span>
-                </div>
-            </div>
             <div class="total-cart">
                 <h3>Total</h3>
                 <span> Rp {{ number_format($totalHarga, 0, '.', '.') }}</span>

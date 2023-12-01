@@ -5,6 +5,7 @@ namespace App\Models;
 use Faker\Provider\ar_EG\Payment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Order extends Model
 {
@@ -28,7 +29,7 @@ class Order extends Model
         return $this->hasMany(OrderItem::class, 'id_order', 'id');
     }
 
-    public function payment()
+    public function payment() : HasOne
     {
         return $this->hasOne(Payment::class, 'id_order', 'id');
     }
