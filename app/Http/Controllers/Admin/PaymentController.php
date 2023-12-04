@@ -21,8 +21,9 @@ class PaymentController extends Controller
         ->when($request->status != null, function($q) use ($request) {
             return $q->where('payment_status', $request->status);
         })
-        ->orderBy('created_at', 'desc')->paginate(10);
-        $offset = request()->get('page', 1) * $payments->perPage() - $payments->perPage();
+        ->orderBy('created_at', 'desc')->get();
+        // $offset = request()->get('page', 1) * $payments->perPage() - $payments->perPage();
+        $offset = 0;
 
         return view('admin.payment.index', compact('payments', 'offset'));
     }

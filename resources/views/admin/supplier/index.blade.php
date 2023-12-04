@@ -27,7 +27,12 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table text-nowrap mb-0 align-middle">
+                <table id="tabelSupplier" class="table text-nowrap mb-0 align-middle">
+                    @push('tableJs')
+                        <script>
+                            let table = new DataTable('#tabelSupplier');
+                        </script>
+                    @endpush
                     <thead class="text-dark fs-4">
                         <th class="border-bottom">
                             <h6 class="fw-semibold mb-0">No</h6>
@@ -118,9 +123,9 @@
                     </tbody>
                 </table>
             </div>
-            <div>
+            {{-- <div>
                 {{ $suppliers->links() }}
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

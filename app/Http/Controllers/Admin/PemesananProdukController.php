@@ -24,8 +24,9 @@ class PemesananProdukController extends Controller
             return $q->where('status', $request->status);
         })
         // ->whereNot('status', 'sudah restock')
-        ->orderBy('updated_at', 'desc')->paginate(10);
-        $offset = request()->get('page', 1) * $pemesananProduks->perPage() - $pemesananProduks->perPage();
+        ->orderBy('updated_at', 'desc')->get();
+        $offset = 0;
+        // $offset = request()->get('page', 1) * $pemesananProduks->perPage() - $pemesananProduks->perPage();
         // $pemesananProduks = PemesananProduk::whereNot('status', 'sudah restock')->paginate(10);
 
         return view('admin.pemesanan_produk.index', compact('pemesananProduks', 'offset'));

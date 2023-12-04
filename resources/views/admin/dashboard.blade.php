@@ -36,7 +36,7 @@
                 <!-- Yearly Breakup -->
                 <div class="card overflow-hidden">
                 <div class="card-body p-4">
-                    <h5 class="card-title mb-9 fw-semibold">Pendapatan tahun ini</h5>
+                    <h5 class="card-title mb-9 fw-semibold">Penjualan tahun ini</h5>
                     <div class="row align-items-center">
                     <div class="col-8">
                         <h4 class="fw-semibold mb-3">Rp {{ $total_pendapatan_per_tahun }}</h4>
@@ -78,7 +78,7 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                     <div class="col-8">
-                        <h5 class="card-title mb-9 fw-semibold"> Pendapatan per bulan </h5>
+                        <h5 class="card-title mb-9 fw-semibold"> Penjualan per bulan </h5>
                         <h4 class="fw-semibold mb-3">Rp {{ $total_pendapatan_per_bulan }}</h4>
                         <div class="d-flex align-items-center pb-1">
                         <span

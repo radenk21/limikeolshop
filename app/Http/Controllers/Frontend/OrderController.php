@@ -12,8 +12,9 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::where('id_user', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
+        $offset = request()->get('page', 1) * $orders->perPage() - $orders->perPage();
         
-        return view('frontend.orders.index', compact('orders'));
+        return view('frontend.orders.index', compact('orders', 'offset'));
     }
 
     public function view($order_id)

@@ -65,7 +65,12 @@
                 </div>
             </form>
             <div class="table-responsive">
-                <table class="table text-nowrap mb-0 align-middle">
+                <table id="tablePesanan" class="table display text-nowrap mb-0 align-middle">
+                    @push('tableJs')
+                        <script>
+                            let table = new DataTable('#tablePesanan');
+                        </script>
+                    @endpush
                     <thead class="text-dark fs-4">
                         <th class="border-bottom">
                             <h6 class="fw-semibold mb-0">No</h6>
@@ -117,7 +122,7 @@
                                 <tr>
                                     <td class="border-bottom-0">
                                         <span class="fw-semibold">
-                                            {{ $offset + $loop->index + 1 }}
+                                            {{ $loop->index + 1 }}
                                         </span>
                                     </td>
                                     <td class="border-bottom-0">
@@ -173,7 +178,7 @@
                 </table>
             </div>
             <div>
-                {{ $orders->links() }}
+                {{-- {{ $orders->links() }} --}}
             </div>
         </div>
     </div>
