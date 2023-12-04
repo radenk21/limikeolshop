@@ -27,4 +27,17 @@ class OrderController extends Controller
         }
         
     }
+
+    public function batal($order_id)
+    {
+        // dd('berhasil');
+        $user_order = Order::where('id_user', Auth::user()->id)->where('id', $order_id)->update([
+            'status_message' => 'batal',
+        ]);
+        if ($user_order) {
+            return redirect()->back()->with('message', 'Berhasil Membatalkan Pesan.');
+        } else {
+            return redirect()->back()->with('danger-alert', 'Gagal Membatalkan Pesan.');
+        }        
+    }
 }

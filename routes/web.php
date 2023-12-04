@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/keranjang', [KeranjangController::class, 'index'])->name('keranjang.index');
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+    Route::put('/orders/{order_id}/batal', [OrderController::class, 'batal'])->name('order.batal');
     Route::get('/orders/{order_id}/view', [OrderController::class, 'view'])->name('order.view');
     Route::get('logout', [LoginController::class, 'logout']);
 });
