@@ -23,6 +23,9 @@ class OrderController extends Controller
                         })->
                         when($request->status != null, function($q) use ($request) {
                             return $q->where('status_message', $request->status);
+                        })->
+                        when($request->metode_pembayaran != null, function($q) use ($request) {
+                            return $q->where('payment_mode', $request->metode_pembayaran);
                         })
                         ->orderBy('created_at', 'desc')->paginate(10);
         $offset = request()->get('page', 1) * $orders->perPage() - $orders->perPage();
@@ -52,9 +55,13 @@ class OrderController extends Controller
     public function show(string $id)
     {
         $order = Order::where('id', $id)->first();
-        $payment = Payment::where('id_order', $id)->first();
+        $payment_status = Payment::where('id_order', $id)->pluck('payment_status')->first();
+        if (!$payment_status) {
+            $payment_status= 'tidak ada';
+        }
+        return view('admin.pesanan.show', compact('order', 'payment_status'));
+        
         // dd($payment);
-        return view('admin.pesanan.show', compact('order', 'payment'));
     }
 
     /**
@@ -117,4 +124,6 @@ class OrderController extends Controller
 
         return $pdf->download('invoice'. $order->id . '-'. $todayDate . '.pdf');
     }   
+
+    
 }

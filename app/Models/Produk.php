@@ -80,6 +80,11 @@ class Produk extends Model
         return $this->hasMany(OrderItem::class, 'id_produk', 'id');
     }
     
+    public function pemesananProduk()
+    {
+        return $this->hasOne(PemesananProduk::class, 'id_produk', 'id');
+    }
+    
     public static function rules($id = null)
     {
         return [

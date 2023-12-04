@@ -8,22 +8,29 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\JenisController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Admin\SemuaDataController;
 use App\Http\Controllers\Admin\ProdukJenisController;
 use App\Http\Controllers\Admin\SubKategoriController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\KeranjangController;
+use App\Http\Controllers\Admin\DataPembelianController;
+use App\Http\Controllers\Admin\DataPenjualanController;
+use App\Http\Controllers\Admin\PemesananProdukController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Admin\PaymentController;
-use App\Http\Controllers\Karyawan\DashboardController as KaryawanDashboardController;
 use App\Http\Controllers\Karyawan\KasirController as KaryawanKasirController;
 use App\Http\Controllers\Karyawan\OrderController as KaryawanOrderController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Karyawan\SuplierController as KaryawanSuplierController;
+use App\Http\Controllers\Karyawan\DashboardController as KaryawanDashboardController;
+use App\Models\PemesananProduk;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +57,7 @@ Route::get('/collections/all-products', [FrontendController::class, 'allProdukSh
 Route::get('/collections/kategori/{kategori_slug}', [FrontendController::class, 'kategori'])->name('kategori');
 Route::get('/collections/kategori/{kategori_slug}/{subkategori_slug}', [FrontendController::class, 'subkategori'])->name('subkategori');
 Route::get('/collections/{produk_slug}/view', [FrontendController::class, 'produkView']);
+Route::get('search', [SearchController::class, 'searchProduks'])->name('searchProduks');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
@@ -57,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('/orders/{order_id}/view', [OrderController::class, 'view'])->name('order.view');
+    Route::get('logout', [LoginController::class, 'logout']);
 });
 
 Route::get('thank-you', [FrontendController::class, 'thankyou'])->name('thankyou.checkout');
@@ -100,12 +109,24 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('AdminOrder', AdminOrderController::class);
     Route::get('AdminOrder/invoice/{id_order}/download', [AdminOrderController::class, 'invoiceDownload'])->name('AdminOrder.invoice-download');
     Route::get('AdminOrder/invoice/{id_order}/generate', [AdminOrderController::class, 'invoiceGenerate'])->name('AdminOrder.invoice-view');
+    Route::get('AdminOrder/invoice/{id_order}/generate', [AdminOrderController::class, 'invoiceGenerate'])->name('AdminOrder.invoice-view');
 
     // User Routes
     Route::resource('user', UserController::class);
 
     // Payment Routes
     Route::resource('AdminPayment', PaymentController::class);
+
+    // Pemesanan Produk Routes
+    Route::resource('PemesananProduk', PemesananProdukController::class);
+    Route::post('/PemesananProduk/create/{id}', [PemesananProdukController::class, 'tambahPesan'])->name('PemesananProduk.tambahPesan');
+    Route::put('PemesananProduk/{id}/verifikasi', [PemesananProdukController::class, 'verifikasiStok'])->name('PemesananProduk.verifikasiPesanan');
+    Route::put('PemesananProduk/{id}/batal-pesan', [PemesananProdukController::class, 'batalPemesanan'])->name('PemesananProduk.batalPesanan');
+
+    // Data Semua Routes
+    Route::resource('DataPembelian', DataPembelianController::class);
+    Route::resource('DataPenjualan', DataPenjualanController::class);
+    Route::resource('SemuaData', SemuaDataController::class);
 });
 
 Route::prefix('karyawan')->middleware(['auth', 'isKaryawan'])->group(function() {

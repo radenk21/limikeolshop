@@ -45,7 +45,7 @@
                             <h6>Waktu Pesanan Dibuat: {{ $order->created_at->format('d-m-Y h:i A') }}</h6>
                             <h6>Jenis Pembayaran: {{ $order->payment_mode }}</h6>
                             @if ($order->payment_mode !== 'Cash On Delivery')
-                                <h6 class="text-capitalize">Status Pembayaran: {{ $payment_status}}</h6>
+                                <h6 class="text-capitalize">Status Pembayaran: {{ $payment->payment_status }}</h6>
                             @endif
                             <h6 class="border p-2 
                                 @if ($order->status_message == 'batal')

@@ -22,22 +22,23 @@
                         {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
-                        <li><a class="dropdown-item" href="{{ route('order.index') }}"><i class="fa fa-list"></i> My Orders</a></li>
-                        <li><a class="dropdown-item" href="{{ route('wishlist.index') }}"><i class="fa fa-heart"></i> My Wishlist</a></li>
-                        <li><a class="dropdown-item" href="{{ route('keranjang.index') }}"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
-                         {{-- <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a></li> --}}
+                        @if (Auth::check() && Auth::user()->role_as == '1')
+                          <li><a class="dropdown-item" href="{{ url('admin/dashboard') }}"><i class="fa fa-user"></i> Admin Page</a></li>
+                        @endif
                         <li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                    <i class="fa fa-sign-out"></i>
-                                    {{ __('Logout') }}
-                                </a>
+                            <a class="dropdown-item" href="{{ url('logout') }}"
+                                {{-- onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" --}}
+                                            >
+                                <i class="fa fa-sign-out"></i>
+                                {{ __('Logout') }}
+                            </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                            {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                                <input type="hidden" name="_token" value="{{ Auth::user()->id }}">
+                                <button type="submit"></button>
+                            </form> --}}
                         </li>
                     </ul>
                   </li>

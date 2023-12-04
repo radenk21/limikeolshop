@@ -26,7 +26,7 @@
         <div class="card-body">
             <form action="" method="get" class="mb-3">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-12">
                         <div class="row">
                             <h4>Urutkan Berdasarkan Tanggal</h4>
                             <div class="col-md-5">
@@ -39,13 +39,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-5 mt-3">
                         <h4>Urutkan Berdasarkan Status</h4>
                         <label for="">Pilih Status</label>
                         <select name="status" id="" class="form-select">
                             <option value="">Pilih Status</option>
                             @foreach(['terverifikasi', 'belum di verifikasi', 'dalam proses', 'pending', 'selesai', 'batal', 'gagal'] as $status)
                                 <option {{ Request::get('status') == $status ? 'selected' : '' }} value="{{ $status }}">{{ ucfirst($status) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4 mt-3">
+                        <h4>Urutkan Berdasarkan Pembayaran</h4>
+                        <label for="">Pilih Metode Pembayaran</label>
+                        <select name="metode_pembayaran" id="" class="form-select">
+                            <option value="">Pilih Status</option>
+                            @foreach(['Cash On Delivery', 'kasir', 'Bayar Melalui Dana', 'Bayar Melalui BNI', 'Bayar Melalui BCA'] as $status)
+                                <option {{ Request::get('payment_mode') == $status ? 'selected' : '' }} value="{{ $status }}">{{ ucfirst($status) }}</option>
                             @endforeach
                         </select>
                     </div>
