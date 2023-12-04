@@ -10,7 +10,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    @if(session('danger-aleret'))
+    @if(session('danger-alert'))
         <div class="alert alert-danger d-flex justify-content-between">
             <div>
                 {{ session('danger-alert') }}
