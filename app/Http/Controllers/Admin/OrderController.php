@@ -27,10 +27,10 @@ class OrderController extends Controller
                         when($request->metode_pembayaran != null, function($q) use ($request) {
                             return $q->where('payment_mode', $request->metode_pembayaran);
                         })
-                        ->orderBy('created_at', 'desc')->paginate(10);
-        $offset = request()->get('page', 1) * $orders->perPage() - $orders->perPage();
+                        ->orderBy('created_at', 'desc')->get();
+        // $offset = request()->get('page', 1) * $orders->perPage() - $orders->perPage();
 
-        return view('admin.pesanan.index', compact('orders', 'offset'));
+        return view('admin.pesanan.index', compact('orders'));
     }
 
     /**

@@ -15,8 +15,9 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::orderBy('id')->simplePaginate(10);
-        $offset = request()->get('page', 1) * $sliders->perPage() - $sliders->perPage();
+        $sliders = Slider::orderBy('id')->get();
+        // $offset = request()->get('page', 1) * $sliders->perPage() - $sliders->perPage();
+        $offset = 0;
 
         return view('admin.slider.index', compact('sliders', 'offset'));
     }

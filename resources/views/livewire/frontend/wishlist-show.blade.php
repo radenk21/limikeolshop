@@ -18,33 +18,33 @@
             </div>
             <div class="item-info">
                 <div class="order-item-info">
-                    <table>
-                        <tr>
-                            <th>Nama Produk</th>
-                            <th>Harga</th>
-                            <th></th>
-                            <th>Action</th>
-                        </tr>
+                    <table class="table table-striped">
+                        <thead class="table-dark text-center">
+                            <th class="col">Nama Produk</th>
+                            <th class="col">Harga</th>
+                            <th class="col"></th>
+                            <th class="col">Action</th>
+                        </thead>
                         @forelse ($wishlists as $wishlist)
                             <tr class="product-row">
-                                <td>
-                                    <a href="{{ url('/collections/'.$wishlist->produk->slug.'/view') }}" style="text-decoration: none;color: #212529 ">
+                                <td class="align-middle">
+                                    <a href="{{ url('/collections/'.$wishlist->produk->slug.'/view') }}" style="text-decoration: none;color: black; font-weight: bold">
                                         {{ $wishlist->produk->name }}
                                     </a>
                                 </td>
 
-                                <td>Rp {{ number_format($wishlist->produk->harga_jual, 0, '.', '.') }}</td>
-                                <td>
+                                <td class="align-middle text-center">Rp {{ number_format($wishlist->produk->harga_jual, 0, '.', '.') }}</td>
+                                <td class="align-middle text-center">
                                     <a href="{{ url('/collections/'.$wishlist->produk->slug.'/view') }}">
                                             @if ($wishlist->produk->gambarProduk->count() > 0)
                                                 <img src="{{ asset($wishlist->produk->gambarProduk[0]->image) }}" class="td-imagess" alt="{{ $wishlist->produk->name }}">
                                             @endif
                                     </a>
                                 </td>
-                                <td>
-                                    <button type="button" wire:click="removeWishlistitem({{ $wishlist->id }})" href="" class="btn btn-danger btn-sm">
-                                        <span wire:loading.remove>
-                                            <i class="fa fa-trash"></i> Hapus
+                                <td class="align-middle text-center">
+                                    <button type="button" wire:click="removeWishlistitem({{ $wishlist->id }})" href="" class="btn btn-sm tombbooll">
+                                        <span wire:loading.remove class="text-center align-middle">
+                                            <i class="fa-solid fa-trash"></i>
                                         </span>
                                         <span wire:loading wire:target="removeWishlistitem({{ $wishlist->id }})" >Menghapus</span>
                                     </button>

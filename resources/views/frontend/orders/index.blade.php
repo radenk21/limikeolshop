@@ -25,19 +25,57 @@
                             </thead>
                             <tbody>
                                 @forelse ($orders as $order)
+<<<<<<< HEAD
                                 <tr class="">
                                     <td class="text-center">{{ $loop->index + 1 }}</td>
+=======
+                                    <!-- Button trigger modal -->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            </div>
+                                            <div class="modal-body">
+                                                Yakin ingin membatalkan pesanan?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                            <button type="button" class="btn btn-danger">Ya, Batalkan</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>                                <tr>
+                                    <td>{{ $offset + $loop->index + 1 }}</td>
+>>>>>>> 11dd4565421e86ad99718e849767ab00e9495ba8
                                     <td class="text-center">{{ $order->id }}</td>
                                     <td class="text-center">{{ $order->no_tracking }}</td>
                                     <td>{{ $order->fullname }}</td>
                                     <td>{{ $order->payment_mode }}</td>
                                     <td>{{ $order->created_at }}</td>
                                     <td>{{ $order->status_message }}</td>
+<<<<<<< HEAD
                                     <td class="text-center"><a href="{{ route('order.view', $order->id) }}" class="btn btn-primary btn-sm">View</a></td>
                                 </tr>
                                 @empty
                                     <tr class="none-pesananku">
                                         <td colspan="8" class="text-center align-middle">Belum ada Pesanan yang dibuat, silahkan mencheckout pesanan</td>
+=======
+                                    <td>
+                                        <a href="{{ route('order.view', $order->id) }}" class="btn btn-primary btn-sm">View</a>
+                                        <button type="button" class="btn btn-danger btn-sm
+                                            @if($order->status_message == )
+
+                                            @endif
+                                        " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Batalkan
+                                        </button>
+                                    </td>
+                                </tr>
+                                @empty
+                                    <tr class="">
+                                        <td colspan="8" class="text-center">Belum ada Pesanan yang dibuat, silahkan mencheckout pesanan</td>
+>>>>>>> 11dd4565421e86ad99718e849767ab00e9495ba8
                                     </tr>
                                 @endforelse
                             </tbody>

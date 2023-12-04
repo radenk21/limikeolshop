@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Montserrat:wght@400;700&family=Pacifico&display=swap');
+
 :root {
     --blue: #5d87ff;
     --theme-col: #5d87ff;
@@ -136,7 +137,7 @@ section {
 
 .main-navbar .navbar .nav-item .nav-link {
     padding: 8px 20px;
-    color: #000;
+    color: #Ffff;
     font-size: 15px;
 }
 
@@ -524,7 +525,8 @@ section {
 
 span i {
     cursor: pointer;
-    border: #2a354727 solid 1px;
+    box-shadow: 0px 0px 2px rgb(206, 206, 206);
+    border: solid 1px transparent;
     font-size: 30px;
     padding: 5px;
     color: #2a3547;
@@ -534,6 +536,7 @@ span i {
 span i:hover {
     color: red;
     border-radius: 15px;
+    border: #2a354727 solid 1px;
 }
 
 
@@ -1689,16 +1692,19 @@ td .kartu-pembayaran {
 
 .massage-thanks h1 {
     font-family: 'Pacifico', cursive;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .massage-thanks a {
-    width: 60%;
+    width: 100%;
     height: 50px;
     margin-top: 30px;
     font-size: 15px;
     letter-spacing: 2px;
     background-color: #2a3547;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
     border-radius: 15px;
     border: none;
@@ -2097,29 +2103,6 @@ td .kartu-pembayaran {
     width: 45%;
 }
 
-.massage-thanks h1 {
-    font-family: var(--font-thanks);
-    font-size: 70px;
-    letter-spacing: 3px;
-}
-
-.massage-thanks p {
-    font-family: var(--font-main);
-    font-size: 32px;
-}
-
-.massage-thanks button {
-    margin-top: 40px;
-    width: 50%;
-    height: 40px;
-    background-color: var(--button-color);
-    color: #fff;
-    font-family: var(--font-thanks);
-    font-size: 20px;
-    letter-spacing: 3px;
-    border-radius: 20px;
-    border: none;
-}
 
 /* checkout-keranjang-messages nandito - end */
 
@@ -2316,7 +2299,23 @@ td .kartu-pembayaran {
 .icons a:hover,
 button:hover {
     background: #333;
+    color: #ffff;
 }
+
+.navbarrrrrrrr{
+    background: #2a4657;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.navbar-subnavbar{
+    background-color: #2a4657;
+}
+
+.navbar-subnavbar a{
+    color: #FFF;
+}
+
 
 .content {
     padding: 1rem 0 2rem 0;

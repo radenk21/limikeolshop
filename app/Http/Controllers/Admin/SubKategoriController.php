@@ -17,8 +17,9 @@ class SubKategoriController extends Controller
      */
     public function index()
     {
-        $subKategoris = SubKategori::orderBy('id', 'DESC')->simplePaginate(10);
-        $offset = request()->get('page', 1) * $subKategoris->perPage() - $subKategoris->perPage();
+        $subKategoris = SubKategori::orderBy('id', 'DESC')->get();
+        // $offset = request()->get('page', 1) * $subKategoris->perPage() - $subKategoris->perPage();
+        $offset = 0;
 
         return view('admin.subkategori.index', compact('subKategoris', 'offset'));
     }

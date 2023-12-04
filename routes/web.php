@@ -27,6 +27,7 @@ use App\Http\Controllers\Karyawan\KasirController as KaryawanKasirController;
 use App\Http\Controllers\Karyawan\OrderController as KaryawanOrderController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DataKeuntungan;
 use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Karyawan\SuplierController as KaryawanSuplierController;
 use App\Http\Controllers\Karyawan\DashboardController as KaryawanDashboardController;
@@ -126,7 +127,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     // Data Semua Routes
     Route::resource('DataPembelian', DataPembelianController::class);
     Route::resource('DataPenjualan', DataPenjualanController::class);
-    Route::resource('SemuaData', SemuaDataController::class);
+    Route::resource('DataKeuntungan', DataKeuntungan::class);
 });
 
 Route::prefix('karyawan')->middleware(['auth', 'isKaryawan'])->group(function() {

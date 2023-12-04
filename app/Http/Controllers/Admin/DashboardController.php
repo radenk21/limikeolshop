@@ -58,7 +58,7 @@ class DashboardController extends Controller
         $total_perubahan = number_format($total_perubahan, 0, '.', '.');
 
         $total_pendapatan_per_tahun = number_format($total_pendapatan_per_tahun, 0, '.', '.');
-
+        
         // dd($total_pendapatan_per_bulan);
         
         return view('admin.dashboard', compact(

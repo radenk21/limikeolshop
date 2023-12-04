@@ -24,8 +24,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produks = Produk::orderBy('id', 'DESC')->simplePaginate(10);
-        $offset = request()->get('page', 1) * $produks->perPage() - $produks->perPage();
+        $produks = Produk::orderBy('id', 'DESC')->get();
+        // $offset = request()->get('page', 1) * $produks->perPage() - $produks->perPage();
+        $offset = 0;
         
         return view('admin.produk.index', compact('produks', 'offset'));
     }
