@@ -20,7 +20,13 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table text-nowrap mb-0 align-middle">
+                <table id="tabelSlider" class="table text-nowrap mb-0 align-middle">
+                    @push('tableJs')
+                        <script>
+                            let table = new DataTable('#tabelSlider');
+                        </script>
+                    @endpush
+
                     <thead class="text-dark fs-4">
                         <th class="border-bottom">
                             <h6 class="fw-semibold mb-0">No</h6>
@@ -111,9 +117,9 @@
                     </tbody>
                 </table>
             </div>
-            <div>
+            {{-- <div>
                 {{ $sliders->links() }}
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

@@ -14,8 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
-        $offset = request()->get('page', 1) * $users->perPage() - $users->perPage();
+        $users = User::all();
+        $offset = 0;
+        // $offset = request()->get('page', 1) * $users->perPage() - $users->perPage();
         return view('admin.users.index', compact('users', 'offset'));
     }
 

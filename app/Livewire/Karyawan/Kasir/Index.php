@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
-    public $keranjangs, $totalHarga, $produks, $produk, $user_id;
+    public $keranjangs, $totalHarga, $produks, $produk, $user_id, $is_checkout = false, $search;
 
     public function mount($produks)
     {
@@ -104,11 +104,10 @@ class Index extends Component
     public function checkoutKeranjang($user_id)
     {
         
-        DB::select("CALL checkout_keranjang_kasir(?)", [$user_id]);
-
+        $result = DB::select("CALL checkout_keranjang_kasir(?)", [$user_id]);
+        
         return redirect()->with('message', 'Keranjang Berhasil Di Checkout');
     }
-    // Keranjang::where('id_user', auth()->user()->id)->delete();
     
     public function totalHargaKeranjang()
     {
@@ -119,9 +118,21 @@ class Index extends Component
 
         return $this->totalHarga;
     }
+
+    public function generateFaktur()
+    {
+        $order = Order::latest()->first();
+
+        return view('livewire.karyawan.kasir.invoiceKasir', compact('order'));
+    }
     
     public function render()
     {
+        if (!$this->search) {
+            $this->produks = Produk::where('status', 0)->get();
+        } else {
+            $this->produks = Produk::where('status', 0)->where('name', 'LIKE', '%'. $this->search.'%')->get();
+        }
         $kategoris = Kategori::where('status', 0)->get();
         $subKategoris = SubKategori::where('status', 0)->get();
         $this->keranjangs = Keranjang::where('id_user', auth()->user()->id)->get();
