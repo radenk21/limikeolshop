@@ -14,7 +14,7 @@ return new class extends Migration
     {
         DB::unprepared('
             CREATE TRIGGER after_insert_order
-            AFTER INSERT ON orders FOR EACH ROW
+            AFTER INSERT ON order_items FOR EACH ROW
             BEGIN
                 DECLARE product_count INT;
                 SELECT jumlah INTO product_count
@@ -70,34 +70,7 @@ return new class extends Migration
                 VALUES (OLD.id_user, OLD.id, 'drop', OLD.status_message, NOW(), NOW());
             END;
         ");
-        DB::unprepared("
-            CREATE TRIGGER check_and_order_trigger 
-            AFTER UPDATE ON produks
-            FOR EACH ROW
-            BEGIN
-                DECLARE jumlah_produk INT;
-                DECLARE id_supplier_produk INT;
-                DECLARE produk_exists INT;
-            
-                SET jumlah_produk = NEW.jumlah;
-            
-                SELECT id_supplier INTO id_supplier_produk FROM produk_suppliers WHERE id_produk = NEW.id LIMIT 1;
-            
-                IF jumlah_produk < 20 THEN
-                    SELECT COUNT(*) INTO produk_exists FROM pemesanan_produks WHERE id_produk = NEW.id LIMIT 1;
-            
-                    IF produk_exists > 0 THEN
-                        UPDATE pemesanan_produks
-                        SET jumlah_stok_sekarang = jumlah_produk,
-                            updated_at = NOW()
-                        WHERE id_produk = NEW.id;
-                    ELSE
-                        INSERT INTO pemesanan_produks (id_produk, id_supplier, status, jumlah_stok_sekarang, jumlah_beli_stok, created_at, updated_at)
-                        VALUES (NEW.id, id_supplier_produk, 'belum di pesan', jumlah_produk, 0, NOW(), NOW());
-                    END IF;
-                END IF;
-            END;
-        ");
+        
         DB::unprepared("
             CREATE TRIGGER after_payment_action 
             AFTER INSERT ON payments

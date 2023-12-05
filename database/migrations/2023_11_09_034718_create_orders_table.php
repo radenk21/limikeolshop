@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('payment_mode');
             $table->unsignedBigInteger('id_payment')->nullable();
 
-            $table->foreign('id_user')->references('id')->on('users')->noActionOnDelete()->cascadeOnUpdate();
-            $table->foreign('id_payment')->references('id')->on('payments')->noActionOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_user')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_payment')->references('id')->on('payments')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

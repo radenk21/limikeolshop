@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('total_bayar');
             $table->string('payment_status');
 
-            $table->foreign('id_user')->references('id')->on('users')->noActionOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_user')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

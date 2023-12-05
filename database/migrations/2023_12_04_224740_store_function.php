@@ -27,16 +27,16 @@ return new class extends Migration
         ");
         DB::unprepared("
             CREATE FUNCTION calculate_total_harga_keranjang(user_id INT) RETURNS INT
+            READS SQL DATA
             BEGIN
                 DECLARE total INT;
-                    SELECT SUM(k.jumlah * p.harga_jual)
-                INTO total
+                SELECT SUM(k.jumlah * p.harga_jual) INTO total
                 FROM keranjangs k
                 JOIN produks p ON k.id_produk = p.id
                 WHERE k.id_user = user_id;
             
                 RETURN total;
-            END$$        
+            END
         ");
     }
 
