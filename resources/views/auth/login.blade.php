@@ -4,11 +4,11 @@
 @section('content')
 
 <a href="/" class="text-nowrap logo-img text-center d-block py-3 w-100">
-    <img src="{{ asset('admin/images/backgrounds/rocket.png') }}" 
+    <img src="{{ asset('admin/images/backgrounds/rocket.png') }}"
     {{-- width="180" --}}
     alt="">
 </a>
-<p class="text-center">Limike Olshop</p>
+<p class="text-center ">Limike Olshop</p>
 <form method="POST" action="{{ route('login') }}">
     @csrf
     <div class="mb-3">

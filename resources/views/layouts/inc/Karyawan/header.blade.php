@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-lg">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <img width="50px" height="50px" src="{{ asset('admin/images/backgrounds/rocket.png') }}"
+        {{-- width="180" --}}
+        alt="">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link text-white" aria-current="page"href="{{ route('home.karyawan') }}" class="nav-link @yield('homeActive')"> Home </a>
