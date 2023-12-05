@@ -31,6 +31,7 @@ use App\Http\Controllers\DataKeuntungan;
 use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Karyawan\SuplierController as KaryawanSuplierController;
 use App\Http\Controllers\Karyawan\DashboardController as KaryawanDashboardController;
+use App\Livewire\Karyawan\Kasir\InvoiceKasir;
 use App\Models\PemesananProduk;
 
 /*
@@ -133,7 +134,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
 Route::prefix('karyawan')->middleware(['auth', 'isKaryawan'])->group(function() {
     Route::get('home', [KaryawanDashboardController::class, 'index'])->name('home.karyawan');
-
+    Route::get('KasirKaryawan/print-invoice/{order_id}', [KaryawanKasirController::class, 'printInvoice'])->name('print-invoice.kasir');
     Route::resource('KasirKaryawan', KaryawanKasirController::class);
     Route::resource('suplier', KaryawanSuplierController::class);
     Route::resource('orders', KaryawanOrderController::class);
