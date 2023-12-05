@@ -5,6 +5,23 @@
 
 <div class="py-3 py-md-5">
     <div class="container py-3 py-md-5 shadow bg-white p3">
+        @if(session('message'))
+            <div class="alert alert-success d-flex justify-content-between">
+                <div>
+                    {{ session('message') }}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if(session('danger-alert'))
+            <div class="alert alert-danger d-flex justify-content-between">
+                <div>
+                    {{ session('danger-alert') }}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-12">
                 <div class="">
@@ -36,13 +53,17 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                             </div>
-                                            <div class="modal-body">
-                                                Yakin ingin membatalkan pesanan?
-                                            </div>
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                                            <button type="button" class="btn btn-danger">Ya, Batalkan</button>
-                                            </div>
+                                            <form action="{{ route('order.batal', $order->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-body">
+                                                    Yakin ingin membatalkan pesan?
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                                <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                                </div>
+                                            </form>
                                         </div>
                                         </div>
                                     </div>                                <tr>
