@@ -18,9 +18,6 @@ return new class extends Migration
             $table->enum('action', ['update', 'insert', 'drop']);
             $table->enum('keterangan', ['terverifikasi', 'belum di verifikasi', 'gagal', 'batal', 'menghapus', 'menambahkan']);
 
-            $table->foreign('id_user')->references('id')->on('users')->noActionOnDelete()->cascadeOnUpdate();
-            $table->foreign('id_payment')->references('id')->on('payments')->noActionOnDelete()->cascadeOnUpdate();
-            
             $table->timestamps();
         });
     }
