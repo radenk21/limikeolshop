@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
-    public $keranjangs, $totalHarga, $produks, $produk, $user_id, $is_checkout = false, $search;
+    public $keranjangs, $totalHarga, $produks, $produk, $user_id, $is_checkout = false, $search, $checkout_order_id;
 
     public function mount($produks)
     {
@@ -103,10 +103,18 @@ class Index extends Component
 
     public function checkoutKeranjang($user_id)
     {
-        
         $result = DB::select("CALL checkout_keranjang_kasir(?)", [$user_id]);
-        
+        // dd($result);
+        $this->checkout_order_id = Order::where('id_user', $user_id)->latest()->value('id');
+        // $this->dispatch('printInvoice', orderId: $this->checkout_order_id);
+        // dd($this->checkout_order_id);
+        // $this->dispatch('printInvoice');
         return redirect()->with('message', 'Keranjang Berhasil Di Checkout');
+    }
+    
+    public function cetakInvoice()
+    {
+        $this->dispatch('printInvoice', orderId: $this->checkout_order_id);
     }
     
     public function totalHargaKeranjang()
@@ -119,12 +127,13 @@ class Index extends Component
         return $this->totalHarga;
     }
 
-    public function generateFaktur()
-    {
-        $order = Order::latest()->first();
-
-        return view('livewire.karyawan.kasir.invoiceKasir', compact('order'));
-    }
+    // public function printInvoice()
+    // {
+    //     // $order = Order::latest()->first();
+    //     // dump('ini invoice');
+    //     $this->dispatch('showPrintInvoice');
+    //     return view('livewire.karyawan.kasir.invoice-kasir', compact('order'));
+    // }
     
     public function render()
     {
@@ -137,13 +146,14 @@ class Index extends Component
         $subKategoris = SubKategori::where('status', 0)->get();
         $this->keranjangs = Keranjang::where('id_user', auth()->user()->id)->get();
         $this->totalHarga = $this->totalHargaKeranjang();
-
+        
         return view('livewire.karyawan.kasir.index', [
             'produks' => $this->produks,
             'kategoris' => $kategoris,
             'subKategoris' => $subKategoris,
             'keranjangs' => $this->keranjangs,
             'totalHarga' => $this->totalHarga,
+            'checkoutOrderId' => $this->checkout_order_id,
         ]);
     }
 }

@@ -21,6 +21,11 @@ class KasirController extends Controller
         return view('karyawan.kasir.index', compact('produks'));
     }
 
+    public function printInvoice($order_id)
+    {
+        
+    }
+    
     /**
      * Show the form for creating a new resource.
      */

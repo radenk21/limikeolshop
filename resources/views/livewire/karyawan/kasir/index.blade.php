@@ -87,11 +87,28 @@
         </div>
 
         <!-- Tombol untuk membuka modal -->
-        @if($keranjangs->isNotEmpty())
-            <button type="button" class="total-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
-                Checkout Pesanan
-            </button>
-        @endif
+        <div class="d-flex justify-content-center mt-3">
+            @if($keranjangs->isNotEmpty())
+                <button type="button" class="total-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+                    Checkout Pesanan
+                </button>
+            @endif
+            <button wire:click.live="cetakInvoice()" class="btn btn-warning ms-2">Cetak Invoice</button>
+            {{-- @push('scripts')
+                <script>
+                    var checkoutOrderId = {{ $checkoutOrderId ?? 0 }};
+                    console.log(checkoutOrderId);
+                    function printInvoice() {
+                        // Pastikan checkoutOrderId memiliki nilai sebelum membukanya
+                        if (checkoutOrderId) {
+                            window.open("KaryawanKasir/print-invoice/" + checkoutOrderId, "_blank");
+                        } else {
+                            console.error("Nilai checkoutOrderId tidak valid.");
+                        }
+                    }
+                </script>
+            @endpush --}}
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">

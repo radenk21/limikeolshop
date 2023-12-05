@@ -16,7 +16,7 @@ class KaryawanMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::user()->role_as == '2') {
+        if (!Auth::user()->role_as == '2' || !Auth::user()->role_as == '1') {
             return redirect('/home')->with('status', 'Access Denied, Kamu Bukan Karyawan');
         }
         return $next($request);
