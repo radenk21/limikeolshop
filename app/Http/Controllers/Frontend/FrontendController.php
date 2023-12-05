@@ -45,10 +45,10 @@ class FrontendController extends Controller
 
         if ($kategori) {
             $subKategoris = SubKategori::where('id_kategori', $kategori->id)->get();
-            // $produks = Produk::whereIn('id_sub_kategori', $subKategoris->pluck('id'))->get();
-            // $brands = $produks->groupBy('id_brand')->keys();
-            // $uniqueBrands = Brand::whereIn('id', $brands)->get();
-            return view('frontend.collections.produks.index', compact('kategori', 'subKategoris'));
+            $produks = Produk::whereIn('id_sub_kategori', $subKategoris->pluck('id'))->get();
+            $brands = $produks->groupBy('id_brand')->keys();
+            $uniqueBrands = Brand::whereIn('id', $brands)->get();
+            return view('frontend.collections.produks.index', compact('kategori', 'subKategoris', 'produks', 'brands', 'uniqueBrands'));
         } else {
             return redirect()->back();
         }
