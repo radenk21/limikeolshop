@@ -33,6 +33,14 @@
                     <span class="hide-menu">Main App</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('home.karyawan') }}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-layout-dashboard"></i>
+                    </span>
+                    <span class="hide-menu">Karyawan App</span>
+                    </a>
+                </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Data</span>

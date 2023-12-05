@@ -64,8 +64,13 @@
                                     <td>
                                         <a href="{{ route('order.view', $order->id) }}" class="btn btn-primary btn-sm">View</a>
                                         <button type="button" class="btn btn-danger btn-sm
+<<<<<<< HEAD
                                             @if($order->status_message == )
 
+=======
+                                            @if($order->status_message !== 'belum di verifikasi')
+                                                disabled
+>>>>>>> 94d7c8fceb843db0122f4582132f6b607e93617f
                                             @endif
                                         " data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Batalkan
