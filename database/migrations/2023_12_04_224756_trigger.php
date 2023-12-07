@@ -102,7 +102,7 @@ return new class extends Migration
         ");
         DB::unprepared("
             CREATE TRIGGER check_and_order_trigger 
-            AFTER UPDATE ON produks
+            AFTER UPDATE ON products
             FOR EACH ROW
             BEGIN
                 DECLARE jumlah_produk INT;
@@ -136,11 +136,11 @@ return new class extends Migration
                 DECLARE jlh_stok_sekarang INT;
             
                 IF NEW.status = 'sudah restock' AND OLD.status != 'sudah restock' THEN
-                    UPDATE produks
+                    UPDATE products
                     SET jumlah = jumlah + NEW.jumlah_beli_stok
                     WHERE id = NEW.id_produk;
             
-                    SELECT jumlah INTO jlh_stok_sekarang FROM produks WHERE id = NEW.id_produk;
+                    SELECT jumlah INTO jlh_stok_sekarang FROM products WHERE id = NEW.id_produk;
             
                     SET NEW.jumlah_stok_sekarang = jlh_stok_sekarang;
                 END IF;

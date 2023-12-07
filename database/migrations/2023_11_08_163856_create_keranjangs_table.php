@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('jumlah');
 
             $table->foreign('id_user')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('id_produk')->references('id')->on('produks')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_produk')->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
