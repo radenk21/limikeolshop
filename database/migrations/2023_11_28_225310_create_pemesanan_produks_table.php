@@ -17,11 +17,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_supplier');
             $table->enum('status', ['belum di pesan', 'telah di pesan', 'belum di restock', 'sudah restock', 'batal']);
             $table->integer('jumlah_stok_sekarang');
-            $table->integer('jumlah_beli_stok');
+            $table->integer('jumlah_beli_stok')->nullable();
             $table->integer('total_harga_pesan')->default(0);
             
-            $table->foreign('id_produk')->references('id')->on('products')->noActionOnDelete()->cascadeOnUpdate();
-            $table->foreign('id_supplier')->references('id')->on('suppliers')->noActionOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_produk')->references('id')->on('products')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_supplier')->references('id')->on('suppliers')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->timestamps();
         });

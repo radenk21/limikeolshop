@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('no_rekening');
             $table->string('jenis_rekening');
             $table->string('total_bayar');
-            $table->string('payment_status');
+            $table->enum('payment_status', ['terverifikasi', 'belum di verifikasi', 'gagal', 'batal']);
 
             $table->foreign('id_user')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

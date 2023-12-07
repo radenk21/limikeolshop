@@ -117,8 +117,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::unprepared('DROP PROECDURE IF EXISTS cancel_order');
-        DB::unprepared('DROP PROECDURE IF EXISTS checkout_keranjang_kasir');
-        DB::unprepared('DROP PROECDURE IF EXISTS calculate_total_harga_keranjang');
+        DB::unprepared('DROP PROCEDURE IF EXISTS cancel_order');
+        DB::unprepared('DROP PROCEDURE IF EXISTS checkout_keranjang_kasir');
+        DB::unprepared('DROP PROCEDURE IF EXISTS calculate_total_harga_keranjang');
     }
 };

@@ -64,6 +64,13 @@ class DatabaseSeeder extends Seeder
             (4, 17, 46, 1, 'Piring antik', 'piring-antik', 188888, 777777, 353, 0, 0, '2023-11-15 16:11:41', '2023-11-15 16:11:41', 'ini piring antik');
         ");
         DB::statement("
+            INSERT INTO `produk_suppliers` (`id`, `id_supplier`, `id_produk`, `created_at`, `updated_at`) VALUES
+            (2, 3, 2, NULL, NULL),
+            (3, 3, 3, NULL, NULL),
+            (4, 3, 1, NULL, NULL),
+            (5, 2, 4, NULL, NULL);
+        ");
+        DB::statement("
             INSERT INTO `gambar_produks` (`id`, `id_produk`, `image`, `created_at`, `updated_at`) VALUES
             (1, 1, 'uploads/produk/1699360717-654a2fcd72a62.jpg', '2023-11-07 05:38:37', '2023-11-07 05:38:37'),
             (2, 2, 'uploads/produk/1699361130-654a316ab13ed.jpg', '2023-11-07 05:45:30', '2023-11-07 05:45:30'),
@@ -81,6 +88,21 @@ class DatabaseSeeder extends Seeder
             (8, 'usertest', 'user-1.jpg', 'usertest@gmail.com', NULL, '\$2y\$10\$NhEuFzmyZ.twTKwKGqYtFeSyEDUXdT0FsdWvPgRfJ/VjbvwFMBD4q', NULL, '2023-11-07 20:04:32', '2023-11-07 20:04:32', 0),
             (9, 'testuser', 'user-1.jpg', 'testuser@gmail.com', NULL, '\$2y\$10\$oXzB4DQJftah/njpXg2zTOteQcwOpoMxliFqdoAF7ZS5WuJM/65Bu', NULL, '2023-11-07 20:06:05', '2023-11-07 20:06:05', 2),
             (10, 'initesbuatuser', 'user-1.jpg', 'tesaja@example.com', NULL, '\$2y\$10\$PCVaGHeLTABNzlCcgBAsF.mw/TnuByYh9TyE0EmtRV25SmrV2GnRa', NULL, '2023-11-22 02:39:34', '2023-11-22 02:39:34', 2);
+        ");
+        DB::statement("
+            INSERT INTO `sliders` (`id`, `title`, `description`, `image`, `status`, `created_at`, `updated_at`) VALUES
+            (1, 'Belanja Cepat Gak Perlu Ribet', 'dsaghjfadf', 'uploads/slider/1699360013-654a2d0d763d2.jpg', 0, '2023-11-07 05:26:53', '2023-11-07 05:26:53'),
+            (2, 'Klik, Bayar, dan Terima? Emang boleh semudah itu', '.', 'uploads/slider/1699360179-654a2db37344e.jpg', 0, '2023-11-07 05:29:39', '2023-11-07 05:29:39');        
+        ");
+        DB::statement("
+            INSERT INTO `pemesanan_produks` (`id`, `id_produk`, `id_supplier`, `status`, `jumlah_stok_sekarang`, `jumlah_beli_stok`, `total_harga_pesan`, `created_at`, `updated_at`) VALUES
+            (17, 4, 2, 'batal', 359, 90, 16999920, '2023-11-30 08:18:57', '2023-11-30 09:40:33'),
+            (18, 3, 3, 'sudah restock', 82, 50, 4000000, '2023-11-30 08:18:59', '2023-11-30 08:39:34'),
+            (19, 3, 3, 'sudah restock', 182, 100, 8000000, '2023-11-30 08:45:12', '2023-11-30 08:46:49'),
+            (20, 2, 3, 'batal', 50, 10, 1800000, '2023-11-30 08:45:19', '2023-11-30 09:51:26'),
+            (21, 4, 2, 'belum di pesan', 359, NULL, 0, '2023-12-01 01:28:55', '2023-12-01 01:28:55'),
+            (23, 4, 2, 'belum di pesan', 359, NULL, 0, '2023-12-01 01:32:16', '2023-12-01 01:32:16'),
+            (24, 1, 3, 'telah di pesan', 8, 50, 9400000, '2023-12-01 05:26:43', '2023-12-04 08:34:26');
         ");
     }
 }
