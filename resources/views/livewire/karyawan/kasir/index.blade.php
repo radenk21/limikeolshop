@@ -93,7 +93,11 @@
                     Checkout Pesanan
                 </button>
             @endif
-            <button wire:click.live="cetakInvoice()" class="btn btn-warning ms-2">Cetak Invoice</button>
+            {{-- <button wire:click.live="cetakInvoice()" class="btn btn-warning ms-2">Cetak Invoice</button> --}}
+            @if ($checkoutOrderId)
+                <a href="KasirKaryawan/print-invoice/{{ $checkoutOrderId }}" target="blank" class="btn btn-warning ms-2">Cetak Invoice</a>
+            @endif
+            {{-- <button wire:click.live="cetakInvoice()" class="btn btn-warning ms-2">Cetak Invoice</button> --}}
             {{-- @push('scripts')
                 <script>
                     var checkoutOrderId = {{ $checkoutOrderId ?? 0 }};

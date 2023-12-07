@@ -11,12 +11,12 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ route('KasirKaryawan.index') }}" class="nav-link @yield('newOrderActive')"> Cashier </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link text-white" href="{{ route('suplier.index') }}" class="nav-link @yield('supplierActive')"> Suplier </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ route('order.index') }}" class="nav-link @yield('orderActive')"> Orders </a>
-          </li>
+          </li> --}}
         </ul>
         <form class="d-flex">
                 <li class="nav-item dropdown">

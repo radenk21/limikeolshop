@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('pincode');
             $table->mediumText('address');
-            $table->string('status_message');
+            $table->integer('total_harga')->default(0);
+            $table->enum('status_message', ['terverifikasi', 'belum di verifikasi', 'batal', 'selesai', 'dalam proses', 'pending', 'gagal']);
             $table->string('payment_mode');
             $table->unsignedBigInteger('id_payment')->nullable();
 

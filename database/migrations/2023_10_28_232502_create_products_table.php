@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('harga_beli');
             $table->integer('harga_jual');
             $table->integer('jumlah');
+            $table->text('deskripsi');
 
             $table->tinyInteger('trending')->default(0)->comment('1 = trending, 0 = not trending');
             $table->tinyInteger('status')->default(0)->comment('1 = hidden, 0 = visible');

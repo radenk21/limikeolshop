@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Produk;
+use App\Models\ReportKeuntungan;
+use App\Models\ReportPengeluaran;
+use App\Models\ReportPenjualan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,8 @@ class DashboardController extends Controller
     {
         $total_user = User::where('role_as', '0')->count();
         $total_order = Order::count();
-        $orders = Order::limit(5);
+        $orders = Order::orderBy('updated_at', 'DESC')->limit(5)->get();
+        // dd($orders);
         $total_pendapatan = number_format(
             OrderItem::whereHas('order', function ($query) {
                 $query->where('status_message', 'selesai');
@@ -59,6 +63,9 @@ class DashboardController extends Controller
 
         $total_pendapatan_per_tahun = number_format($total_pendapatan_per_tahun, 0, '.', '.');
         
+        $ReportKeuntungan = ReportKeuntungan::all();
+        $ReportPengeluaran = ReportPengeluaran::all();
+        $ReportPenjualan = ReportPenjualan::all();
         // dd($total_pendapatan_per_bulan);
         
         return view('admin.dashboard', compact(
@@ -70,6 +77,9 @@ class DashboardController extends Controller
             'total_pendapatan',
             'persentase_perubahan',
             'total_perubahan',
+            'ReportKeuntungan',
+            'ReportPengeluaran',
+            'ReportPenjualan',
         ));
     }
 }

@@ -105,7 +105,7 @@ class Index extends Component
     {
         $result = DB::select("CALL checkout_keranjang_kasir(?)", [$user_id]);
         // dd($result);
-        $this->checkout_order_id = Order::where('id_user', $user_id)->latest()->value('id');
+        $this->checkout_order_id = Order::where('id_user', $user_id)->where('payment_mode', 'kasir')->latest()->value('id');
         // $this->dispatch('printInvoice', orderId: $this->checkout_order_id);
         // dd($this->checkout_order_id);
         // $this->dispatch('printInvoice');
