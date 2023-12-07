@@ -16,9 +16,9 @@ return new class extends Migration
             CREATE VIEW keuntungan_perhari AS
             SELECT CAST(o.updated_at AS DATE) AS tanggal,
                 SUM(oi.jumlah * (p.harga_jual - p.harga_beli)) AS keuntungan
-            FROM limikeolshop.orders o
-            JOIN limikeolshop.order_items oi ON o.id = oi.id_order
-            JOIN limikeolshop.produks p ON oi.id_produk = p.id
+            FROM orders o
+            JOIN order_items oi ON o.id = oi.id_order
+            JOIN products p ON oi.id_produk = p.id
             WHERE o.status_message = 'selesai'
             GROUP BY tanggal;
         ");
@@ -36,13 +36,13 @@ return new class extends Migration
                 pr.total_harga_pesan,
                 pr.created_at
             FROM
-                limikeolshop.pemesanan_produks pr
+                pemesanan_produks pr
             JOIN
-                limikeolshop.produks p ON p.id = pr.id_produk
+                products p ON p.id = pr.id_produk
             JOIN
-                limikeolshop.brands b ON b.id = p.id
+                brands b ON b.id = p.id
             JOIN
-                limikeolshop.suppliers s ON s.id = pr.id_supplier
+                suppliers s ON s.id = pr.id_supplier
             WHERE
                 pr.status NOT IN ('batal', 'belum di pesan');
         ");
@@ -53,7 +53,7 @@ return new class extends Migration
                 COUNT(o.id) AS jumlah_penjualan,
                 SUM(o.total_harga) AS total_penjualan
             FROM
-                limikeolshop.orders o
+                orders o
             WHERE
                 o.status_message = 'selesai'
             GROUP BY

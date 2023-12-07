@@ -58,8 +58,8 @@ class KeranjangShow extends Component
     public function render()
     {
         $this->totalHarga = Keranjang::where('id_user', auth()->user()->id)
-        ->join('produks', 'keranjangs.id_produk', '=', 'produks.id')
-        ->sum(DB::raw('keranjangs.jumlah * produks.harga_jual'));
+        ->join('products', 'keranjangs.id_produk', '=', 'products.id')
+        ->sum(DB::raw('keranjangs.jumlah * products.harga_jual'));
         $this->keranjangs = Keranjang::where('id_user', auth()->user()->id)->get();
         return view('livewire.frontend.keranjang.keranjang-show', [
             'keranjangs' => $this->keranjangs,

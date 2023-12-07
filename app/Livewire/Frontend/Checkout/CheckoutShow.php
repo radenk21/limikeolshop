@@ -9,6 +9,7 @@ use Livewire\Component;
 use App\Models\Keranjang;
 use App\Models\OrderItem;
 use App\Models\Payment;
+use App\Models\Produk;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class CheckoutShow extends Component
 {
     public $keranjangs, $totalHarga;
     public $id_user, $no_tracking, $fullname, $email, $phone, $pincode, $address, $status_message, $payment_mode = null, $payment_id = null;
-    public $selectedPaymentMethod, $no_rekening;
+    public $selectedPaymentMethod, $no_rekening, $harga_produk;
 
     public function rules()
     {
@@ -47,11 +48,14 @@ class CheckoutShow extends Component
         ]);
         
         foreach ($this->keranjangs as $keranjang) {
+            // dump($keranjang->produk->harga_jual * $keranjang->jumlah);
+
+            $this->harga_produk = $keranjang->produk->harga_jual * $keranjang->jumlah;
             $orderItems = OrderItem::create([
                 'id_order' => $order->id,
                 'id_produk' => $keranjang->produk->id,
                 'jumlah'=> $keranjang->jumlah,
-                'harga' => $keranjang->produk->harga_jual * $keranjang->jumlah,    
+                'harga' => $this->harga_produk,    
             ]);
         }
 
