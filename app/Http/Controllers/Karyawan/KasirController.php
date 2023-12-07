@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Karyawan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kategori;
+use App\Models\Order;
 use App\Models\Produk;
 use App\Models\SubKategori;
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ class KasirController extends Controller
 
     public function printInvoice($order_id)
     {
-        
+        $order = Order::findOrFail($order_id);
+        return view('karyawan.invoice.invoice-kasir', compact('order'));
     }
     
     /**
