@@ -40,7 +40,7 @@
                         <span>Brand</span>
                         <p class="brand-name text-align-center mt-3">{{ $produk->brand->name }}</p>
                     </div>
-                    <div class="color-produk-detail">
+                    {{-- <div class="color-produk-detail">
                         <span> Color </span>
                         @if ($produk->produkJenis->count() > 0)
                             @if ($produk->produkJenis)
@@ -54,7 +54,7 @@
                         @endif
                         <p>Red</p>
                         <p>Blue</p>
-                    </div>
+                    </div> --}}
                     <div class="quantity">
                         <p class="mt-3"> Quantity </p>
                         <span wire:click="decerementJumlah">-</span>

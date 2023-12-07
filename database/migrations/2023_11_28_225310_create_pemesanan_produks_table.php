@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('jumlah_beli_stok');
             $table->integer('total_harga_pesan')->default(0);
             
-            $table->foreign('id_produk')->references('id')->on('produks')->noActionOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_produk')->references('id')->on('products')->noActionOnDelete()->cascadeOnUpdate();
             $table->foreign('id_supplier')->references('id')->on('suppliers')->noActionOnDelete()->cascadeOnUpdate();
 
             $table->timestamps();

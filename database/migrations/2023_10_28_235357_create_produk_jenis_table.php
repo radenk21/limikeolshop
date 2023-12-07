@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_produk');
             $table->unsignedBigInteger('id_jenis')->nullable();
             $table->integer('jumlah');
-            $table->foreign('id_produk')->references('id')->on('produks')->cascadeOnDelete();
+            $table->foreign('id_produk')->references('id')->on('products')->cascadeOnDelete();
             $table->foreign('id_jenis')->references('id')->on('jeniss')->nullOnDelete();
             $table->timestamps();
         });

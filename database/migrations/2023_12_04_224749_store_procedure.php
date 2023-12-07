@@ -39,7 +39,7 @@ return new class extends Migration
                         LEAVE read_loop;
                     END IF;
             
-                    UPDATE produks
+                    UPDATE products
                     SET jumlah = jumlah + order_item_count
                     WHERE id = product_id;
             
@@ -64,7 +64,7 @@ return new class extends Migration
                 DECLARE keranjang_cursor CURSOR FOR
                     SELECT k.id_produk, k.jumlah, p.harga_jual
                     FROM keranjangs k
-                    JOIN produks p ON k.id_produk = p.id
+                    JOIN products p ON k.id_produk = p.id
                     WHERE k.id_user = user_id;
             
                 DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
@@ -106,7 +106,7 @@ return new class extends Migration
                 SELECT SUM(k.jumlah * p.harga_jual)
                 INTO total
                 FROM keranjangs k
-                JOIN produks p ON k.id_produk = p.id
+                JOIN products p ON k.id_produk = p.id
                 WHERE k.id_user = user_id;
             END;
         ");
