@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Keranjang'. auth()->user()->name)
+@section('title', 'Keranjang '. ucfirst(auth()->user()->name))
 
 @section('content')
 
