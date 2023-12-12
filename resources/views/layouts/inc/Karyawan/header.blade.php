@@ -11,12 +11,12 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ route('KasirKaryawan.index') }}" class="nav-link @yield('newOrderActive')"> Cashier </a>
           </li>
-          {{-- <li class="nav-item">
-            <a class="nav-link text-white" href="{{ route('suplier.index') }}" class="nav-link @yield('supplierActive')"> Suplier </a>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{{ route('KaryawanProduk.index') }}" class="nav-link @yield('produkActive')"> Produk </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="{{ route('order.index') }}" class="nav-link @yield('orderActive')"> Orders </a>
-          </li> --}}
+            <a class="nav-link text-white" href="{{ route('KaryawanPemesananProduk.index') }}" class="nav-link @yield('pemesananActive')"> Pemesanan Produk </a>
+          </li>
         </ul>
         <form class="d-flex">
                 <li class="nav-item dropdown">
@@ -28,6 +28,7 @@
                         @if (Auth::check() && Auth::user()->role_as == '1')
                           <li><a class="dropdown-item" href="{{ url('admin/dashboard') }}"><i class="fa fa-user"></i> Admin Page</a></li>
                         @endif
+                        <li><a href="{{ url('/') }}" class="dropdown-item"><i class="fa fa-home" aria-hidden="true"></i>Main App</a></li>
                         <li>
                             <a class="dropdown-item" href="{{ url('logout') }}"
                                 {{-- onclick="event.preventDefault();

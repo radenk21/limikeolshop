@@ -20,6 +20,7 @@ class Order extends Model
         'pincode',
         'address',
         'status_message',
+        'total_harga',
         'payment_mode',
         'id_payment',
     ];

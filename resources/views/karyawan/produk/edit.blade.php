@@ -15,7 +15,7 @@
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-detail-produk-tab" data-bs-toggle="tab" data-bs-target="#nav-detail-produk" type="button" role="tab" aria-controls="nav-detail-produk" aria-selected="true">Detail Produk</button>
-                        <button class="nav-link" id="nav-jenis-tab" data-bs-toggle="tab" data-bs-target="#nav-jenis" type="button" role="tab" aria-controls="nav-jenis" aria-selected="false">Jenis Produk</button>
+                        {{-- <button class="nav-link" id="nav-jenis-tab" data-bs-toggle="tab" data-bs-target="#nav-jenis" type="button" role="tab" aria-controls="nav-jenis" aria-selected="false">Jenis Produk</button> --}}
                     </div>
                 </nav>
                 <a href="{{ route('produk.index') }}" class="btn btn-primary">Back</a>
@@ -178,7 +178,7 @@
             </div>
         </div>
     </form>
-    <div class="card tab-pane fade" id="nav-jenis" role="tabpanel" aria-labelledby="nav-jenis-tab" tabindex="0">
+    {{-- <div class="card tab-pane fade" id="nav-jenis" role="tabpanel" aria-labelledby="nav-jenis-tab" tabindex="0">
         <div class="card-body">
             <form action="{{ route('produkidJenis.store', $produk->id) }}" method="post">
                 @csrf
@@ -283,7 +283,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- <div class="card">
         <div class="card-header d-flex justify-content-between align-middle">
             <h3>

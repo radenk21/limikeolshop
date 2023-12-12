@@ -53,4 +53,8 @@ class User extends Authenticatable
         return $this->hasMany(Keranjang::class, 'id_user', 'id');
     }
 
+    public function hasRole($role)
+    {
+        return $this->role_as === $role; // Misalnya, kolom 'role' pada tabel pengguna
+    }
 }

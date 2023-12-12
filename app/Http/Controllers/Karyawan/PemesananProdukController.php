@@ -1,19 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Karyawan;
 
-use App\Http\Controllers\Controller;
-use App\Models\PemesananProduk;
 use App\Models\Produk;
-use App\Models\ProdukSupplier;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
+use App\Models\ProdukSupplier;
+use App\Models\PemesananProduk;
+use App\Http\Controllers\Controller;
 
 class PemesananProdukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $pemesananProduks = PemesananProduk::
@@ -29,7 +25,7 @@ class PemesananProdukController extends Controller
         // $offset = request()->get('page', 1) * $pemesananProduks->perPage() - $pemesananProduks->perPage();
         // $pemesananProduks = PemesananProduk::whereNot('status', 'sudah restock')->paginate(10);
 
-        return view('admin.pemesanan_produk.index', compact('pemesananProduks', 'offset'));
+        return view('karyawan.pemesanan_produk.index', compact('pemesananProduks', 'offset'));
     }
 
     /**
@@ -79,7 +75,7 @@ class PemesananProdukController extends Controller
     public function edit($id)
     {
         $pemesananProduk = PemesananProduk::where('id', $id)->first();
-        return view('admin.pemesanan_produk.edit', compact('pemesananProduk'));
+        return view('karyawan.pemesanan_produk.edit', compact('pemesananProduk'));
     }
 
     /**
