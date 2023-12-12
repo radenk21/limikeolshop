@@ -15,7 +15,7 @@
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-detail-produk-tab" data-bs-toggle="tab" data-bs-target="#nav-detail-produk" type="button" role="tab" aria-controls="nav-detail-produk" aria-selected="true">Detail Produk</button>
-                        <button class="nav-link" id="nav-jenis-tab" data-bs-toggle="tab" data-bs-target="#nav-jenis" type="button" role="tab" aria-controls="nav-jenis" aria-selected="false">Tambah Jenis Produk</button>
+                        {{-- <button class="nav-link" id="nav-jenis-tab" data-bs-toggle="tab" data-bs-target="#nav-jenis" type="button" role="tab" aria-controls="nav-jenis" aria-selected="false">Tambah Jenis Produk</button> --}}
                     </div>
                 </nav>
                 <a href="{{ route('produk.index') }}" class="btn btn-primary">Back</a>
@@ -167,7 +167,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card tab-pane fade" id="nav-jenis" role="tabpanel" aria-labelledby="nav-jenis-tab" tabindex="0">
+            {{-- <div class="card tab-pane fade" id="nav-jenis" role="tabpanel" aria-labelledby="nav-jenis-tab" tabindex="0">
                 <div class="card-body">
                     <div class="row">
                         <label for="jenis" class="form-label">Daftar Jenis</label>
@@ -187,7 +187,7 @@
                         
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="col-md-12 mb-3">
             <button class="btn btn-primary mt-2" type="submit">Tambah</button>

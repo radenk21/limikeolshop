@@ -22,6 +22,7 @@ use App\Http\Controllers\Frontend\KeranjangController;
 use App\Http\Controllers\Admin\DataPembelianController;
 use App\Http\Controllers\Admin\DataPenjualanController;
 use App\Http\Controllers\Admin\PemesananProdukController;
+use App\Http\Controllers\Karyawan\PemesananProdukController as PemesananProdukControllerK;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Karyawan\KasirController as KaryawanKasirController;
 use App\Http\Controllers\Karyawan\OrderController as KaryawanOrderController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\DataKeuntungan;
 use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Karyawan\SuplierController as KaryawanSuplierController;
 use App\Http\Controllers\Karyawan\DashboardController as KaryawanDashboardController;
+use App\Http\Controllers\Karyawan\ProdukControllerK as KaryawanProdukControllerK;
 use App\Livewire\Karyawan\Kasir\InvoiceKasir;
 use App\Models\PemesananProduk;
 
@@ -78,7 +80,7 @@ Route::get('thank-you', [FrontendController::class, 'thankyou'])->name('thankyou
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'checkRole:1'])->group(function () {
     Route::get('dashboard', [AdminDashboardController::class, 'index']);
 
     // Kategori Routes
@@ -132,10 +134,21 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('DataKeuntungan', DataKeuntungan::class);
 });
 
-Route::prefix('karyawan')->middleware(['auth', 'isKaryawan'])->group(function() {
+Route::prefix('karyawan')->middleware(['auth', 'checkRole:1,2'])->group(function() {
     Route::get('home', [KaryawanDashboardController::class, 'index'])->name('home.karyawan');
     Route::get('KasirKaryawan/print-invoice/{checkoutOrderId}', [KaryawanKasirController::class, 'printInvoice'])->name('print-invoice.kasir');
     Route::resource('KasirKaryawan', KaryawanKasirController::class);
     Route::resource('suplier', KaryawanSuplierController::class);
     Route::resource('orders', KaryawanOrderController::class);
+    // Pemesanan Produk Routes
+    Route::resource('KaryawanPemesananProduk', PemesananProdukControllerK::class);
+    Route::post('/PemesananProduk/create/{id}', [PemesananProdukControllerK::class, 'tambahPesan'])->name('PemesananProdukK.tambahPesan');
+    Route::put('PemesananProduk/{id}/verifikasi', [PemesananProdukControllerK::class, 'verifikasiStok'])->name('PemesananProdukK.verifikasiPesanan');
+    Route::put('PemesananProduk/{id}/batal-pesan', [PemesananProdukControllerK::class, 'batalPemesanan'])->name('PemesananProdukK.batalPesanan');
+    // Produk Routes
+    Route::resource('KaryawanProduk', KaryawanProdukControllerK::class);
+    Route::get('produk/get-subcategories/{kategori}', [KaryawanProdukControllerK::class, 'getSubcategories']);
+    Route::get('produk/{produk}/get-subcategories/{kategori}', [KaryawanProdukControllerK::class, 'getSubcategories']);
+    Route::get('gambar-produk/{id}/delete', [KaryawanProdukControllerK::class, 'destroyGambar']);
+    Route::post('admin/produkJenis/{produk_jenis_id}', [KaryawanProdukControllerK::class, 'produkJenisUpdate']);
 });

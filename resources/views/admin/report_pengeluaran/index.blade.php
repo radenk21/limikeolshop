@@ -152,11 +152,7 @@
                             console.log($rowCount);
 
                             // Mengganti urutan baris agar yang baru ditambahkan berada di akhir tabel
-                            if ($rowCount > 2) {
-                                table.order([$rowCount - 1, 'desc']).draw(false);
-                            } else {
-                                table.order([$rowCount - 1, 'asc']).draw(false);
-                            }
+                            table.order([$rowCount - 1, 'desc']).draw(false);
                             var cellToMerge = table.cell({ row: table.rows().count() - 1, column: 0 });
 
                             // Menggabungkan sel untuk Total Pengeluaran

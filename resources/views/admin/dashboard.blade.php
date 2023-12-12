@@ -15,7 +15,7 @@
             <div class="card-body">
                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                 <div class="mb-3 mb-sm-0">
-                    <h5 class="card-title fw-semibold">Sales Overview</h5>
+                    <h5 class="card-title fw-semibold">Penjualan</h5>
                 </div>
                 <div>
                     <select class="form-select">
@@ -126,11 +126,6 @@
                     <div class="mb-4">
                         <h5 class="card-title fw-semibold">Recent Transactions</h5>
                     </div>
-                    @forelse ($orders as $order)
-                        
-                    @empty
-                        
-                    @endforelse
                         <ul class="timeline-widget mb-0 position-relative mb-n5">
                             @forelse ($orders as $order)
                                 @php
@@ -199,6 +194,9 @@
                             <h6 class="fw-semibold mb-0">Order Tracking No.</h6>
                             </th>
                             <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Status</h6>
+                            </th>
+                            <th class="border-bottom-0 text-center">
                             <h6 class="fw-semibold mb-0">Method</h6>
                             </th>
                             <th class="border-bottom-0">
@@ -208,6 +206,34 @@
                         </thead>
                         <tbody>
                             @forelse ($orders as $order)
+                                @php
+                                    $badgeClass = '';
+                                    switch($order->status_message) {
+                                        case 'batal':
+                                            $badgeClass = 'bg-danger';
+                                            break;
+                                        case 'gagal':
+                                            $badgeClass = 'bg-danger';
+                                            break;
+                                        case 'dalam proses':
+                                            $badgeClass = 'bg-warning';
+                                            break;
+                                        case 'pending':
+                                            $badgeClass = 'bg-warning';
+                                            break;
+                                        case 'belum di verifikasi':
+                                            $badgeClass = 'bg-warning';
+                                            break;
+                                        case 'selesai':
+                                            $badgeClass = 'bg-success';
+                                            break;
+                                        case 'terverifikasi':
+                                            $badgeClass = 'bg-success';
+                                            break;
+                                        default:
+                                            $badgeClass = 'bg-primary';
+                                    }
+                                @endphp
                                 <tr>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">
@@ -220,15 +246,18 @@
                                         </h6>                        
                                     </td>
                                     <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal">Elite 99o</p>
+                                    <p class="mb-0 fw-normal">{{ $order->no_tracking }}</p>
+                                    </td>
+                                    <td class="border-bottom-0 text-center">
+                                    <p class="mb-0 fw-normal">{{ $order->payment_mode }}</p>
                                     </td>
                                     <td class="border-bottom-0">
                                     <div class="d-flex align-items-center gap-2">
-                                        <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
+                                        <span class="badge {{ $badgeClass }} rounded-3 fw-semibold">{{ $order->status_message }}</span>
                                     </div>
                                     </td>
                                     <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
+                                    <h6 class="fw-semibold mb-0 fs-4">Rp {{ number_format($order->total_harga, 0 , '.', '.') }}</h6>
                                     </td>
                                 </tr>           
                             @empty
@@ -245,7 +274,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-sm-6 col-xl-3">
             <div class="card overflow-hidden rounded-2">
             <div class="position-relative">
@@ -326,9 +355,6 @@
             </div>
             </div>
         </div>
-    </div>
-    <div class="py-6 px-6 text-center">
-        <p class="mb-0 fs-4">Design and Developed by <a href="https://adminmart.com/" target="_blank" class="pe-1 text-primary text-decoration-underline">AdminMart.com</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a></p>
-    </div>
+    </div> --}}
     {{-- End Row --}}
 @endsection

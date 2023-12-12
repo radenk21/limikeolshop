@@ -7,19 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class CheckRole
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next, ...$roles)
     {
-        if (!Auth::user()->role_as == '1') {
-            return redirect('/home')->with('status', 'Access Denied, Kamu Bukan Admin');
-        } else {
-            return $next($request);
+        foreach ($roles as $role) {
+            $role = intval($role);
+            if (Auth::user()->role_as == $role) {
+                return $next($request);
+            }
         }
+        return redirect('/home')->with('error', 'Unauthorized');
     }
 }
