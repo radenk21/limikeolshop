@@ -40,7 +40,7 @@ return new class extends Migration
             JOIN
                 products p ON p.id = pr.id_produk
             JOIN
-                brands b ON b.id = p.id
+                brands b ON b.id = p.id_brand
             JOIN
                 suppliers s ON s.id = pr.id_supplier
             WHERE

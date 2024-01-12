@@ -35,7 +35,6 @@ class SupplierFormRequest extends FormRequest
             ],
             'no_telp' =>[
                 'required',
-                'integer'
             ],
         ];
     }

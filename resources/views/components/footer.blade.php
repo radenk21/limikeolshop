@@ -4,7 +4,7 @@
             <span class='app-name'>
                 <span class='app-initial'>Limike</span>shop
             </span>
-            <p>penyedia <strong>perabotan</strong> dan <strong>alat rumah tangga</strong> terkeren. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere similique, accusamus aperiam praesentium doloribus asperiores voluptas odio quod excepturi numquam! Vero quod ipsum quidem quo quaerat assumenda, vitae eum quos.   </p>
+            <p>penyedia <strong>perabotan</strong> dan <strong>alat rumah tangga</strong> terkeren. Cocok untuk kamu para <strong>pasangan muda</strong> maupun <strong>pasagan tua</strong></p>
         </div>
         <div class="zer">
             <div class="frs">
@@ -33,8 +33,10 @@
                 <div class="sec">
                     <div class="footer-title">Our Media Social</div>
                     <ul>
-                        <li>+62 82274593774</li>
-                        <li>@nndittooo</li>
+                        <li>+62 812-6596-181</li>
+                        <a style="text-decoration: none" href="https://www.instagram.com/limikeolshop/">
+                            <li>limikeolshop</li>
+                        </a>
                         <li>limike.olshop</li>
                     </ul>
                 </div>

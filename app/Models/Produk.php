@@ -67,7 +67,7 @@ class Produk extends Model
     
     public function wishlist()
     {
-        return $this->hasMany(Wishlists::class, 'id_produk', 'id');
+        return $this->hasMany(Wishlist::class, 'id_produk', 'id');
     }
 
     public function keranjang()
@@ -90,7 +90,7 @@ class Produk extends Model
         return [
             'name' => [
                 'required',
-                Rule::unique('produks', 'name')->ignore($id),
+                Rule::unique('products', 'name')->ignore($id),
             ]
         ];
     }

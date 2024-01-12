@@ -67,6 +67,8 @@ class DashboardController extends Controller
         $ReportPengeluaran = ReportPengeluaran::all();
         $ReportPenjualan = ReportPenjualan::all();
         // dd($total_pendapatan_per_bulan);
+        $reportWithHighestProfit = ReportKeuntungan::orderBy('keuntungan', 'desc')->limit(1)->value('keuntungan');   
+        $reportWithLowestProfit = ReportKeuntungan::orderBy('keuntungan', 'asc')->limit(1)->value('keuntungan');   
         
         return view('admin.dashboard', compact(
             'total_user', 
@@ -80,6 +82,8 @@ class DashboardController extends Controller
             'ReportKeuntungan',
             'ReportPengeluaran',
             'ReportPenjualan',
+            'reportWithHighestProfit',
+            'reportWithLowestProfit',
         ));
     }
 }

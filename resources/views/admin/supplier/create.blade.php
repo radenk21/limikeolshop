@@ -38,6 +38,10 @@
                         <label for="no_telp" class="form-label">Nomor Telepon</label><br>
                         <input type="number" name="no_telp" class="form-control" value="{{ old('no_telp') }}" >
                     </div>
+                    @error('no_telp')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+
                     <div class="col-md-6 mb-3">
                         <label for="alamat" class="form-label">Alamat Supplier</label>
                         <textarea name="alamat" class="form-control" rows="3">{{ old('alamat') }}</textarea>
